@@ -87,15 +87,15 @@ class M_email extends MY_Model {
         //准备邮件内容
         $data['uid'] = $member['id'];
         $data['email'] = $member['email'];
-        $data['url'] = 'http://'.SITEDOMAIN.base_url('verify').'/'.$member['id'].'/'.substr(md5($member['email'] . '0'), 3, 25);
+        $data['url'] = 'http://'.SERVERNAME.base_url('verify').'/'.$member['id'].'/'.substr(md5($member['email'] . '0'), 3, 25);
         $data['subject'] = 'Confirm Your Account';
-        $data['message'] = $this->load->view('Email/email_verify', $data, TRUE);
+        $data['message'] = $this->load->view('email/email_verify', $data, TRUE);
 
 // echo $data['message'];exit;
 
         //准备发送邮件
         $this->load->library('email');
-        $this->email->from('no-reply@'.$this->config->item('site_domain'), $this->config->item('site_name'));
+        $this->email->from('no-reply@'.SITEDOMAIN);
         $this->email->to($member['email']); 
         $this->email->subject($data['subject']);
         $this->email->message($data['message']);
@@ -116,15 +116,15 @@ class M_email extends MY_Model {
         //准备邮件内容
         $data['uid'] = $member['id'];
         $data['email'] = $member['email'];
-        $data['url'] = 'http://'.SITEDOMAIN.base_url('reset').'/'.$member['id'].'/'.substr(md5($member['password'] . $member['login_count']), 2, 10);
+        $data['url'] = 'http://'.SERVERNAME.base_url('reset').'/'.$member['id'].'/'.substr(md5($member['password'] . $member['login_count']), 2, 10);
         $data['subject'] = 'Password Reset Request';
-        $data['message'] = $this->load->view('Email/password_reset', $data, TRUE);
+        $data['message'] = $this->load->view('email/password_reset', $data, TRUE);
 
 // echo $data['message'];exit;
 
         //准备发送邮件
         $this->load->library('email');
-        $this->email->from('no-reply@'.$this->config->item('site_domain'), $this->config->item('site_name'));
+        $this->email->from('no-reply@'.SITEDOMAIN);
         $this->email->to($member['email']); 
         $this->email->subject($data['subject']);
         $this->email->message($data['message']);
@@ -145,15 +145,15 @@ class M_email extends MY_Model {
         //准备邮件内容
         $data['uid'] = $member['id'];
         $data['email'] = $member['email'];
-        $data['url'] = 'http://help.'.$this->config->item('site_domain');
+        $data['url'] = 'http://help.'.SITEDOMAIN;
         $data['subject'] = 'Your Password Has Been Changed';
-        $data['message'] = $this->load->view('Email/password_changed', $data, TRUE);
+        $data['message'] = $this->load->view('email/password_changed', $data, TRUE);
 
 // echo $data['message'];exit;
 
         //准备发送邮件
         $this->load->library('email');
-        $this->email->from('no-reply@'.$this->config->item('site_domain'), $this->config->item('site_name'));
+        $this->email->from('no-reply@'.SITEDOMAIN);
         $this->email->to($member['email']); 
         $this->email->subject($data['subject']);
         $this->email->message($data['message']);
