@@ -1,4 +1,9 @@
+*/config/development
 */logs/log-*.php
 */logs/!index.html
 */cache/*
 */cache/!index.html
+captcha/*
+captcha/!index.html
+uploads/*
+uploads/!index.html
