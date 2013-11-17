@@ -87,7 +87,7 @@ class M_email extends MY_Model {
         //准备邮件内容
         $data['uid'] = $member['id'];
         $data['email'] = $member['email'];
-        $data['url'] = 'http://'.SERVERNAME.base_url('verify').'/'.$member['id'].'/'.substr(md5($member['email'] . '0'), 3, 25);
+        $data['url'] = 'http://'.$_SERVER['SERVER_NAME'].base_url('verify').'/'.$member['id'].'/'.substr(md5($member['email'] . '0'), 3, 25);
         $data['subject'] = 'Confirm Your Account';
         $data['message'] = $this->load->view('email/email_verify', $data, TRUE);
 
@@ -116,7 +116,7 @@ class M_email extends MY_Model {
         //准备邮件内容
         $data['uid'] = $member['id'];
         $data['email'] = $member['email'];
-        $data['url'] = 'http://'.SERVERNAME.base_url('reset').'/'.$member['id'].'/'.substr(md5($member['password'] . $member['login_count']), 2, 10);
+        $data['url'] = 'http://'.$_SERVER['SERVER_NAME'].base_url('reset').'/'.$member['id'].'/'.substr(md5($member['password'] . $member['login_count']), 2, 10);
         $data['subject'] = 'Password Reset Request';
         $data['message'] = $this->load->view('email/password_reset', $data, TRUE);
 

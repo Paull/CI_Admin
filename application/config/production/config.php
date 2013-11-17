@@ -26,8 +26,7 @@
  */
 
 define('SITENAME', 'CI_Admin');
-define('SERVERNAME', $_SERVER['SERVER_NAME']);
-define('SITEDOMAIN', substr_count(SERVERNAME, '.') > 1 ? substr(SERVERNAME, strrpos(SERVERNAME, '.', strrpos(SERVERNAME, '.')-strlen(SERVERNAME)-1)+1) : SERVERNAME);
+define('SITEDOMAIN', substr_count($_SERVER['SERVER_NAME'], '.') > 1 ? substr($_SERVER['SERVER_NAME'], strrpos($_SERVER['SERVER_NAME'], '.', strrpos($_SERVER['SERVER_NAME'], '.')-strlen($_SERVER['SERVER_NAME'])-1)+1) : $_SERVER['SERVER_NAME']);
 
 /*
 |--------------------------------------------------------------------------

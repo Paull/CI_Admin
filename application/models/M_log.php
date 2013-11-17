@@ -65,7 +65,7 @@ class M_log extends MY_Model {
         }
         elseif ( $data['method'] == 'referer' )
         {
-            $data['method'] = str_replace(array('http://'.SERVERNAME.BASEURL, URL_SUFFIX), array('',''), $this->input->server('HTTP_REFERER'));
+            $data['method'] = str_replace(array('http://'.$_SERVER['SERVER_NAME'].BASEURL, URL_SUFFIX), array('',''), $this->input->server('HTTP_REFERER'));
         }
 
         if ( !isset($data['ip_address']) )
