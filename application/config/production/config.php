@@ -26,7 +26,8 @@
  */
 
 define('SITENAME', 'CI_Admin');
-define('SITEDOMAIN', $_SERVER['SERVER_NAME']);
+define('SERVERNAME', $_SERVER['SERVER_NAME']);
+define('SITEDOMAIN', substr_count(SERVERNAME, '.') > 1 ? substr(SERVERNAME, strrpos(SERVERNAME, '.', strrpos(SERVERNAME, '.')-strlen(SERVERNAME)-1)+1) : SERVERNAME);
 
 /*
 |--------------------------------------------------------------------------
@@ -344,7 +345,7 @@ $config['sess_time_to_update']	= 300;
 |
 */
 $config['cookie_prefix']	= '';
-$config['cookie_domain']	= substr_count(SITEDOMAIN, '.') == 2 ? strstr(SITEDOMAIN, '.') : SITEDOMAIN;
+$config['cookie_domain']	= '.'.SITEDOMAIN;
 $config['cookie_path']		= '/';
 $config['cookie_secure']	= FALSE;
 $config['cookie_httponly'] 	= TRUE;
@@ -358,7 +359,7 @@ $config['cookie_httponly'] 	= TRUE;
 | cache engine
 |
 */
-$config['cache_prefix'] = $config['cookie_domain'].'_';
+$config['cache_prefix'] = $config['encryption_key'].'_';
 
 /*
 |--------------------------------------------------------------------------
