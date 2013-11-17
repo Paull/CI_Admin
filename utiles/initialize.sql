@@ -80,8 +80,7 @@ CREATE TABLE `cia_member` (
   `reg_time` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`) USING BTREE,
-  UNIQUE KEY `email` (`email`),
-  UNIQUE KEY `realname` (`realname`)
+  UNIQUE KEY `email` (`email`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
