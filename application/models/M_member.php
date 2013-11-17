@@ -25,17 +25,17 @@ class M_member extends MY_Model {
         return $this->db->get($this->_table);
     }
 
-    //删除数据
-    function delete($where = '', $limit = NULL, $reset_data = TRUE)
-    {
-        if(intval($where) == $where)
-        {
-            $this->db->where('id', $where);
-            $where = '';
-        }
-        $this->db->delete($this->_table, $where, $limit, $reset_data);
-        return $this->db->affected_rows();
-    }
+//    //删除数据
+//    function delete($where = '', $limit = NULL, $reset_data = TRUE)
+//    {
+//        if(intval($where) == $where)
+//        {
+//            $this->db->where('id', $where);
+//            $where = '';
+//        }
+//        $this->db->delete($this->_table, $where, $limit, $reset_data);
+//        return $this->db->affected_rows();
+//    }
 
     //删除数据byPK
     function destroy($uid)
@@ -111,13 +111,14 @@ class M_member extends MY_Model {
         $data['reg_ip']   = $this->input->ip_address();
         $data['reg_time'] = $this->input->server('REQUEST_TIME');
 
-        $insert_id = $this->db->insert($this->_table, $data);
+        $this->db->insert($this->_table, $data);
+        $insert_id = $this->db->insert_id();
 
         //记录操作日志----------------------
         $log['uid']        = $this->session->userdata('uid');
         $log['operate']    = 'create member';
         $log['status']     = $insert_id > 0;
-        $log['debug_info'] = TRUE;
+        $log['debug_info'] = array('insert_id'=>$insert_id);
         $this->m_log->create($log);
         //记录操作日志----------------------
 
@@ -161,13 +162,14 @@ class M_member extends MY_Model {
             unset($data['password']);
         }
 
-        $affected_rows = $this->db->update($this->_table, $data);
+        $this->db->update($this->_table, $data);
+        $affected_rows = $this->db->affected_rows();
 
         //记录操作日志----------------------
         $log['uid']        = $this->session->userdata('uid');
         $log['operate']    = 'edit member';
         $log['status']     = $affected_rows > 0;
-        $log['debug_info'] = TRUE;
+        $log['debug_info'] = array('affected_rows'=>$affected_rows);
         $this->m_log->create($log);
         //记录操作日志----------------------
 
