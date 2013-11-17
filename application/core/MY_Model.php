@@ -1,0 +1,265 @@
+<?php defined('BASEPATH') || exit('No direct script access allowed');
+
+class MY_Model extends CI_Model {
+
+    protected $_table;
+
+    function __construct()
+    {
+        parent::__construct();
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * From
+     *
+     * Generates the FROM portion of the query
+     *
+     * @param   mixed   $from   can be a string or array
+     * @return  CI_DB_query_builder
+     */
+    public function from($from)
+    {
+        $this->db->from($from);
+        return $this;
+    }
+
+    function select($select = '*', $escape = NULL)
+    {
+        $this->db->select($select, $escape);
+        return $this;
+    }
+    function select_max($select = '', $alias = '')
+    {
+        $this->db->select_max($select, $alias);
+        return $this;
+    }
+    function select_min($select = '', $alias = '')
+    {
+        $this->db->select_min($select, $alias);
+        return $this;
+    }
+    function select_avg($select = '', $alias = '')
+    {
+        $this->db->select_avg($select, $alias);
+        return $this;
+    }
+    function select_sum($select = '', $alias = '')
+    {
+        $this->db->select_sum($select, $alias);
+        return $this;
+    }
+
+    function limit($value, $offset = '')
+    {
+        $this->db->limit($value, $offset);
+        return $this;
+    }
+
+    function order_by($column, $type='')
+    {
+        if($type) $this->db->order_by($column, $type);
+        else $this->db->order_by($column);
+        return $this;
+    }
+
+    function like($field, $match = '', $side = 'both')
+    {
+        $this->db->like($field, $match, $side);
+        return $this;
+    }
+    function not_like($field, $match = '', $side = 'both')
+    {
+        $this->db->not_like($field, $match, $side);
+        return $this;
+    }
+    function or_like($field, $match = '', $side = 'both')
+    {
+        $this->db->or_like($field, $match, $side);
+        return $this;
+    }
+    function or_not_like($field, $match = '', $side = 'both')
+    {
+        $this->db->or_not_like($field, $match, $side);
+        return $this;
+    }
+    
+    function where($key, $value = NULL, $escape = TRUE)
+    {
+        $this->db->where($key, $value, $escape);
+        return $this;
+    }
+    function or_where($key, $value = NULL, $escape = TRUE)
+    {
+        $this->db->or_where($key, $value, $escape);
+        return $this;
+    }
+    function where_in($key = NULL, $values = NULL)
+    {
+        $this->db->where_in($key, $values);
+        return $this;
+    }
+    function or_where_in($key = NULL, $values = NULL)
+    {
+        $this->db->or_where_in($key, $values);
+        return $this;
+    }
+    function where_not_in($key = NULL, $values = NULL)
+    {
+        $this->db->where_not_in($key, $values);
+        return $this;
+    }
+    function or_where_not_in($key = NULL, $values = NULL)
+    {
+        $this->db->or_where_not_in($key, $values);
+        return $this;
+    }
+
+    function join($table, $cond, $type = '')
+    {
+        $this->db->join($table, $cond, $type);
+        return $this;
+    }
+
+    public function set($key, $value = '', $escape = NULL)
+    {
+        $this->db->set($key, $value, $escape);
+        return $this;
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * Get
+     *
+     * Compiles the select statement based on the other functions called
+     * and runs the query
+     *
+     * @param   string  the table
+     * @param   string  the limit clause
+     * @param   string  the offset clause
+     * @return  object
+     */
+    public function get($table = '', $limit = NULL, $offset = NULL)
+    {
+        if($table == '') $table = $this->_table;
+        return $this->db->get($table, $limit, $offset);
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * Get_Where
+     *
+     * Allows the where clause, limit and offset to be added directly
+     *
+     * @param   string  $table
+     * @param   string  $where
+     * @param   int $limit
+     * @param   int $offset
+     * @return  object
+     */
+    public function get_where($table = '', $where = NULL, $limit = NULL, $offset = NULL)
+    {
+        if($table == '') $table = $this->_table;
+        return $this->db->get_where($table, $where, $limit, $offset);
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * Insert
+     *
+     * Compiles an insert string and runs the query
+     *
+     * @param   string  the table to insert data into
+     * @param   array   an associative array of insert values
+     * @param   bool    $escape Whether to escape values and identifiers
+     * @return  object
+     */
+    public function insert($table = '', $set = NULL, $escape = NULL)
+    {
+        if($table == '') $table = $this->_table;
+        $this->db->insert($table, $set, $escape);
+        return $this->db->insert_id();
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * Insert_Batch
+     *
+     * Compiles batch insert strings and runs the queries
+     *
+     * @param   string  $table  Table to insert into
+     * @param   array   $set    An associative array of insert values
+     * @param   bool    $escape Whether to escape values and identifiers
+     * @return  int Number of rows inserted or FALSE on failure
+     */
+    public function insert_batch($table = '', $set = NULL, $escape = NULL)
+    {
+        if($table == '') $table = $this->_table;
+        return $this->db->insert_batch($table, $set, $escape);
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * UPDATE
+     *
+     * Compiles an update string and runs the query.
+     *
+     * @param   string  $table
+     * @param   array   $set    An associative array of update values
+     * @param   mixed   $where
+     * @param   int $limit
+     * @return  object
+     */
+    public function update($table = '', $set = NULL, $where = NULL, $limit = NULL)
+    {
+        if($table == '') $table = $this->_table;
+        $this->db->update($table, $set, $where, $limit);
+        return $this->db->affected_rows();
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * Update_Batch
+     *
+     * Compiles an update string and runs the query
+     *
+     * @param   string  the table to retrieve the results from
+     * @param   array   an associative array of update values
+     * @param   string  the where key
+     * @return  int number of rows affected or FALSE on failure
+     */
+    public function update_batch($table = '', $set = NULL, $index = NULL)
+    {
+        if($table == '') $table = $this->_table;
+        return $this->db->update_batch($table, $set, $index);
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * Replace
+     *
+     * Compiles an replace into string and runs the query
+     *
+     * @param   string  the table to replace data into
+     * @param   array   an associative array of insert values
+     * @return  object
+     */
+    public function replace($table = '', $set = NULL)
+    {
+        if($table == '') $table = $this->_table;
+        $this->db->replace($table, $set);
+        return $this->db->affected_rows();
+    }
+
+}
+
+/* End of file MY_Model.php */
+/* Location: ./application/core/MY_Model.php */
