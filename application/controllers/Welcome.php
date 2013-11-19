@@ -70,7 +70,8 @@ class_name: 'gritter-light'
         //自动跳转
         if($this->_data['self']['identity'])
         {
-            redirect(array_keys($this->_data['menu'])[0]);
+            $uris = array_keys($this->_data['menu']);
+            redirect($uris[0]);
         }
         else
         {
