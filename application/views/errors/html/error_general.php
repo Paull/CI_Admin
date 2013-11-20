@@ -7,10 +7,10 @@
 	<meta http-equiv="refresh" content="30;url=/">
 	<link rel="shortcut icon" href="<?php echo STATIC_URL; ?>images/favicon.ico">
     <link rel="apple-touch-icon-precomposed" href="<?php echo STATIC_URL; ?>images/favicon.png" />
-	<link href="<?php echo STATIC_URL; ?>plugins/bootstrap/bootstrap.css" rel="stylesheet">
-	<link href="<?php echo STATIC_URL; ?>styles/social.css" rel="stylesheet">
-	<link href="<?php echo STATIC_URL; ?>styles/font-awesome.css" rel="stylesheet">
-	<link href="<?php echo STATIC_URL; ?>plugins/bootstrap/bootstrap-responsive.css" rel="stylesheet">
+	<link rel="stylesheet" href="<?php echo STATIC_URL; ?>plugins/bootstrap/bootstrap.css">
+	<link rel="stylesheet" href="<?php echo STATIC_URL; ?>styles/error.css">
+	<link rel="stylesheet" href="<?php echo STATIC_URL; ?>styles/font-awesome.css">
+	<link rel="stylesheet" href="<?php echo STATIC_URL; ?>plugins/bootstrap/bootstrap-responsive.css">
 </head>
 <body>
 	<div class="container-fluid">

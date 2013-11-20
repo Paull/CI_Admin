@@ -1,0 +1,74 @@
+body {
+  margin: 0;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333333;
+  background-color: #e9eaed;
+}
+a {
+  color: #6d84b4;
+  text-decoration: none;
+}
+a:hover,
+a:focus {
+  color: #485e8c;
+  text-decoration: underline;
+}
+
+.text-error {
+  color: #b94a48;
+}
+
+.error-404,
+.error-500 {
+  text-align: center;
+  padding: 60px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 30px;
+  color: inherit;
+  background-color: #ffffff;
+  border: 1px solid #c4c5c9;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+  -webkit-box-shadow: 0px 0px 1px rgba(196, 197, 201, 0.75);
+  -moz-box-shadow: 0px 0px 1px rgba(196, 197, 201, 0.75);
+  box-shadow: 0px 0px 1px rgba(196, 197, 201, 0.75);
+}
+.error-404 h1,
+.error-500 h1 {
+  margin-bottom: 0;
+  font-size: 60px;
+  line-height: 1;
+  color: inherit;
+  letter-spacing: -1px;
+}
+.error-404 li,
+.error-500 li {
+  line-height: 30px;
+}
+.error-404 .error-icon,
+.error-500 .error-icon {
+  color: #3b5998;
+  font-size: 4em;
+}
+@media (max-width: 767px) {
+  .error-404 .input-append,
+  .error-500 .input-append,
+  .error-404 .input-prepend,
+  .error-500 .input-prepend {
+    white-space: normal;
+  }
+  .error-404 h1,
+  .error-500 h1 {
+    font-size: 31.5px;
+  }
+  .error-404 .error-icon,
+  .error-500 .error-icon {
+    font-size: 3em;
+  }
+}
