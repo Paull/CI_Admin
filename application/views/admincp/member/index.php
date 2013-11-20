@@ -67,14 +67,3 @@
         </div>
     </div>
 </div>
-<div id="modal" class="modal hide fade">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h3 id="modalLabel">对话框标题</h3>
-    </div>
-    <div class="modal-body"></div>
-    <div class="modal-footer">
-        <button class="btn btn-primary">Save changes</button>
-        <button class="btn" data-dismiss="modal">关闭</button>
-    </div>
-</div>

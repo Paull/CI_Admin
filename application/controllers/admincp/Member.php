@@ -176,7 +176,7 @@ $('#editable').editable({
 
         $this->m_member->destroy($id);
 
-        redirect(str_replace(array('http://'.$_SERVER['SERVER_NAME'].BASEURL, URL_SUFFIX), array('',''), $this->input->server('HTTP_REFERER')));
+        redirect(REFERER_URI);
     }
 
 

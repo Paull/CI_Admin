@@ -11,6 +11,7 @@ class MY_Controller extends CI_Controller {
 
         define('CLASS_URI', strtolower($this->router->directory.$this->router->class));
         define('METHOD_URI', strtolower($this->router->directory.$this->router->class.'/'.$this->router->method));
+        define('REFERER_URI', str_replace(array('http://'.$_SERVER['SERVER_NAME'].BASEURL, URL_SUFFIX), array('',''), $this->input->server('HTTP_REFERER')));
 
         //读取$self
         if ( $this->session->userdata('uid') )
