@@ -56,7 +56,7 @@ AppSettings = (function($) {
       if ($(this).prop("checked")) {
         $sidebar.removeClass("sidebar-full");
         $wraper.removeClass("sidebar-full");
-        $.cookie('autohide', 'true', {expires: 7, path: '/', domain: '.bot456.com'});
+        $.cookie('autohide', 'true', {expires: 7, path: '/'});
       } else {
         $sidebar.addClass("sidebar-full");
         $navbar.removeAttr("style");
@@ -65,7 +65,7 @@ AppSettings = (function($) {
         $sidebar.find(".search-sidebar img").removeAttr("style");
         $(".icon-user.trigger-user-settings, .input-filter").removeAttr("style");
         $wraper.addClass("sidebar-full");
-        $.cookie('autohide', 'false', {expires: 7, path: '/', domain: '.bot456.com'});
+        $.cookie('autohide', 'false', {expires: 7, path: '/'});
       }
 
     });
@@ -81,10 +81,10 @@ AppSettings = (function($) {
       themeStyleSheet = $("#theme");
       element = $("option:selected", this);
       if (typeof element.attr("data-class") !== 'undefined') {
-        $.cookie('theme', element.attr("data-class"), {expires: 7, path: '/', domain: '.bot456.com'});
+        $.cookie('theme', element.attr("data-class"), {expires: 7, path: '/'});
         themeName = config.urlThemes + element.attr("data-class") + '.css';
       } else {
-        $.cookie('theme', 'blue', {expires: 7, path: '/', domain: '.bot456.com'});
+        $.cookie('theme', 'blue', {expires: 7, path: '/'});
         themeName = '#none';
       }
       themeStyleSheet.attr('href', themeName);

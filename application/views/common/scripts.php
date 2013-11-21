@@ -8,6 +8,7 @@
     <script src="<?php echo STATIC_URL; ?>plugins/jquery.slimscroll/jquery.slimscroll.min.js"></script>
     <script src="<?php echo STATIC_URL; ?>plugins/jquery.simplecolorpicker/jquery.simplecolorpicker.js"></script>
     <script src="<?php echo STATIC_URL; ?>plugins/jquery.livefilter/jquery.livefilter.js"></script>
+    <script src="<?php echo STATIC_URL; ?>plugins/jquery.cookie/jquery.cookie.js"></script>
 
     <script src="<?php echo STATIC_URL; ?>scripts/extents.js"></script>
     <script src="<?php echo STATIC_URL; ?>scripts/app-settings.js"></script>
