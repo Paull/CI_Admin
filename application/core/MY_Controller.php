@@ -124,7 +124,7 @@ class MY_Controller extends CI_Controller {
             'agency/'  => array('superman', 'agent'),
             'member/'  => array('superman', 'agent', 'user'),
             'api/'     => array('superman', 'agent', 'user'),
-                );
+        );
 
         if ( !isset($directories[$directory]) )
         {
