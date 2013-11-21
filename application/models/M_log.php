@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') || exit('No direct script access allowed');
 
 class M_log extends MY_Model {
 
@@ -66,6 +66,11 @@ class M_log extends MY_Model {
         elseif ( $data['method'] == 'referer' )
         {
             $data['method'] = str_replace(array('http://'.$_SERVER['SERVER_NAME'].BASEURL, URL_SUFFIX), array('',''), $this->input->server('HTTP_REFERER'));
+        }
+
+        if ( !isset($data['status']) )
+        {
+            $data['status'] = TRUE;
         }
 
         if ( !isset($data['ip_address']) )
