@@ -37,7 +37,7 @@
                 <div class="scrollable">
                     <!-- BEGIN USER INFO SECTION -->
                     <div class="user">
-                        <img class="avatar" width="25" height="25" src="<?php echo AVATAR_URL, $self['avatar'], '_small.png'; ?>" alt="<?php echo $self['realname']; ?>">        
+                        <img class="avatar" width="25" height="25" src="<?php echo AVATAR_URL, $self['avatar'], '_small.png'; ?>" alt="<?php echo $self['realname']; ?>">
                         <span><?php echo $self['realname']; ?></span>
                         <i class="icon-user trigger-user-settings"></i>
                     </div>
