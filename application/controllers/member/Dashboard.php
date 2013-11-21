@@ -12,7 +12,7 @@ class Dashboard extends MY_Controller {
     {
         $this->_data['template']['title'] = '控制面板';
         
-        $this->load->view('common/layout', $this->_data);
+        $this->load->view($this->_layout, $this->_data);
     }
     
 }

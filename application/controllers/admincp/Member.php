@@ -70,12 +70,13 @@ $('#editable').editable({
             $config['first_url']   = site_url(CLASS_URI);
         }
         $config['uri_segment'] = 3;
-        $config['suffix']     = $this->_data['keyword'] ? '/'.$this->_data['keyword'].URL_SUFFIX : URL_SUFFIX;
-        $config['total_rows'] = $this->m_member->or_like($conditions)->num_rows();
-        $config['num_links']  = 10;
-        $config['per_page']   = 10;
+        $config['suffix']      = $this->_data['keyword'] ? '/'.$this->_data['keyword'].URL_SUFFIX : URL_SUFFIX;
+        $config['total_rows']  = $this->m_member->or_like($conditions)->num_rows();
+        $config['num_links']   = 10;
+        $config['per_page']    = 10;
+        //分页参数大于最大页数则缩减到最大页
         $page = $page > floor($config['total_rows'] / $config['per_page']) * $config['per_page'] ? floor($config['total_rows'] / $config['per_page']) * $config['per_page'] : $page;    //分页参数大于最大页数则缩减到最大页
-        $config['cur_page']   = $page;
+        $config['cur_page']    = $page;
 
         //加载分页配置
         $this->pagination->initialize($config);
@@ -85,7 +86,7 @@ $('#editable').editable({
         $this->_data['list'] = $this->m_member->or_like($conditions)->order_by('id')->get_page($page, $config['per_page'])->result_array();
         
         //加载模板
-        $this->load->view('common/layout', $this->_data);
+        $this->load->view($this->_layout, $this->_data);
     }
 
     //会员添加、修改
