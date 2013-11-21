@@ -50,8 +50,8 @@
                                 <a href="javascript:void(0);" data-type="select" data-name="status" data-pk="<?php echo $item['id']; ?>" data-value="<?php echo $item['status']; ?>" data-source="<?php echo site_url(CLASS_URI.'/load_options_status'); ?>" data-original-title="选择状态"><?php echo lang($item['status']); ?></a>
                             </td>
                             <td><?php echo $item['login_count']; ?></td>
-                            <td class="login_time"><span data-toggle="tooltip" title="<?php echo date('Y-m-d H:i:s', $item['login_time']); ?>"><?php echo time_past($item['login_time']); ?></span></td>
-                            <td class="login_ip"><span data-toggle="tooltip" title="<?php echo $item['login_ip']; ?>"><?php echo convertip($item['login_ip']); ?></span></td>
+                            <td><span data-toggle="tooltip" title="<?php echo date('Y-m-d H:i:s', $item['login_time']); ?>"><?php echo time_past($item['login_time']); ?></span></td>
+                            <td><span data-toggle="tooltip" title="<?php echo $item['login_ip']; ?>"><?php echo convertip($item['login_ip']); ?></span></td>
                             <td>
                                 <a href="<?php echo site_url('member/profile/'.$item['id']); ?>" title="详细"><i class="icon-list"></i></a>
                                 <a href="<?php echo site_url('admincp/member/modify/'.$item['id']); ?>" title="修改"><i class="icon-edit"></i></a>
