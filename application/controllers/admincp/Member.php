@@ -28,7 +28,7 @@ $('#editable').editable({
     ajaxOptions: {
         dataType: 'json'
     },
-    url: '".base_url(CLASS_URI.'/ajax_member_modify')."',
+    url: '".base_url(CLASS_URI.'/ajax_modify')."',
     validate: function(value) {
         if($.trim(value) == '') return '该项必须填写.';
     },
@@ -207,7 +207,7 @@ $('#editable').editable({
     }
     
     //会员表格单击修改
-    public function ajax_member_modify()
+    public function ajax_modify()
     {
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('', '');
