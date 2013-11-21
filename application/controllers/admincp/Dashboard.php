@@ -18,4 +18,4 @@ class Dashboard extends MY_Controller {
 }
 
 /* End of file Dashboard.php */
-/* Location: ./application/controllers/Dashboard.php */
+/* Location: ./application/controllers/admincp/Dashboard.php */
