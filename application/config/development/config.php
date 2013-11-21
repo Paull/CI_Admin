@@ -108,6 +108,7 @@ $config['uri_protocol']	= 'AUTO';
 |
 | http://codeigniter.com/user_guide/general/urls.html
 */
+
 $config['url_suffix'] = '.html';
 define('URL_SUFFIX', $config['url_suffix']);
 
@@ -147,6 +148,7 @@ $config['charset'] = 'UTF-8';
 */
 $config['enable_hooks'] = FALSE;
 
+
 /*
 |--------------------------------------------------------------------------
 | Class Extension Prefix
@@ -160,6 +162,7 @@ $config['enable_hooks'] = FALSE;
 |
 */
 $config['subclass_prefix'] = 'MY_';
+
 
 /*
 |--------------------------------------------------------------------------
@@ -179,6 +182,7 @@ $config['subclass_prefix'] = 'MY_';
 |
 */
 $config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
+
 
 /*
 |--------------------------------------------------------------------------
@@ -306,7 +310,7 @@ $config['encryption_key'] = base64_encode(SITENAME);
 | 'sess_driver'				= the driver to load: cookie (Classic), native (PHP sessions),
 |	or your custom driver name
 | 'sess_valid_drivers'		= additional valid drivers which may be loaded
-| 'sess_cookie_name'		= the name you want for the cookie
+| 'sess_cookie_name'		= the name you want for the cookie, must contain only [0-9a-z_-] characters
 | 'sess_expiration'			= the number of SECONDS you want the session to last.
 |   by default sessions last 7200 seconds (two hours).  Set to zero for no expiration.
 | 'sess_expire_on_close'	= Whether to cause the session to expire automatically
@@ -436,6 +440,7 @@ $config['minify_output'] = FALSE;
 */
 $config['time_reference'] = 'local';
 
+
 /*
 |--------------------------------------------------------------------------
 | Rewrite PHP Short Tags
@@ -447,6 +452,7 @@ $config['time_reference'] = 'local';
 |
 */
 $config['rewrite_short_tags'] = FALSE;
+
 
 /*
 |--------------------------------------------------------------------------

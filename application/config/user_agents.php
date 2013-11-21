@@ -81,6 +81,7 @@ $platforms = array(
 // The order of this array should NOT be changed. Many browsers return
 // multiple browser types so we want to identify the sub-type first.
 $browsers = array(
+	'OPR'			=> 'Opera',
 	'Flock'			=> 'Flock',
 	'Chrome'		=> 'Chrome',
 	'Opera'			=> 'Opera',
@@ -103,7 +104,8 @@ $browsers = array(
 	'hotjava'		=> 'HotJava',
 	'amaya'			=> 'Amaya',
 	'IBrowse'		=> 'IBrowse',
-	'Maxthon'		=> 'Maxthon'
+	'Maxthon'		=> 'Maxthon',
+	'Ubuntu'		=> 'Ubuntu Web Browser'
 );
 
 $mobiles = array(
