@@ -1,4 +1,4 @@
-<?php
+<?php defined('BASEPATH') || exit('No direct script access allowed');
 
 $lang['profile'] = '个人资料';
 $lang['edit_profile'] = '修改资料';

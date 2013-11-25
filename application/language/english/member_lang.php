@@ -1,4 +1,4 @@
-<?php
+<?php defined('BASEPATH') || exit('No direct script access allowed');
 
 $lang['profile'] = 'Profile';
 $lang['edit_profile'] = 'Edit profile';

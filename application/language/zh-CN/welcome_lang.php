@@ -1,4 +1,4 @@
-<?php
+<?php defined('BASEPATH') || exit('No direct script access allowed');
 
 $lang['back'] = '返回';
 $lang['send'] = '发送';

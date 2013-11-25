@@ -1,4 +1,4 @@
-<?php
+<?php defined('BASEPATH') || exit('No direct script access allowed');
 
 $lang['operate'] = '操作';
 $lang['submit']  = '提交';

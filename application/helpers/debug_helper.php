@@ -1,4 +1,4 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php defined('BASEPATH') || exit('No direct script access allowed');
 // $Id: debug.php 2641 2009-08-07 06:30:08Z dualface $
 
 /**
