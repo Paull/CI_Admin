@@ -2,8 +2,6 @@
 
 class Welcome extends MY_Controller {
 
-    protected $_data = array();
-
     function __construct()
     {
         parent::__construct();
