@@ -23,26 +23,27 @@ class Member extends MY_Controller {
         $this->_data['template']['javascript'] .= "
 $(\"span[data-toggle='tooltip']\").tooltip();
 
-$('#editable').editable({
-    selector: \"a[data-type]\",
-    ajaxOptions: {
-        dataType: 'json'
-    },
-    url: '".base_url(CLASS_URI.'/ajax_modify')."',
-    validate: function(value) {
-        if($.trim(value) == '') return '该项必须填写.';
-    },
-    params: function(params) {
-        params.hash = hash;
-        return params;
-    },
-    success: function(response, newValue) {
-        if(!response.success){
-            return response.msg;
-        }else{
-            return {newValue: response.newValue}
+$(\"#editable a[data-type]\").each(function(){
+    $(this).editable({
+        ajaxOptions: {
+            dataType: 'json'
+        },
+        url: '".base_url(CLASS_URI.'/ajax_modify')."',
+        validate: function(value) {
+            if($.trim(value) == '') return '该项必须填写.';
+        },
+        params: function(params) {
+            params.hash = hash;
+            return params;
+        },
+        success: function(response, newValue) {
+            if(!response.success){
+                return response.msg;
+            }else{
+                return {newValue: response.newValue}
+            }
         }
-    }
+    });
 });\n";
 
         //设置查询条件
