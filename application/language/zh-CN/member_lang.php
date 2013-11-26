@@ -11,8 +11,6 @@ $lang['login_times'] = '登陆次数';
 $lang['login_time'] = '登陆时间';
 $lang['login_location'] = '登陆地点';
 
-$lang['keyword_more_than_2_letter'] = '输入超过2个字的关键字';
-
 $lang['old_password'] = '原密码';
 $lang['new_password'] = '新密码';
 $lang['new_password_confirm'] = '重复新密码';

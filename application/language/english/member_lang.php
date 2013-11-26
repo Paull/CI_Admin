@@ -11,8 +11,6 @@ $lang['login_times'] = 'Login times';
 $lang['login_time'] = 'Login time';
 $lang['login_location'] = 'Login location';
 
-$lang['keyword_more_than_2_letter'] = 'Enter a keyword more than 2 letters';
-
 $lang['old_password'] = 'Old Password';
 $lang['new_password'] = 'New Password';
 $lang['new_password_confirm'] = 'Confirm new password';

@@ -35,3 +35,4 @@ $lang['realname'] = '姓名';
 $lang['identity'] = '身份';
 $lang['status']   = '状态';
 
+$lang['keyword_more_than_2_letter'] = '输入超过2个字的关键字';
