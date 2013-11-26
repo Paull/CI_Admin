@@ -10,17 +10,16 @@
                 <table class="footable editable table" data-filter="#keyword" data-page-size="20">
                     <thead>
                         <tr>
-                            <th data-class="expand" data-type="numeric">#</th>
-                            <th data-hide="phone"><?php echo lang('avatar'); ?></th>
+                            <th data-type="numeric">#</th>
                             <th><?php echo lang('username'); ?></th>
                             <th><?php echo lang('realname'); ?></th>
                             <th data-hide="phone,tablet"><?php echo lang('email'); ?></th>
                             <th><?php echo lang('identity'); ?></th>
                             <th><?php echo lang('status'); ?></th>
-                            <th data-hide="phone,tablet"><?php echo lang('login_times'); ?></th>
+                            <th data-hide="phone,tablet" data-type="numeric"><?php echo lang('login_times'); ?></th>
                             <th data-hide="phone,tablet"><?php echo lang('login_time'); ?></th>
                             <th data-hide="phone,tablet"><?php echo lang('login_location'); ?></th>
-                            <th data-hide="phone"><?php echo lang('operate'); ?></th>
+                            <th data-hide="phone" data-sort-ignore="true"><?php echo lang('operate'); ?></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,12 +27,10 @@
                         <tr>
                             <td><?php echo $item['id']; ?></td>
                             <td>
-                                <img src="<?php echo AVATAR_URL, $item['avatar'], '_small.png'; ?>" alt="<?php echo $item['username']; ?>" class="img-rounded" width="24" height="24">
-                            </td>
-                            <td>
                                 <a href="javascript:void(0);" data-type="text" data-name="username" data-pk="<?php echo $item['id']; ?>" data-placeholder="Required" data-original-title="输入用户称呼"<?php if(! $item['username'] ) echo ' class="editable-click editable-empty"'; ?>><?php echo $item['username'] ? $item['username'] : 'Empty'; ?></a>
                             </td>
                             <td>
+                                <img src="<?php echo AVATAR_URL, $item['avatar'], '_small.png'; ?>" alt="<?php echo $item['username']; ?>" class="img-rounded" width="24" height="24">
                                 <a href="javascript:void(0);" data-type="text" data-name="realname" data-pk="<?php echo $item['id']; ?>" data-placeholder="Required" data-original-title="输入用户称呼"<?php if(! $item['realname'] ) echo ' class="editable-click editable-empty"'; ?>><?php echo $item['realname'] ? $item['realname'] : 'Empty'; ?></a>
                             </td>
                             <td>
@@ -58,7 +55,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="11">
+                            <td colspan="10">
                                 <div class="pagination pagination-centered"></div>
                             </td>
                         </tr>
