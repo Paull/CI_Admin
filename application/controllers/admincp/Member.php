@@ -9,19 +9,24 @@ class Member extends MY_Controller {
     }
     
     //后台会员列表
-    public function index($page=0)
+    public function index()
     {
-        $page = intval($page);
-        $this->load->library('pagination');
-
         $this->_data['template']['title'] = '会员列表';
         $this->_data['template']['breadcrumbs'][] = array('uri'=>CLASS_URI, 'title'=>$this->_data['template']['title']);
 
-        $this->_data['template']['styles'][] = BASEURL.'assets/plugins/jquery.x-editable/css/bootstrap-editable.css';
-        $this->_data['template']['scripts'][] = BASEURL.'assets/plugins/jquery.x-editable/js/bootstrap-editable.min.js';
+        $this->_data['template']['styles'][] = STATIC_URL.'plugins/jquery.x-editable/css/bootstrap-editable.css';
+        $this->_data['template']['scripts'][] = STATIC_URL.'plugins/jquery.x-editable/js/bootstrap-editable.min.js';
+
+        $this->_data['template']['styles'][] = STATIC_URL.'plugins/jquery.footable/css/footable.core.min.css';
+        $this->_data['template']['scripts'][] = STATIC_URL.'plugins/jquery.footable/dist/footable.min.js';
+        $this->_data['template']['scripts'][] = STATIC_URL.'plugins/jquery.footable/dist/footable.filter.min.js';
+        $this->_data['template']['scripts'][] = STATIC_URL.'plugins/jquery.footable/dist/footable.sort.min.js';
+        $this->_data['template']['scripts'][] = STATIC_URL.'plugins/jquery.footable/dist/footable.paginate.min.js';
 
         $this->_data['template']['javascript'] .= "
 $(\"span[data-toggle='tooltip']\").tooltip();
+
+$('.footable').footable();
 
 $('.editable').editable({
     selector: 'a[data-type]',
@@ -45,45 +50,8 @@ $('.editable').editable({
     }
 });\n";
 
-        //设置查询条件
-        $conditions = array();
-        $this->_data['keyword'] = $this->input->post('keyword');
-
-        if( $this->_data['keyword'] === NULL)
-        {
-            $this->_data['keyword'] = $this->uri->segment(4);
-        }
-
-        if ( $this->_data['keyword'] )
-        {
-            $conditions = array('realname'=>$this->_data['keyword'], 'email'=>$this->_data['keyword']);
-        }
-
-        //分页参数配置
-        $config['base_url']   = base_url(CLASS_URI);
-        if ( $this->_data['keyword'] )
-        {
-            $config['first_url']   = site_url(CLASS_URI.'/0/'.$this->_data['keyword']);
-        }
-        else
-        {
-            $config['first_url']   = site_url(CLASS_URI);
-        }
-        $config['uri_segment'] = 3;
-        $config['suffix']      = $this->_data['keyword'] ? '/'.$this->_data['keyword'].URL_SUFFIX : URL_SUFFIX;
-        $config['total_rows']  = $this->m_member->or_like($conditions)->num_rows();
-        $config['num_links']   = 10;
-        $config['per_page']    = 10;
-        //分页参数大于最大页数则缩减到最大页
-        $page = $page > floor($config['total_rows'] / $config['per_page']) * $config['per_page'] ? floor($config['total_rows'] / $config['per_page']) * $config['per_page'] : $page;    //分页参数大于最大页数则缩减到最大页
-        $config['cur_page']    = $page;
-
-        //加载分页配置
-        $this->pagination->initialize($config);
-        $this->_data['pager'] = $this->pagination->create_links();
-        
         //读取数据
-        $this->_data['list'] = $this->m_member->or_like($conditions)->order_by('id')->get_page($page, $config['per_page'])->result_array();
+        $this->_data['list'] = $this->m_member->order_by('id')->find()->result_array();
         
         //加载模板
         $this->load->view($this->_layout, $this->_data);

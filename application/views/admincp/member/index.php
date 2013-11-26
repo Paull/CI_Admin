@@ -2,29 +2,25 @@
     <div class="span12">
         <div class="social-box">
             <div class="header">
-<?php echo form_open('admincp/member', array('class'=>'form-search')); ?>
-                    <div class="input-append pull-left">
-                        <input type="text" id="keyword" name="keyword" class="search-query" placeholder="<?php echo lang('keyword_of_username_or_realname'); ?>">
-                        <button type="submit" class="btn btn-primary"><i class="icon icon-search"></i> <?php echo lang('search'); ?></button>
-                    </div>
-<?php echo form_close(); ?>
+                <h4><?php echo $template['title']; ?>
             </div>
             <!-- BEGIN TABLE BODY -->
             <div class="body">
-                <table class="editable table-bordered table-striped table-condensed flip-scroll text-center">
+                <input type="text" id="keyword" class="input-block-level" placeholder="<?php echo lang('keyword_more_than_2_letter'); ?>">
+                <table class="footable editable table" data-filter="#keyword" data-page-size="20">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th><?php echo lang('avatar'); ?></th>
+                            <th data-class="expand" data-type="numeric">#</th>
+                            <th data-hide="phone"><?php echo lang('avatar'); ?></th>
                             <th><?php echo lang('username'); ?></th>
                             <th><?php echo lang('realname'); ?></th>
-                            <th><?php echo lang('email'); ?></th>
+                            <th data-hide="phone,tablet"><?php echo lang('email'); ?></th>
                             <th><?php echo lang('identity'); ?></th>
                             <th><?php echo lang('status'); ?></th>
-                            <th><?php echo lang('login_times'); ?></th>
-                            <th><?php echo lang('login_time'); ?></th>
-                            <th><?php echo lang('login_location'); ?></th>
-                            <th><?php echo lang('operate'); ?></th>
+                            <th data-hide="phone,tablet"><?php echo lang('login_times'); ?></th>
+                            <th data-hide="phone,tablet"><?php echo lang('login_time'); ?></th>
+                            <th data-hide="phone,tablet"><?php echo lang('login_location'); ?></th>
+                            <th data-hide="phone"><?php echo lang('operate'); ?></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -53,15 +49,21 @@
                             <td><span data-toggle="tooltip" title="<?php echo date('Y-m-d H:i:s', $item['login_time']); ?>"><?php echo time_past($item['login_time']); ?></span></td>
                             <td><span data-toggle="tooltip" title="<?php echo $item['login_ip']; ?>"><?php echo convertip($item['login_ip']); ?></span></td>
                             <td>
-                                <a href="<?php echo site_url('member/profile/'.$item['id']); ?>" title="详细"><i class="icon-list"></i></a>
-                                <a href="<?php echo site_url('admincp/member/modify/'.$item['id']); ?>" title="修改"><i class="icon-edit"></i></a>
-                                <a href="<?php echo site_url('admincp/member/destroy/'.$item['id']); ?>" title="删除" onclick="return confirm('该操作将删除该会员相关的所有数据，确定要删除吗？');"><i class="icon-trash"></i></a>
+                                <a href="<?php echo site_url('member/profile/'.$item['id']); ?>" title="详细"><i class="icon-list"></i>详细</a>
+                                <a href="<?php echo site_url('admincp/member/modify/'.$item['id']); ?>" title="修改"><i class="icon-edit"></i>修改</a>
+                                <a href="<?php echo site_url('admincp/member/destroy/'.$item['id']); ?>" title="删除" onclick="return confirm('该操作将删除该会员相关的所有数据，确定要删除吗？');"><i class="icon-trash"></i>删除</a>
                             </td>
                         </tr>
 <?php endforeach; ?>
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="11">
+                                <div class="pagination pagination-centered"></div>
+                            </td>
+                        </tr>
+                    </tfoot>
                 </table>
-<?php echo $pager; ?>
             </div>
             <!-- END TABLE BODY -->
         </div>
