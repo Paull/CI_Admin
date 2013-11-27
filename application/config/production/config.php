@@ -325,7 +325,7 @@ $config['encryption_key'] = base64_encode(SITENAME);
 */
 $config['sess_driver']			= 'cookie';
 $config['sess_valid_drivers']	= array();
-$config['sess_cookie_name']		= '__HASH';
+$config['sess_cookie_name']		= '__'.substr($config['encryption_key'], 0, 5);
 $config['sess_expiration']		= 259200;	// 259200 is three days
 $config['sess_expire_on_close']	= FALSE;
 $config['sess_encrypt_cookie']	= TRUE;
@@ -391,7 +391,7 @@ $config['global_xss_filtering'] = TRUE;
 */
 $config['csrf_protection'] = TRUE;
 $config['csrf_token_name'] = 'hash';
-$config['csrf_cookie_name'] = '__adjust';
+$config['csrf_cookie_name'] = '__'.substr($config['encryption_key'], 5, 3);
 $config['csrf_expire'] = 7200;
 $config['csrf_regenerate'] = FALSE;
 $config['csrf_exclude_uris'] = array();
