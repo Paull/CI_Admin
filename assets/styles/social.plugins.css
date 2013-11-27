@@ -2,40 +2,56 @@
  *  Chose Style
  * ============================================================ */
 /* @group Base */
-.chzn-container {
-  font-size: 14px;
-  font-weight: normal;
-  line-height: 20px;
+.chosen-container {
   position: relative;
   display: inline-block;
   vertical-align: middle;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 20px;
   zoom: 1;
   *display: inline;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
 }
-.chzn-container .chzn-drop {
-  background: #fff;
-  border: 1px solid #aaa;
-  border-top: 0;
+.chosen-container .chosen-drop {
   position: absolute;
   top: 100%;
   left: -9999px;
+  z-index: 1010;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid #aaa;
+  border-top: 0;
+  background: #fff;
   -webkit-box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
   box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
-  z-index: 1010;
-  width: 100%;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -khtml-box-sizing: border-box;
-  box-sizing: border-box;
 }
-.chzn-container.chzn-with-drop .chzn-drop {
+.chosen-container.chosen-with-drop .chosen-drop {
   left: 0;
+}
+.chosen-container a {
+  cursor: pointer;
 }
 /* @end */
 /* @group Single Chosen */
-.chzn-container-single .chzn-single {
+.chosen-container-single .chosen-single {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  padding: 2px 0 2px 8px;
+  height: 23px;
+  border: 1px solid #bdbec0;
+  border-bottom-color: #a3a4a7;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
   color: #333333;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
   background-color: #f0f1f6;
@@ -52,113 +68,102 @@
   /* Darken IE7 buttons by default so they stand out more given they won't have borders */
 
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
-  -webkit-border-radius: 1px;
-  -moz-border-radius: 1px;
-  border-radius: 1px;
   -webkit-background-clip: padding-box;
   -moz-background-clip: padding-box;
   background-clip: padding-box;
-  border: 1px solid #bdbec0;
-  *border: 0;
-  border-bottom-color: #a3a4a7;
   -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
   -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
   box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
-  display: block;
-  overflow: hidden;
-  white-space: nowrap;
-  position: relative;
-  height: 23px;
-  line-height: 24px;
-  padding: 0 0 0 8px;
   text-decoration: none;
-  padding: 2px 0 2px 8px;
+  white-space: nowrap;
+  line-height: 24px;
 }
-.chzn-container-single .chzn-single:hover,
-.chzn-container-single .chzn-single:focus,
-.chzn-container-single .chzn-single:active,
-.chzn-container-single .chzn-single.active,
-.chzn-container-single .chzn-single.disabled,
-.chzn-container-single .chzn-single[disabled] {
+.chosen-container-single .chosen-single:hover,
+.chosen-container-single .chosen-single:focus,
+.chosen-container-single .chosen-single:active,
+.chosen-container-single .chosen-single.active,
+.chosen-container-single .chosen-single.disabled,
+.chosen-container-single .chosen-single[disabled] {
   color: #333333;
   background-color: #e0e3ea;
   *background-color: #d1d5e0;
 }
-.chzn-container-single .chzn-single:active,
-.chzn-container-single .chzn-single.active {
+.chosen-container-single .chosen-single:active,
+.chosen-container-single .chosen-single.active {
   background-color: #c2c8d5 \9;
 }
-.chzn-container-single .chzn-default {
+.chosen-container-single .chosen-default {
   color: #333333;
 }
-.chzn-container-single .chzn-single span {
-  margin-right: 26px;
+.chosen-container-single .chosen-single span {
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
   -o-text-overflow: ellipsis;
   -ms-text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-right: 26px;
 }
-.chzn-container-single .chzn-single abbr {
-  display: block;
+.chosen-container-single .chosen-single-with-deselect span {
+  margin-right: 38px;
+}
+.chosen-container-single .chosen-single abbr {
   position: absolute;
-  right: 26px;
   top: 8px;
+  right: 26px;
+  display: block;
   width: 12px;
   height: 12px;
+  background: url('../images/plugins/jquery.chosen/chosen-sprite.png') -42px 1px no-repeat;
   font-size: 1px;
-  background: url('../images/plugins/chosen/chosen-sprite.png') -42px 1px no-repeat;
 }
-.chzn-container-single .chzn-single abbr:hover {
+.chosen-container-single .chosen-single abbr:hover {
   background-position: -42px -10px;
 }
-.chzn-container-single.chzn-disabled .chzn-single abbr:hover {
+.chosen-container-single.chosen-disabled .chosen-single abbr:hover {
   background-position: -42px -10px;
 }
-.chzn-container-single .chzn-single div {
+.chosen-container-single .chosen-single div {
   position: absolute;
-  right: 0;
   top: 0;
+  right: 0;
   display: block;
-  height: 100%;
   width: 18px;
+  height: 100%;
 }
-.chzn-container-single .chzn-single div b {
-  background: url('../images/plugins/chosen/chosen-sprite.png') no-repeat 0px 2px;
+.chosen-container-single .chosen-single div b {
   display: block;
   width: 100%;
   height: 100%;
   margin-top: 2px;
+  background: url('../images/plugins/jquery.chosen/chosen-sprite.png') no-repeat 0px 2px;
 }
-.chzn-container-single .chzn-search {
-  padding: 3px 4px;
+.chosen-container-single .chosen-search {
   position: relative;
-  margin: 0;
-  white-space: nowrap;
   z-index: 1010;
+  margin: 0;
+  padding: 3px 4px;
+  white-space: nowrap;
 }
-.chzn-container-single .chzn-search input {
-  background: #ffffff url('../images/plugins/chosen/chosen-sprite.png') no-repeat 100% -20px;
-  background: url('../images/plugins/chosen/chosen-sprite.png') no-repeat 100% -20px, -webkit-gradient(linear, 0 0, 0 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
-  background: url('../images/plugins/chosen/chosen-sprite.png') no-repeat 100% -20px, -webkit-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
-  background: url('../images/plugins/chosen/chosen-sprite.png') no-repeat 100% -20px, -moz-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
-  background: url('../images/plugins/chosen/chosen-sprite.png') no-repeat 100% -20px, -o-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
-  background: url('../images/plugins/chosen/chosen-sprite.png') no-repeat 100% -20px, linear-gradient(#eeeeee 1%, #ffffff 15%);
+.chosen-container-single .chosen-search input[type="text"] {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   margin: 1px 0;
   padding: 4px 20px 4px 5px;
+  width: 100%;
   outline: 0;
   border: 1px solid #aaa;
-  font-family: sans-serif;
+  background: #ffffff url('../images/plugins/jquery.chosen/chosen-sprite.png') no-repeat 100% -20px;
+  background: url('../images/plugins/jquery.chosen/chosen-sprite.png') no-repeat 100% -20px, -webkit-gradient(linear, 0 0, 0 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
+  background: url('../images/plugins/jquery.chosen/chosen-sprite.png') no-repeat 100% -20px, -webkit-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+  background: url('../images/plugins/jquery.chosen/chosen-sprite.png') no-repeat 100% -20px, -moz-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+  background: url('../images/plugins/jquery.chosen/chosen-sprite.png') no-repeat 100% -20px, -o-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+  background: url('../images/plugins/jquery.chosen/chosen-sprite.png') no-repeat 100% -20px, linear-gradient(#eeeeee 1%, #ffffff 15%);
   font-size: 1em;
-  width: 100%;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -khtml-box-sizing: border-box;
-  box-sizing: border-box;
+  font-family: sans-serif;
 }
-.chzn-container-single .chzn-drop {
+.chosen-container-single .chosen-drop {
   margin-top: -1px;
   -webkit-border-radius: 0 0 4px 4px;
   -moz-border-radius: 0 0 4px 4px;
@@ -167,67 +172,116 @@
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
 }
-/* @end */
-.chzn-container-single-nosearch .chzn-search input {
+.chosen-container-single.chosen-container-single-nosearch .chosen-search {
   position: absolute;
   left: -9999px;
 }
+/* @end */
+/* @group Results */
+.chosen-container .chosen-results {
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin: 0 4px 4px 0;
+  padding: 0 0 0 4px;
+  max-height: 240px;
+  -webkit-overflow-scrolling: touch;
+}
+.chosen-container .chosen-results li {
+  display: none;
+  margin: 0;
+  padding: 5px 6px;
+  list-style: none;
+  line-height: 15px;
+}
+.chosen-container .chosen-results li.active-result {
+  display: list-item;
+  cursor: pointer;
+}
+.chosen-container .chosen-results li.disabled-result {
+  display: list-item;
+  color: #ccc;
+  cursor: default;
+}
+.chosen-container .chosen-results li.highlighted {
+  background-color: #6d84b4;
+  color: #fff;
+}
+.chosen-container .chosen-results li.no-results {
+  display: list-item;
+  background: #f4f4f4;
+}
+.chosen-container .chosen-results li.group-result {
+  display: list-item;
+  font-weight: bold;
+  cursor: default;
+}
+.chosen-container .chosen-results li.group-option {
+  padding-left: 15px;
+}
+.chosen-container .chosen-results li em {
+  font-style: normal;
+  text-decoration: underline;
+}
+/* @end */
 /* @group Multi Chosen */
-.chzn-container-multi .chzn-choices {
-  background-color: #fff;
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
-  background-image: -webkit-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
-  background-image: -moz-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
-  background-image: -o-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
-  background-image: linear-gradient(#eeeeee 1%, #ffffff 15%);
-  border: 1px solid #aaa;
+.chosen-container-multi .chosen-choices {
+  position: relative;
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  cursor: text;
-  overflow: hidden;
+  width: 100%;
   height: auto !important;
   height: 1%;
-  position: relative;
-  width: 100%;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -khtml-box-sizing: border-box;
-  box-sizing: border-box;
+  border: 1px solid #aaa;
+  background-color: #fff;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
+  background-image: -webkit-linear-gradient(#eeeeee 1%, #ffffff 15%);
+  background-image: -moz-linear-gradient(#eeeeee 1%, #ffffff 15%);
+  background-image: -o-linear-gradient(#eeeeee 1%, #ffffff 15%);
+  background-image: linear-gradient(#eeeeee 1%, #ffffff 15%);
+  cursor: text;
 }
-.chzn-container-multi .chzn-choices li {
+.chosen-container-multi .chosen-choices li {
   float: left;
   list-style: none;
 }
-.chzn-container-multi .chzn-choices .search-field {
-  white-space: nowrap;
+.chosen-container-multi .chosen-choices li.search-field {
   margin: 0;
   padding: 0;
+  white-space: nowrap;
 }
-.chzn-container-multi .chzn-choices .search-field input {
-  color: #666;
-  background: transparent !important;
-  border: 0 !important;
-  font-family: sans-serif;
-  font-size: 100%;
-  height: 15px;
-  padding: 5px;
+.chosen-container-multi .chosen-choices li.search-field input[type="text"] {
   margin: 1px 0;
+  padding: 5px;
+  height: 15px;
   outline: 0;
+  border: 0 !important;
+  background: transparent !important;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
+  color: #666;
+  font-size: 100%;
+  font-family: sans-serif;
+  line-height: normal;
+  border-radius: 0;
 }
-.chzn-container-multi .chzn-choices .search-field .default {
+.chosen-container-multi .chosen-choices li.search-field .default {
   color: #999;
 }
-.chzn-container-multi .chzn-choices .search-choice {
+.chosen-container-multi .chosen-choices li.search-choice {
+  position: relative;
+  margin: 3px 0 3px 5px;
+  padding: 3px 20px 3px 5px;
+  border: 1px solid #bdbec0;
+  border-bottom-color: #a3a4a7;
   -webkit-border-radius: 1px;
   -moz-border-radius: 1px;
   border-radius: 1px;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
   background-color: #e4e4e4;
   color: #333333;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
@@ -245,155 +299,80 @@
   /* Darken IE7 buttons by default so they stand out more given they won't have borders */
 
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
   -webkit-box-shadow: "0 0 2px #ffffff inset, 0 1px 0 rgba(0,0,0,0.05)";
   -moz-box-shadow: "0 0 2px #ffffff inset, 0 1px 0 rgba(0,0,0,0.05)";
   box-shadow: "0 0 2px #ffffff inset, 0 1px 0 rgba(0,0,0,0.05)";
   color: #333;
-  border: 1px solid #bdbec0;
-  *border: 0;
-  border-bottom-color: #a3a4a7;
   line-height: 13px;
-  padding: 3px 20px 3px 5px;
-  margin: 3px 0 3px 5px;
-  position: relative;
   cursor: default;
 }
-.chzn-container-multi .chzn-choices .search-choice:hover,
-.chzn-container-multi .chzn-choices .search-choice:focus,
-.chzn-container-multi .chzn-choices .search-choice:active,
-.chzn-container-multi .chzn-choices .search-choice.active,
-.chzn-container-multi .chzn-choices .search-choice.disabled,
-.chzn-container-multi .chzn-choices .search-choice[disabled] {
+.chosen-container-multi .chosen-choices li.search-choice:hover,
+.chosen-container-multi .chosen-choices li.search-choice:focus,
+.chosen-container-multi .chosen-choices li.search-choice:active,
+.chosen-container-multi .chosen-choices li.search-choice.active,
+.chosen-container-multi .chosen-choices li.search-choice.disabled,
+.chosen-container-multi .chosen-choices li.search-choice[disabled] {
   color: #333333;
   background-color: #e0e3ea;
   *background-color: #d1d5e0;
 }
-.chzn-container-multi .chzn-choices .search-choice:active,
-.chzn-container-multi .chzn-choices .search-choice.active {
+.chosen-container-multi .chosen-choices li.search-choice:active,
+.chosen-container-multi .chosen-choices li.search-choice.active {
   background-color: #c2c8d5 \9;
 }
-.chzn-container-multi .chzn-choices .search-choice.search-choice-disabled {
-  background-color: #e4e4e4;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f4f4f4', endColorstr='#eeeeee', GradientType=0);
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(20%, #f4f4f4), color-stop(50%, #f0f0f0), color-stop(52%, #e8e8e8), color-stop(100%, #eeeeee));
-  background-image: -webkit-linear-gradient(top, #f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
-  background-image: -moz-linear-gradient(top, #f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
-  background-image: -o-linear-gradient(top, #f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
-  background-image: -ms-linear-gradient(top, #f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
-  background-image: linear-gradient(top, #f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
-  color: #666;
-  border: 1px solid #cccccc;
-  padding-right: 5px;
-}
-.chzn-container-multi .chzn-choices .search-choice-focus {
-  background: #d4d4d4;
-}
-.chzn-container-multi .chzn-choices .search-choice .search-choice-close {
-  display: block;
+.chosen-container-multi .chosen-choices li.search-choice .search-choice-close {
   position: absolute;
-  right: 3px;
   top: 4px;
+  right: 3px;
+  display: block;
   width: 12px;
   height: 12px;
+  background: url('../images/plugins/jquery.chosen/chosen-sprite.png') -42px 1px no-repeat;
   font-size: 1px;
-  background: url('../images/plugins/chosen/chosen-sprite.png') -42px 1px no-repeat;
 }
-.chzn-container-multi .chzn-choices .search-choice .search-choice-close:hover {
+.chosen-container-multi .chosen-choices li.search-choice .search-choice-close:hover {
   background-position: -42px -10px;
 }
-.chzn-container-multi .chzn-choices .search-choice-focus .search-choice-close {
+.chosen-container-multi .chosen-choices li.search-choice-disabled {
+  padding-right: 5px;
+  border: 1px solid #cccccc;
+  background-color: #e4e4e4;
+  color: #666;
+}
+.chosen-container-multi .chosen-choices li.search-choice-focus {
+  background: #d4d4d4;
+}
+.chosen-container-multi .chosen-choices li.search-choice-focus .search-choice-close {
   background-position: -42px -10px;
 }
-/* @end */
-/* @group Results */
-.chzn-container .chzn-results {
-  margin: 0 4px 4px 0;
-  max-height: 240px;
-  padding: 0 0 0 4px;
-  position: relative;
-  overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-}
-.chzn-container-multi .chzn-results {
+.chosen-container-multi .chosen-results {
   margin: 0;
   padding: 0;
 }
-.chzn-container .chzn-results li {
-  display: none;
-  line-height: 15px;
-  padding: 5px 6px;
-  margin: 0;
-  list-style: none;
-}
-.chzn-container .chzn-results .active-result {
-  cursor: pointer;
+.chosen-container-multi .chosen-drop .result-selected {
   display: list-item;
-}
-.chzn-container .chzn-results .highlighted {
-  background-color: #6d84b4;
-  color: #fff;
-}
-.chzn-container .chzn-results li em {
-  background: #feffde;
-  font-style: normal;
-}
-.chzn-container .chzn-results .highlighted em {
-  background: transparent;
-}
-.chzn-container .chzn-results .no-results {
-  background: #f4f4f4;
-  display: list-item;
-}
-.chzn-container .chzn-results .group-result {
+  color: #ccc;
   cursor: default;
-  color: #999;
-  font-weight: bold;
-}
-.chzn-container .chzn-results .group-option {
-  padding-left: 15px;
-}
-.chzn-container-multi .chzn-drop .result-selected {
-  display: none;
-}
-.chzn-container .chzn-results-scroll {
-  background: white;
-  margin: 0 4px;
-  position: absolute;
-  text-align: center;
-  width: 321px;
-  /* This should by dynamic with js */
-
-  z-index: 1;
-}
-.chzn-container .chzn-results-scroll span {
-  display: inline-block;
-  height: 17px;
-  text-indent: -5000px;
-  width: 9px;
-}
-.chzn-container .chzn-results-scroll-down {
-  bottom: 0;
-}
-.chzn-container .chzn-results-scroll-down span {
-  background: url('../images/plugins/chosen/chosen-sprite.png') no-repeat -4px -3px;
-}
-.chzn-container .chzn-results-scroll-up span {
-  background: url('../images/plugins/chosen/chosen-sprite.png') no-repeat -22px -3px;
 }
 /* @end */
 /* @group Active  */
-.chzn-container-active .chzn-single {
+.chosen-container-active .chosen-single {
+  border: 1px solid #5897fb;
   -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  border: 1px solid #5897fb;
 }
-.chzn-container-active.chzn-with-drop .chzn-single {
+.chosen-container-active.chosen-with-drop .chosen-single {
   border: 1px solid #aaa;
-  -webkit-box-shadow: 0 1px 0 #fff inset;
-  -moz-box-shadow: 0 1px 0 #fff inset;
-  box-shadow: 0 1px 0 #fff inset;
+  -webkit-border-bottom-left-radius: 0;
+  -moz-border-radius-bottomleft: 0;
+  border-bottom-left-radius: 0;
+  -webkit-border-bottom-right-radius: 0;
+  -moz-border-radius-bottomright: 0;
+  border-bottom-right-radius: 0;
   background-color: #f5f5f5;
   background-image: -moz-linear-gradient(top, #eeeeee, #ffffff);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#eeeeee), to(#ffffff));
@@ -405,142 +384,135 @@
   -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);
   -moz-box-shadow: inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);
   box-shadow: inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);
-  -webkit-border-bottom-left-radius: 0;
-  -moz-border-radius-bottomleft: 0;
-  border-bottom-left-radius: 0;
-  -webkit-border-bottom-right-radius: 0;
-  -moz-border-radius-bottomright: 0;
-  border-bottom-right-radius: 0;
 }
-.chzn-container-active.chzn-with-drop .chzn-single div {
-  background: transparent;
+.chosen-container-active.chosen-with-drop .chosen-single div {
   border-left: none;
+  background: transparent;
 }
-.chzn-container-active.chzn-with-drop .chzn-single div b {
+.chosen-container-active.chosen-with-drop .chosen-single div b {
   background-position: -18px 2px;
 }
-.chzn-container-active .chzn-choices {
+.chosen-container-active .chosen-choices {
+  border: 1px solid #5897fb;
   -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  border: 1px solid #5897fb;
 }
-.chzn-container-active .chzn-choices .search-field input {
+.chosen-container-active .chosen-choices li.search-field input[type="text"] {
   color: #111 !important;
 }
 /* @end */
 /* @group Disabled Support */
-.chzn-disabled {
-  cursor: default;
+.chosen-disabled {
   opacity: 0.5 !important;
-}
-.chzn-disabled .chzn-single {
   cursor: default;
 }
-.chzn-disabled .chzn-choices .search-choice .search-choice-close {
+.chosen-disabled .chosen-single {
   cursor: default;
 }
+.chosen-disabled .chosen-choices .search-choice .search-choice-close {
+  cursor: default;
+}
+/* @end */
 /* @group Right to Left */
-.chzn-rtl {
+.chosen-rtl {
   text-align: right;
 }
-.chzn-rtl .chzn-single {
-  padding: 0 8px 0 0;
+.chosen-rtl .chosen-single {
   overflow: visible;
+  padding: 0 8px 0 0;
 }
-.chzn-rtl .chzn-single span {
-  margin-left: 26px;
+.chosen-rtl .chosen-single span {
   margin-right: 0;
+  margin-left: 26px;
   direction: rtl;
 }
-.chzn-rtl .chzn-single div {
+.chosen-rtl .chosen-single-with-deselect span {
+  margin-left: 38px;
+}
+.chosen-rtl .chosen-single div {
+  right: auto;
   left: 3px;
-  right: auto;
 }
-.chzn-rtl .chzn-single abbr {
+.chosen-rtl .chosen-single abbr {
+  right: auto;
   left: 26px;
-  right: auto;
 }
-.chzn-rtl .chzn-choices .search-field input {
-  direction: rtl;
-}
-.chzn-rtl .chzn-choices li {
+.chosen-rtl .chosen-choices li {
   float: right;
 }
-.chzn-rtl .chzn-choices .search-choice {
-  padding: 3px 5px 3px 19px;
+.chosen-rtl .chosen-choices li.search-field input[type="text"] {
+  direction: rtl;
+}
+.chosen-rtl .chosen-choices li.search-choice {
   margin: 3px 5px 3px 0;
+  padding: 3px 5px 3px 19px;
 }
-.chzn-rtl .chzn-choices .search-choice .search-choice-close {
-  left: 4px;
+.chosen-rtl .chosen-choices li.search-choice .search-choice-close {
   right: auto;
+  left: 4px;
 }
-.chzn-rtl .chzn-search {
+.chosen-rtl.chosen-container-single-nosearch .chosen-search,
+.chosen-rtl .chosen-drop {
   left: 9999px;
 }
-.chzn-rtl.chzn-with-drop .chzn-search {
-  left: 0px;
-}
-.chzn-rtl .chzn-drop {
-  left: 9999px;
-}
-.chzn-rtl.chzn-container-single .chzn-results {
+.chosen-rtl.chosen-container-single .chosen-results {
   margin: 0 0 4px 4px;
   padding: 0 4px 0 0;
 }
-.chzn-rtl .chzn-results .group-option {
-  padding-left: 0;
+.chosen-rtl .chosen-results li.group-option {
   padding-right: 15px;
+  padding-left: 0;
 }
-.chzn-rtl.chzn-container-active.chzn-with-drop .chzn-single div {
+.chosen-rtl.chosen-container-active.chosen-with-drop .chosen-single div {
   border-right: none;
 }
-.chzn-rtl .chzn-search input {
-  background: #ffffff url('../images/plugins/chosen/chosen-sprite.png') no-repeat -30px -20px;
-  background: url('../images/plugins/chosen/chosen-sprite.png') no-repeat -30px -20px, -webkit-gradient(linear, 0 0, 0 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
-  background: url('../images/plugins/chosen/chosen-sprite.png') no-repeat -30px -20px, -webkit-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
-  background: url('../images/plugins/chosen/chosen-sprite.png') no-repeat -30px -20px, -moz-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
-  background: url('../images/plugins/chosen/chosen-sprite.png') no-repeat -30px -20px, -o-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
-  background: url('../images/plugins/chosen/chosen-sprite.png') no-repeat -30px -20px, linear-gradient(#eeeeee 1%, #ffffff 15%);
+.chosen-rtl .chosen-search input[type="text"] {
   padding: 4px 5px 4px 20px;
+  background: #ffffff url('../images/plugins/jquery.chosen/chosen-sprite.png') no-repeat -30px -20px;
+  background: url('../images/plugins/jquery.chosen/chosen-sprite.png') no-repeat -30px -20px, -webkit-gradient(linear, 0 0, 0 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
+  background: url('../images/plugins/jquery.chosen/chosen-sprite.png') no-repeat -30px -20px, -webkit-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+  background: url('../images/plugins/jquery.chosen/chosen-sprite.png') no-repeat -30px -20px, -moz-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+  background: url('../images/plugins/jquery.chosen/chosen-sprite.png') no-repeat -30px -20px, -o-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+  background: url('../images/plugins/jquery.chosen/chosen-sprite.png') no-repeat -30px -20px, linear-gradient(#eeeeee 1%, #ffffff 15%);
   direction: rtl;
 }
-.chzn-container-single.chzn-rtl .chzn-single div b {
+.chosen-rtl.chosen-container-single .chosen-single div b {
   background-position: 6px 2px;
 }
-.chzn-container-single.chzn-rtl.chzn-with-drop .chzn-single div b {
+.chosen-rtl.chosen-container-single.chosen-with-drop .chosen-single div b {
   background-position: -12px 2px;
 }
 /* @end */
 /* @group Retina compatibility */
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-resolution: 144dpi) {
-  .chzn-rtl .chzn-search input,
-  .chzn-container-single .chzn-single abbr,
-  .chzn-container-single .chzn-single div b,
-  .chzn-container-single .chzn-search input,
-  .chzn-container-multi .chzn-choices .search-choice .search-choice-close,
-  .chzn-container .chzn-results-scroll-down span,
-  .chzn-container .chzn-results-scroll-up span {
-    background-image: url('../images/plugins/chosen/chosen-sprite@2x.png') !important;
-    background-repeat: no-repeat !important;
+  .chosen-rtl .chosen-search input[type="text"],
+  .chosen-container-single .chosen-single abbr,
+  .chosen-container-single .chosen-single div b,
+  .chosen-container-single .chosen-search input[type="text"],
+  .chosen-container-multi .chosen-choices .search-choice .search-choice-close,
+  .chosen-container .chosen-results-scroll-down span,
+  .chosen-container .chosen-results-scroll-up span {
+    background-image: url('../images/plugins/jquery.chosen/chosen-sprite@2x.png') !important;
     background-size: 52px 37px !important;
+    background-repeat: no-repeat !important;
   }
 }
 /* @end */
 /* Responsive upport*/
-[class*="span"] .chzn-container {
+[class*="span"] .chosen-container {
   width: 98%!important;
   min-width: 100%;
   max-width: 100%;
 }
-[class*="span"] .chzn-container .chzn-search input[type='text'] {
+[class*="span"] .chosen-container .chosen-search input[type='text'] {
   width: 100%!important;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding: 14px 5px;
 }
-[class*="span"] .chzn-container .chzn-drop {
+[class*="span"] .chosen-container .chosen-drop {
   width: 100%!important;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -678,6 +650,7 @@
  *
  * Copyright 2012 Stefan Petre
  * Improvements by Andrew Rowls
+ * Improvements by S�bastien Malot
  * Licensed under the Apache License v2.0
  * http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -689,13 +662,6 @@
   -moz-border-radius: 1px;
   border-radius: 1px;
   direction: ltr;
-  /*.dow {
-		border-top: 1px solid #ddd !important;
-	}*/
-
-}
-.datetimepicker-inline {
-  width: 220px;
 }
 .datetimepicker.datetimepicker-rtl {
   direction: rtl;
@@ -703,58 +669,14 @@
 .datetimepicker.datetimepicker-rtl table tr td span {
   float: right;
 }
-.datetimepicker-dropdown {
-  top: 0;
-  left: 0;
-}
-.datetimepicker-dropdown:before {
-  content: '';
-  display: inline-block;
-  border-left: 7px solid transparent;
-  border-right: 7px solid transparent;
-  border-bottom: 7px solid #ccc;
-  border-bottom-color: rgba(0, 0, 0, 0.2);
-  position: absolute;
-  top: -7px;
-  left: 6px;
-}
-.datetimepicker-dropdown:after {
-  content: '';
-  display: inline-block;
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-bottom: 6px solid #ffffff;
-  position: absolute;
-  top: -6px;
-  left: 7px;
-}
-.datetimepicker-dropdown-left {
-  top: 0;
-  left: 0;
-}
-.datetimepicker-dropdown-left:before {
-  content: '';
-  display: inline-block;
-  border-left: 7px solid transparent;
-  border-right: 7px solid transparent;
-  border-bottom: 7px solid #ccc;
-  border-bottom-color: rgba(0, 0, 0, 0.2);
-  position: absolute;
-  top: -7px;
-  right: 6px;
-}
-.datetimepicker-dropdown-left:after {
-  content: '';
-  display: inline-block;
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-bottom: 6px solid #ffffff;
-  position: absolute;
-  top: -6px;
-  right: 7px;
-}
 .datetimepicker > div {
   display: none;
+}
+.datetimepicker.minutes div.datetimepicker-minutes {
+  display: block;
+}
+.datetimepicker.hours div.datetimepicker-hours {
+  display: block;
 }
 .datetimepicker.days div.datetimepicker-days {
   display: block;
@@ -768,152 +690,17 @@
 .datetimepicker table {
   margin: 0;
 }
-.datetimepicker td,
-.datetimepicker th {
-  text-align: center;
-  width: 20px;
-  height: 20px;
-  -webkit-border-radius: 1px;
-  -moz-border-radius: 1px;
-  border-radius: 1px;
-  border: none;
+.datetimepicker table tr td.minute:hover {
+  background: #eeeeee;
+  cursor: pointer;
 }
-.table-striped .datetimepicker table tr td,
-.table-striped .datetimepicker table tr th {
-  background-color: transparent;
+.datetimepicker table tr td.hour:hover {
+  background: #eeeeee;
+  cursor: pointer;
 }
 .datetimepicker table tr td.day:hover {
   background: #eeeeee;
   cursor: pointer;
-}
-.datetimepicker table tr td.old,
-.datetimepicker table tr td.new {
-  color: #999999;
-}
-.datetimepicker table tr td.disabled,
-.datetimepicker table tr td.disabled:hover {
-  background: none;
-  color: #999999;
-  cursor: default;
-}
-.datetimepicker table tr td.today,
-.datetimepicker table tr td.today:hover,
-.datetimepicker table tr td.today.disabled,
-.datetimepicker table tr td.today.disabled:hover {
-  color: #ffffff;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-color: #fde19a;
-  background-image: -moz-linear-gradient(top, #fdd49a, #fdf59a);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fdd49a), to(#fdf59a));
-  background-image: -webkit-linear-gradient(top, #fdd49a, #fdf59a);
-  background-image: -o-linear-gradient(top, #fdd49a, #fdf59a);
-  background-image: linear-gradient(to bottom, #fdd49a, #fdf59a);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffdd49a', endColorstr='#fffdf59a', GradientType=0);
-  border-color: #fdf59a #fdf59a #fbed50;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  *background-color: #fdf59a;
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
-
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
-}
-.datetimepicker table tr td.today:hover,
-.datetimepicker table tr td.today:hover:hover,
-.datetimepicker table tr td.today.disabled:hover,
-.datetimepicker table tr td.today.disabled:hover:hover,
-.datetimepicker table tr td.today:focus,
-.datetimepicker table tr td.today:hover:focus,
-.datetimepicker table tr td.today.disabled:focus,
-.datetimepicker table tr td.today.disabled:hover:focus,
-.datetimepicker table tr td.today:active,
-.datetimepicker table tr td.today:hover:active,
-.datetimepicker table tr td.today.disabled:active,
-.datetimepicker table tr td.today.disabled:hover:active,
-.datetimepicker table tr td.today.active,
-.datetimepicker table tr td.today:hover.active,
-.datetimepicker table tr td.today.disabled.active,
-.datetimepicker table tr td.today.disabled:hover.active,
-.datetimepicker table tr td.today.disabled,
-.datetimepicker table tr td.today:hover.disabled,
-.datetimepicker table tr td.today.disabled.disabled,
-.datetimepicker table tr td.today.disabled:hover.disabled,
-.datetimepicker table tr td.today[disabled],
-.datetimepicker table tr td.today:hover[disabled],
-.datetimepicker table tr td.today.disabled[disabled],
-.datetimepicker table tr td.today.disabled:hover[disabled] {
-  color: #ffffff;
-  background-color: #fdf59a;
-  *background-color: #fcf282;
-}
-.datetimepicker table tr td.today:active,
-.datetimepicker table tr td.today:hover:active,
-.datetimepicker table tr td.today.disabled:active,
-.datetimepicker table tr td.today.disabled:hover:active,
-.datetimepicker table tr td.today.active,
-.datetimepicker table tr td.today:hover.active,
-.datetimepicker table tr td.today.disabled.active,
-.datetimepicker table tr td.today.disabled:hover.active {
-  background-color: #fbf069 \9;
-}
-.datetimepicker table tr td.active,
-.datetimepicker table tr td.active:hover,
-.datetimepicker table tr td.active.disabled,
-.datetimepicker table tr td.active.disabled:hover {
-  color: #ffffff;
-  background-color: #6571ab;
-  background-image: -moz-linear-gradient(top, #647aab, #6664ab);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#647aab), to(#6664ab));
-  background-image: -webkit-linear-gradient(top, #647aab, #6664ab);
-  background-image: -o-linear-gradient(top, #647aab, #6664ab);
-  background-image: linear-gradient(to bottom, #647aab, #6664ab);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff647aab', endColorstr='#ff6664ab', GradientType=0);
-  border-color: #6664ab #6664ab #46447e;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  *background-color: #6664ab;
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
-
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
-  color: #fff;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-}
-.datetimepicker table tr td.active:hover,
-.datetimepicker table tr td.active:hover:hover,
-.datetimepicker table tr td.active.disabled:hover,
-.datetimepicker table tr td.active.disabled:hover:hover,
-.datetimepicker table tr td.active:focus,
-.datetimepicker table tr td.active:hover:focus,
-.datetimepicker table tr td.active.disabled:focus,
-.datetimepicker table tr td.active.disabled:hover:focus,
-.datetimepicker table tr td.active:active,
-.datetimepicker table tr td.active:hover:active,
-.datetimepicker table tr td.active.disabled:active,
-.datetimepicker table tr td.active.disabled:hover:active,
-.datetimepicker table tr td.active.active,
-.datetimepicker table tr td.active:hover.active,
-.datetimepicker table tr td.active.disabled.active,
-.datetimepicker table tr td.active.disabled:hover.active,
-.datetimepicker table tr td.active.disabled,
-.datetimepicker table tr td.active:hover.disabled,
-.datetimepicker table tr td.active.disabled.disabled,
-.datetimepicker table tr td.active.disabled:hover.disabled,
-.datetimepicker table tr td.active[disabled],
-.datetimepicker table tr td.active:hover[disabled],
-.datetimepicker table tr td.active.disabled[disabled],
-.datetimepicker table tr td.active.disabled:hover[disabled] {
-  color: #ffffff;
-  background-color: #6664ab;
-  *background-color: #58569f;
-}
-.datetimepicker table tr td.active:active,
-.datetimepicker table tr td.active:hover:active,
-.datetimepicker table tr td.active.disabled:active,
-.datetimepicker table tr td.active.disabled:hover:active,
-.datetimepicker table tr td.active.active,
-.datetimepicker table tr td.active:hover.active,
-.datetimepicker table tr td.active.disabled.active,
-.datetimepicker table tr td.active.disabled:hover.active {
-  background-color: #4f4d8f \9;
 }
 .datetimepicker table tr td span {
   display: block;
@@ -930,6 +717,205 @@
 .datetimepicker table tr td span:hover {
   background: #eeeeee;
 }
+.datetimepicker table tr td span.old {
+  color: #999999;
+}
+.datetimepicker .datetimepicker-hours span {
+  height: 26px;
+  line-height: 26px;
+}
+.datetimepicker .datetimepicker-minutes span {
+  height: 26px;
+  line-height: 26px;
+}
+.datetimepicker th.switch {
+  width: 145px;
+}
+.datetimepicker-inline {
+  width: 220px;
+}
+.datetimepicker-dropdown,
+.datetimepicker-dropdown-left {
+  top: 0;
+  left: 0;
+}
+[class*="datetimepicker-dropdown"]:before {
+  content: '';
+  display: inline-block;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid #ccc;
+  border-bottom-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+}
+[class*="datetimepicker-dropdown"]:after {
+  content: '';
+  display: inline-block;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid #ffffff;
+  position: absolute;
+}
+[class*="datetimepicker-dropdown-top"]:before {
+  content: '';
+  display: inline-block;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 7px solid #ccc;
+  border-top-color: rgba(0, 0, 0, 0.2);
+  border-bottom: 0;
+}
+[class*="datetimepicker-dropdown-top"]:after {
+  content: '';
+  display: inline-block;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #ffffff;
+  border-bottom: 0;
+}
+.datetimepicker-dropdown-bottom-left:before {
+  top: -7px;
+  right: 6px;
+}
+.datetimepicker-dropdown-bottom-left:after {
+  top: -6px;
+  right: 7px;
+}
+.datetimepicker-dropdown-bottom-right:before {
+  top: -7px;
+  left: 6px;
+}
+.datetimepicker-dropdown-bottom-right:after {
+  top: -6px;
+  left: 7px;
+}
+.datetimepicker-dropdown-top-left:before {
+  bottom: -7px;
+  right: 6px;
+}
+.datetimepicker-dropdown-top-left:after {
+  bottom: -6px;
+  right: 7px;
+}
+.datetimepicker-dropdown-top-right:before {
+  bottom: -7px;
+  left: 6px;
+}
+.datetimepicker-dropdown-top-right:after {
+  bottom: -6px;
+  left: 7px;
+}
+.datetimepicker td,
+.datetimepicker th {
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+  border: none;
+}
+.table-striped .datetimepicker table tr td,
+.table-striped .datetimepicker table tr th {
+  background-color: transparent;
+}
+.datetimepicker table tr td.old,
+.datetimepicker table tr td.new {
+  color: #999999;
+}
+.datetimepicker table tr td.disabled,
+.datetimepicker table tr td.disabled:hover {
+  background: none;
+  color: #999999;
+  cursor: default;
+}
+.datetimepicker table tr td.today,
+.datetimepicker table tr td.today:hover,
+.datetimepicker table tr td.today.disabled,
+.datetimepicker table tr td.today.disabled:hover {
+  background-color: #fde19a;
+}
+.datetimepicker table tr td.today:hover,
+.datetimepicker table tr td.today:hover:hover,
+.datetimepicker table tr td.today.disabled:hover,
+.datetimepicker table tr td.today.disabled:hover:hover,
+.datetimepicker table tr td.today:active,
+.datetimepicker table tr td.today:hover:active,
+.datetimepicker table tr td.today.disabled:active,
+.datetimepicker table tr td.today.disabled:hover:active,
+.datetimepicker table tr td.today.active,
+.datetimepicker table tr td.today:hover.active,
+.datetimepicker table tr td.today.disabled.active,
+.datetimepicker table tr td.today.disabled:hover.active,
+.datetimepicker table tr td.today.disabled,
+.datetimepicker table tr td.today:hover.disabled,
+.datetimepicker table tr td.today.disabled.disabled,
+.datetimepicker table tr td.today.disabled:hover.disabled,
+.datetimepicker table tr td.today[disabled],
+.datetimepicker table tr td.today:hover[disabled],
+.datetimepicker table tr td.today.disabled[disabled],
+.datetimepicker table tr td.today.disabled:hover[disabled] {
+  background-color: #fdf59a;
+}
+.datetimepicker table tr td.today:active,
+.datetimepicker table tr td.today:hover:active,
+.datetimepicker table tr td.today.disabled:active,
+.datetimepicker table tr td.today.disabled:hover:active,
+.datetimepicker table tr td.today.active,
+.datetimepicker table tr td.today:hover.active,
+.datetimepicker table tr td.today.disabled.active,
+.datetimepicker table tr td.today.disabled:hover.active {
+  background-color: #fbf069 \9;
+}
+.datetimepicker table tr td.active,
+.datetimepicker table tr td.active:hover,
+.datetimepicker table tr td.active.disabled,
+.datetimepicker table tr td.active.disabled:hover {
+  background-color: #6571ab;
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.datetimepicker table tr td.active:hover,
+.datetimepicker table tr td.active:hover:hover,
+.datetimepicker table tr td.active.disabled:hover,
+.datetimepicker table tr td.active.disabled:hover:hover,
+.datetimepicker table tr td.active:active,
+.datetimepicker table tr td.active:hover:active,
+.datetimepicker table tr td.active.disabled:active,
+.datetimepicker table tr td.active.disabled:hover:active,
+.datetimepicker table tr td.active.active,
+.datetimepicker table tr td.active:hover.active,
+.datetimepicker table tr td.active.disabled.active,
+.datetimepicker table tr td.active.disabled:hover.active,
+.datetimepicker table tr td.active.disabled,
+.datetimepicker table tr td.active:hover.disabled,
+.datetimepicker table tr td.active.disabled.disabled,
+.datetimepicker table tr td.active.disabled:hover.disabled,
+.datetimepicker table tr td.active[disabled],
+.datetimepicker table tr td.active:hover[disabled],
+.datetimepicker table tr td.active.disabled[disabled],
+.datetimepicker table tr td.active.disabled:hover[disabled] {
+  background-color: #6664ab;
+}
+.datetimepicker table tr td.active:active,
+.datetimepicker table tr td.active:hover:active,
+.datetimepicker table tr td.active.disabled:active,
+.datetimepicker table tr td.active.disabled:hover:active,
+.datetimepicker table tr td.active.active,
+.datetimepicker table tr td.active:hover.active,
+.datetimepicker table tr td.active.disabled.active,
+.datetimepicker table tr td.active.disabled:hover.active {
+  background-color: #4f4d8f \9;
+}
+.datetimepicker .datetimepicker-hours table tr td span.hour_am,
+.datetimepicker .datetimepicker-hours table tr td span.hour_pm {
+  width: 14.6%;
+}
+.datetimepicker .datetimepicker-hours fieldset legend,
+.datetimepicker .datetimepicker-minutes fieldset legend {
+  margin-bottom: inherit;
+  line-height: 30px;
+}
 .datetimepicker table tr td span.disabled,
 .datetimepicker table tr td span.disabled:hover {
   background: none;
@@ -940,21 +926,7 @@
 .datetimepicker table tr td span.active:hover,
 .datetimepicker table tr td span.active.disabled,
 .datetimepicker table tr td span.active.disabled:hover {
-  color: #ffffff;
   background-color: #6571ab;
-  background-image: -moz-linear-gradient(top, #647aab, #6664ab);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#647aab), to(#6664ab));
-  background-image: -webkit-linear-gradient(top, #647aab, #6664ab);
-  background-image: -o-linear-gradient(top, #647aab, #6664ab);
-  background-image: linear-gradient(to bottom, #647aab, #6664ab);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff647aab', endColorstr='#ff6664ab', GradientType=0);
-  border-color: #6664ab #6664ab #46447e;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  *background-color: #6664ab;
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
-
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   color: #fff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
@@ -962,10 +934,6 @@
 .datetimepicker table tr td span.active:hover:hover,
 .datetimepicker table tr td span.active.disabled:hover,
 .datetimepicker table tr td span.active.disabled:hover:hover,
-.datetimepicker table tr td span.active:focus,
-.datetimepicker table tr td span.active:hover:focus,
-.datetimepicker table tr td span.active.disabled:focus,
-.datetimepicker table tr td span.active.disabled:hover:focus,
 .datetimepicker table tr td span.active:active,
 .datetimepicker table tr td span.active:hover:active,
 .datetimepicker table tr td span.active.disabled:active,
@@ -982,9 +950,7 @@
 .datetimepicker table tr td span.active:hover[disabled],
 .datetimepicker table tr td span.active.disabled[disabled],
 .datetimepicker table tr td span.active.disabled:hover[disabled] {
-  color: #ffffff;
   background-color: #6664ab;
-  *background-color: #58569f;
 }
 .datetimepicker table tr td span.active:active,
 .datetimepicker table tr td span.active:hover:active,
@@ -996,12 +962,6 @@
 .datetimepicker table tr td span.active.disabled:hover.active {
   background-color: #4f4d8f \9;
 }
-.datetimepicker table tr td span.old {
-  color: #999999;
-}
-.datetimepicker th.switch {
-  width: 145px;
-}
 .datetimepicker thead tr:first-child th,
 .datetimepicker tfoot tr:first-child th {
   cursor: pointer;
@@ -1012,13 +972,16 @@
 }
 .input-append.date .add-on i,
 .input-prepend.date .add-on i {
-  display: block;
   cursor: pointer;
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
 }
 /*! ============================================================
- * bootstrapSwitch v1.3
+ * bootstrapSwitch v1.7 by Larentis Mattia @SpiritualGuru
+ * http://www.larentis.eu/
+ *
+ * Enhanced for radiobuttons by Stein, Peter @BdMdesigN
+ * http://www.bdmdesign.org/
  * http://www.larentis.eu/switch/
  * ============================================================ */
 .has-switch {
@@ -1038,10 +1001,20 @@
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
+  vertical-align: middle;
   min-width: 100px;
 }
 .has-switch.switch-mini {
   min-width: 72px;
+}
+.has-switch.switch-mini i.switch-mini-icons {
+  height: 1.20em;
+  line-height: 9px;
+  vertical-align: text-top;
+  text-align: center;
+  transform: scale(0.6);
+  margin-top: -1px;
+  margin-bottom: -1px;
 }
 .has-switch.switch-small {
   min-width: 80px;
@@ -1078,6 +1051,7 @@
 .has-switch > div.switch-on {
   left: 0%;
 }
+.has-switch input[type=radio],
 .has-switch input[type=checkbox] {
   display: none;
 }
@@ -1375,8 +1349,42 @@
 .has-switch span.switch-danger.active {
   background-color: #e9322d \9;
 }
+.has-switch span.switch-default {
+  color: #333333;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+  background-color: #eaedf2;
+  background-image: -moz-linear-gradient(top, #e0e3ea, #fafbfe);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e0e3ea), to(#fafbfe));
+  background-image: -webkit-linear-gradient(top, #e0e3ea, #fafbfe);
+  background-image: -o-linear-gradient(top, #e0e3ea, #fafbfe);
+  background-image: linear-gradient(to bottom, #e0e3ea, #fafbfe);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffe0e3ea', endColorstr='#fffafbfe', GradientType=0);
+  border-color: #fafbfe #fafbfe #bac8f1;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  *background-color: #fafbfe;
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+.has-switch span.switch-default:hover,
+.has-switch span.switch-default:focus,
+.has-switch span.switch-default:active,
+.has-switch span.switch-default.active,
+.has-switch span.switch-default.disabled,
+.has-switch span.switch-default[disabled] {
+  color: #333333;
+  background-color: #fafbfe;
+  *background-color: #e5eafa;
+}
+.has-switch span.switch-default:active,
+.has-switch span.switch-default.active {
+  background-color: #cfd9f6 \9;
+}
 /*! ============================================================
- * FullCalendar
+ * FullCalendar v1.6.2 Stylesheet
+ * Docs & License: http://arshaw.com/fullcalendar/
+ * (c) 2013 Adam Shaw
  * ============================================================ */
 .fc {
   direction: ltr;
@@ -1667,6 +1675,8 @@ a.fc-event,
   /* hacky spaces (IE6/7) */
 
   font-size: 300%;
+  /* */
+
   line-height: 50%;
   /* */
 
@@ -2101,6 +2111,7 @@ div.tagsinput input {
   cursor: pointer;
   width: 30px;
   height: 30px;
+  text-indent: -9999em;
 }
 .gritter-title {
   font-size: 14px;
@@ -2276,6 +2287,7 @@ div.tagsinput input {
 }
 /*! ============================================================
  * Bootstrap Date Range Picker
+ * Copyright 2013 Dan Grossman ( http://www.dangrossman.info )
  * ============================================================ */
 .daterangepicker.dropdown-menu {
   max-width: none;
@@ -2352,6 +2364,11 @@ div.tagsinput input {
   -moz-border-radius: 1px;
   border-radius: 1px;
   background: #fff;
+}
+.daterangepicker .calendar-time {
+  text-align: center;
+  margin: 8px auto 0 auto;
+  line-height: 30px;
 }
 .daterangepicker {
   position: absolute;
@@ -2466,6 +2483,12 @@ div.tagsinput input {
 }
 .daterangepicker select.yearselect {
   width: 40%;
+}
+.daterangepicker select.hourselect,
+.daterangepicker select.minuteselect,
+.daterangepicker select.ampmselect {
+  width: 60px;
+  margin-bottom: 0;
 }
 @media (max-width: 480px) {
   .daterangepicker .calendar {
@@ -2681,4 +2704,58 @@ div.tagsinput input {
 }
 .dd3-handle:hover {
   background: #ddd;
+}
+/* iCheck plugin Minimal skin, grey
+----------------------------------- */
+.icheckbox_minimal-social,
+.iradio_minimal-social {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  width: 18px;
+  height: 18px;
+  background: url('../images/plugins/jquery.icheck/social.png') no-repeat;
+  border: none;
+  cursor: pointer;
+}
+.icheckbox_minimal-social {
+  background-position: 0 0;
+}
+.icheckbox_minimal-social.hover {
+  background-position: -20px 0;
+}
+.icheckbox_minimal-social.checked {
+  background-position: -40px 0;
+}
+.icheckbox_minimal-social.disabled {
+  background-position: -60px 0;
+  cursor: default;
+}
+.icheckbox_minimal-social.checked.disabled {
+  background-position: -80px 0;
+}
+.iradio_minimal-social {
+  background-position: -100px 0;
+}
+.iradio_minimal-social.hover {
+  background-position: -120px 0;
+}
+.iradio_minimal-social.checked {
+  background-position: -140px 0;
+}
+.iradio_minimal-social.disabled {
+  background-position: -160px 0;
+  cursor: default;
+}
+.iradio_minimal-social.checked.disabled {
+  background-position: -180px 0;
+}
+/* Retina support */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+  .icheckbox_minimal-social,
+  .iradio_minimal-social {
+    background-image: url('../images/plugins/jquery.icheck/social@2x.png');
+    -webkit-background-size: 200px 20px;
+    background-size: 200px 20px;
+  }
 }
