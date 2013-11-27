@@ -14,9 +14,17 @@
                     </div>
 
                     <div class="control-group">
+                        <label class="control-label" for="username"><?php echo lang('username'); ?></label>
+                        <div class="controls">
+                            <input type="text" id="username" value="<?php echo $self['username']; ?>" disabled>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
                         <label class="control-label" for="email"><?php echo lang('email'); ?></label>
                         <div class="controls">
-                            <input type="email" id="email" value="<?php echo $self['email']; ?>" disabled>
+                            <input type="email" id="email" name="email"  value="<?php echo set_value('email', $self['email']); ?>">
+                            <?php echo form_error('email'); ?>
                         </div>
                     </div>
 

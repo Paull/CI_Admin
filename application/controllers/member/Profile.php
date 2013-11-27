@@ -23,12 +23,13 @@ class Profile extends MY_Controller {
         switch($action)
         {
             case 'profile':
+                $this->form_validation->set_rules('email',    lang('email'),    'required|valid_email');
                 $this->form_validation->set_rules('realname', lang('realname'), 'required|min_length[2]|max_length[10]');
                 break;
             case 'password':
-                $this->form_validation->set_rules('old_password', lang('old_password'), 'required|min_length[6]|callback__check_password_modify');
-                $this->form_validation->set_rules('password1', lang('new_password'), 'required|min_length[6]');
-                $this->form_validation->set_rules('password2', lang('new_password_confirm'), 'required|min_length[6]|matches[password1]');
+                $this->form_validation->set_rules('old_password', lang('old_password'),         'required|min_length[6]|callback__check_password_modify');
+                $this->form_validation->set_rules('password1',    lang('new_password'),         'required|min_length[6]');
+                $this->form_validation->set_rules('password2',    lang('new_password_confirm'), 'required|min_length[6]|matches[password1]');
                 break;
         }
 
@@ -92,6 +93,7 @@ class Profile extends MY_Controller {
 
                 //准备更新数据
                 $data['id'] = $this->_data['self']['id'];
+                $data['email'] = $this->input->post('email');
                 $data['realname'] = $this->input->post('realname');
                 //更新数据
                 if($this->m_member->modify($data))
