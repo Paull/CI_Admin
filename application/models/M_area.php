@@ -44,6 +44,8 @@ class M_area extends MY_Model {
         $this->m_log->create($log);
         //记录操作日志----------------------
 
+        $this->_clear_cache();
+
         return $deleted;
     }
 
@@ -96,6 +98,8 @@ class M_area extends MY_Model {
         $this->m_log->create($log);
         //记录操作日志----------------------
 
+        $this->_clear_cache();
+
         return $insert_id;
     }
     
@@ -115,7 +119,17 @@ class M_area extends MY_Model {
         $this->m_log->create($log);
         //记录操作日志----------------------
 
+        $this->_clear_cache();
+
         return $affected_rows;
+    }
+
+    //清除缓存
+    private function _clear_cache()
+    {
+        $this->cache->delete('area_hash');
+        $this->cache->delete('area_tree');
+        $this->cache->delete('area_group');
     }
 
     //取得所有相关城市
