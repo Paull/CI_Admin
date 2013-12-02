@@ -56,15 +56,10 @@ class MY_Controller extends CI_Controller {
             //加载缓存配置
             $this->load->driver('cache', array('key_prefix' => config_item('cache_prefix'), 'adapter' => 'memcached', 'backup' => 'file'));
 
-            //加载城市键值对应数组
-            $this->_data['area_name'] = $this->cache->get('area_name');
-            if ( $this->_data['area_name'] === FALSE )
-            {
-                $this->_data['area_name'] = $this->m_area->find()->result_array();
-                $this->_data['area_name'] = Helper_Array::toHashmap($this->_data['area_name'], 'id');
-                $this->_data['area_name'] = Helper_Array::getCols($this->_data['area_name'], 'name', TRUE);
-                $this->cache->save('area_name', $this->_data['area_name'], CACHE_TIMEOUT);
-            }
+            //加载城市数组
+            $this->_data['area_hash'] = $this->m_area->get_hash();
+            $this->_data['area_tree'] = $this->m_area->get_tree();
+            $this->_data['area_group'] = $this->m_area->get_group();
 
             //加载菜单数组
             $this->_data['menus'] = $this->cache->get('menus');

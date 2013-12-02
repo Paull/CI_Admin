@@ -117,7 +117,82 @@ class M_area extends MY_Model {
 
         return $affected_rows;
     }
+
+    //取得所有相关城市
+    public function get_children($place_id=PLACE_ID)
+    {
+        $list = $result = $this->where('parentid', $place_id)->find()->result_array();
+
+        foreach($result as $row)
+        {
+            $result = $this->get_children($row['id']);
+            $list = array_merge($list, $result);
+        }
+
+        return $list;
+    }
+
+    //取得城市ID对应城市名
+    public function get_hash()
+    {
+        $list = $this->cache->get('area_hash');
+        if ( $list === FALSE )
+        {
+            $list = $this->get_children();
+            $list = Helper_Array::toHashmap($list, 'id', 'name');
+            $this->cache->save('area_hash', $list, CACHE_TIMEOUT);
+        }
+        return $list;
+    }
     
+    //取得城市数组
+    public function get_tree()
+    {
+        $list = $this->cache->get('area_tree');
+        if ( $list === FALSE )
+        {
+            $list = $this->get_children();
+            $list = Helper_Array::toTree($list, 'id', 'parentid', 'children');
+            $list = $this->_toHashmap($list, 'id', 'children');
+            $this->cache->save('area_tree', $list, CACHE_TIMEOUT);
+        }
+        return $list;
+    }
+
+    //取得城市子孙数组
+    public function get_group()
+    {
+        $list = $this->cache->get('area_group');
+        if ( $list === FALSE )
+        {
+            $list = $this->get_children();
+            $list = Helper_array::groupBy($list, 'parentid');
+            foreach($list as $key=>$value)
+            {
+                $value = Helper_array::toHashmap($value, 'id', 'name');
+                $list[$key] = $value;
+            }
+            $this->cache->save('area_group', $list, CACHE_TIMEOUT);
+        }
+        return $list;
+    }
+
+    //递增ToHashmap
+    private function _toHashmap($data, $key_field, $recursive_node='children')
+    {
+        $data = Helper_Array::toHashmap($data, $key_field);
+        foreach($data as $key=>$value)
+        {
+            unset($data[$key]['id']);
+            unset($data[$key]['parentid']);
+            if ( !empty($value[$recursive_node]) )
+            {
+                $data[$key][$recursive_node] = $this->_toHashmap($value[$recursive_node], $key_field);
+            }
+        }
+        return $data;
+    }
+
 }
 
 /* End of file M_area.php */

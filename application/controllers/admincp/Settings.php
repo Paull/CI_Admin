@@ -16,15 +16,8 @@ class Settings extends MY_Controller {
         $this->_data['template']['breadcrumbs'][] = array('uri'=>CLASS_URI, 'title'=>$this->_data['template']['title']);
 
         //读取数据
-        $this->_data['list'] = $this->m_area->order_by('id')->find()->result_array();
-        $this->_data['list'] = Helper_array::groupBy($this->_data['list'], 'parentid');
-        foreach($this->_data['list'] as $key=>$value)
-        {
-            $value = Helper_array::toHashmap($value, 'id');
-            $value = Helper_array::getCols($value, 'name', TRUE);
-            $this->_data['list'][$key] = $value;
-        }
-        dump($this->_data['list']);
+        $this->_data['list'] = $this->m_area->get_tree();
+        dump($this->_data['list'],null,10);
         exit;
         
         //加载模板
