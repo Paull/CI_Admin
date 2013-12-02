@@ -82,12 +82,22 @@ abstract class Helper_Array
      *
      * @return array 包含指定键所有值的数组
      */
-    static function getCols($arr, $col)
+    static function getCols($arr, $col, $keep_key = FALSE)
     {
         $ret = array();
-        foreach ($arr as $row) 
+        foreach ($arr as $key=>$row) 
         {
-            if (isset($row[$col])) { $ret[] = $row[$col]; }
+            if (isset($row[$col]))
+            {
+                if ($keep_key)
+                {
+                    $ret[$key] = $row[$col];
+                }
+                else
+                {
+                    $ret[] = $row[$col];
+                }
+            }
         }
         return $ret;
     }
