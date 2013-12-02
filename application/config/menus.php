@@ -18,6 +18,15 @@ return array(
                 ),
             ),
         ),
+        'collapse-settings'  => array(
+            'title'    => '系统设置',
+            'icon'     => 'settings.png',
+            'children' => array(
+                'admincp/settings/area' => array(
+                    'title'=> '区域设置',
+                ),
+            ),
+        ),
     ),
     'agent' => array(
         'agency/dashboard'  => array(

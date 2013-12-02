@@ -107,7 +107,7 @@ $autoload['drivers'] = array('session');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url', 'form', 'language', 'global');
+$autoload['helper'] = array('url', 'form', 'language', 'global', 'qee_array');
 
 
 /*
@@ -156,7 +156,7 @@ $autoload['language'] = array('global');
 |	$autoload['model'] = array('first_model' => 'first');
 */
 
-$autoload['model'] = array('m_member', 'm_log');
+$autoload['model'] = array('m_member', 'm_area', 'm_log');
 
 
 /* End of file autoload.php */
