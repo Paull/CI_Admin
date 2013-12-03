@@ -26,21 +26,20 @@ class M_area extends MY_Model {
     }
 
     //删除数据
-    function delete($where = '', $limit = NULL, $reset_data = TRUE)
+    function destroy($id)
     {
-        if(intval($where) == $where)
-        {
-            $this->db->where('id', $where);
-            $where = '';
-        }
-        $this->db->delete($this->_table, $where, $limit, $reset_data);
+        $list = $this->get_children($id, TRUE);
+        $list = Helper_Array::toHashmap($list, 'id', 'name');
+        $this->db->where_in(array_keys($list));
+        $this->db->delete($this->_table);
         $deleted = $this->db->affected_rows();
 
         //记录操作日志----------------------
         $log['uid'] = $this->session->userdata('uid');
         $log['method'] = 'referer';
-        $log['operate'] = 'delete area #'.$uid;
+        $log['operate'] = 'destroied area #'.$id;
         $log['status'] = $deleted > 0;
+        $log['debug_info'] = array('list'=>$list);
         $this->m_log->create($log);
         //记录操作日志----------------------
 
@@ -133,9 +132,18 @@ class M_area extends MY_Model {
     }
 
     //取得所有相关城市
-    public function get_children($place_id=PLACE_ID)
+    public function get_children($place_id=PLACE_ID, $self_included=FALSE)
     {
-        $list = $result = $this->where('parentid', $place_id)->find()->result_array();
+        if ( $self_included )
+        {
+            $list = $this->find($place_id)->result_array();
+        }
+        else
+        {
+            $list = array();
+        }
+        $result = $this->where('parentid', $place_id)->find()->result_array();
+        $list = array_merge($list, $result);
 
         foreach($result as $row)
         {
