@@ -70,6 +70,7 @@ CREATE TABLE `cia_member` (
   `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `identity` enum('user','agent','superman') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'user',
   `status` enum('-1.suspend','0.standby','1.email_confirmed','2.admin_confirmed','9.active') CHARACTER SET utf8 NOT NULL DEFAULT '0.standby',
+  `areaid` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '区域ID',
   `group` tinyint(4) NOT NULL DEFAULT '0',
   `avatar` varchar(128) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'noavatar',
   `fc_color` varchar(7) COLLATE utf8_unicode_ci NOT NULL DEFAULT '#6d84b4',
