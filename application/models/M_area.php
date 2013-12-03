@@ -129,6 +129,7 @@ class M_area extends MY_Model {
         $this->cache->delete('area_hash');
         $this->cache->delete('area_tree');
         $this->cache->delete('area_group');
+        $this->cache->delete('area_dropdown');
         return TRUE;
     }
 
@@ -203,10 +204,14 @@ class M_area extends MY_Model {
     //取得下拉列表键值
     public function get_dropdown()
     {
-        $list = $this->get_children();
-        $list = Helper_Array::toTree($list, 'id', 'parentid', 'children');
-        $list = $this->_toDropdown($list);
-            
+        $list = $this->cache->get('area_dropdown');
+        if ( $list === FALSE )
+        {
+            $list = $this->get_children();
+            $list = Helper_Array::toTree($list, 'id', 'parentid', 'children');
+            $list = $this->_toDropdown($list);
+            $this->cache->save('area_dropdown', $list, CACHE_TIMEOUT);
+        }   
         return $list;
     }
 
