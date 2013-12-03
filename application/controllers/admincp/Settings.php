@@ -17,9 +17,8 @@ class Settings extends MY_Controller {
 
         //读取数据
         $this->_data['list'] = $this->m_area->get_tree();
-        dump($this->_data['list'],null,10);
-        exit;
         
+//        dump($this->_data['list'],null,10);exit;
         //加载模板
         $this->load->view($this->_layout, $this->_data);
     }
