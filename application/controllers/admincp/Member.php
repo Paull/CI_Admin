@@ -64,7 +64,8 @@ $('.editable').editable({
         $this->form_validation->set_error_delimiters('<span class="label label-important">', '</span>');
         $this->form_validation->set_rules('password', '密码', 'required|min_length[6]');
         $this->form_validation->set_rules('identity', '身份', 'required|alpha');
-        $this->form_validation->set_rules('status', '帐号状态', 'required|callback__check_status');
+        $this->form_validation->set_rules('status', '状态', 'required|callback__check_status');
+        $this->form_validation->set_rules('areaid', lang('area'), 'required|is_natural_no_zero');
 
         if($id > 0)
         {
@@ -118,6 +119,7 @@ $('.editable').editable({
             $data['password'] = $this->input->post('password');
             $data['identity'] = $this->input->post('identity');
             $data['status'] = $this->input->post('status');
+            $data['areaid'] = $this->input->post('areaid');
 
             //更新数据
             $result = $this->m_member->modify($data);
@@ -168,6 +170,14 @@ $('.editable').editable({
 
         $this->output->set_output(json_encode($data));
     }
+
+    //动态加载区域状态选项
+    public function load_options_areas()
+    {
+        $data = $this->m_area->get_dropdown();
+
+        $this->output->set_output(json_encode($data));
+    }
     
     //会员表格单击修改
     public function ajax_modify()
@@ -181,6 +191,7 @@ $('.editable').editable({
         $rules['realname'] = array('name'=>'value', 'title'=>'称呼', 'rule'=>'required|min_length[2]|max_length[10]|is_unique[member.realname]');
         $rules['identity'] = array('name'=>'value', 'title'=>'身份', 'rule'=>'required|callback__check_identity');
         $rules['status'] = array('name'=>'value', 'title'=>'状态', 'rule'=>'required|callback__check_status');
+        $rules['areaid'] = array('name'=>'value', 'title'=>lang('area'), 'rule'=>'required|is_natural_no_zero');
 
         if($this->input->is_ajax_request() && $this->input->post())
         {

@@ -16,6 +16,7 @@
                             <th data-hide="phone,tablet"><?php echo lang('email'); ?></th>
                             <th><?php echo lang('identity'); ?></th>
                             <th><?php echo lang('status'); ?></th>
+                            <th><?php echo lang('area'); ?></th>
                             <th data-hide="phone,tablet" data-type="numeric"><?php echo lang('login_times'); ?></th>
                             <th data-hide="phone,tablet"><?php echo lang('login_time'); ?></th>
                             <th data-hide="phone,tablet"><?php echo lang('login_location'); ?></th>
@@ -41,6 +42,9 @@
                             </td>
                             <td>
                                 <a href="javascript:void(0);" data-type="select" data-name="status" data-pk="<?php echo $item['id']; ?>" data-value="<?php echo $item['status']; ?>" data-source="<?php echo site_url(CLASS_URI.'/load_options_status'); ?>" data-original-title="选择状态"<?php if(! $item['status'] ) echo ' class="editable-click editable-empty"'; ?>><?php echo $item['status'] ? lang($item['status']) : 'Empty'; ?></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0);" data-type="select" data-name="areaid" data-pk="<?php echo $item['id']; ?>" data-value="<?php echo $item['areaid']; ?>" data-source="<?php echo site_url(CLASS_URI.'/load_options_areas'); ?>" data-original-title="选择用户所属区域"<?php if(! $item['areaid'] ) echo ' class="editable-click editable-empty"'; ?>><?php echo $item['areaid'] ? $area_hash[$item['areaid']] : 'Empty'; ?></a>
                             </td>
                             <td><?php echo $item['login_count']; ?></td>
                             <td><span data-toggle="tooltip" title="<?php echo date('Y-m-d H:i:s', $item['login_time']); ?>"><?php echo time_past($item['login_time']); ?></span></td>
