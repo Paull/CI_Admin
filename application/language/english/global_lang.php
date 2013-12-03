@@ -33,6 +33,7 @@ $lang['password'] = 'Password';
 $lang['email']    = 'Email';
 $lang['realname'] = 'Realname';
 $lang['identity'] = 'Identity';
+$lang['area']     = 'Area';
 $lang['status']   = 'Status';
 
 $lang['keyword_more_than_2_letter'] = 'Enter a keyword more than 2 letters';

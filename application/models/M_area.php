@@ -133,7 +133,7 @@ class M_area extends MY_Model {
     }
 
     //取得所有相关城市
-    public function get_children($place_id=PLACE_ID, $self_included=FALSE)
+    public function get_children($place_id=PLACE_ID, $self_included=TRUE)
     {
         if ( $self_included )
         {
@@ -148,7 +148,7 @@ class M_area extends MY_Model {
 
         foreach($result as $row)
         {
-            $result = $this->get_children($row['id']);
+            $result = $this->get_children($row['id'], FALSE);
             $list = array_merge($list, $result);
         }
 
@@ -198,6 +198,44 @@ class M_area extends MY_Model {
             $this->cache->save('area_group', $list, CACHE_TIMEOUT);
         }
         return $list;
+    }
+
+    //取得下拉列表键值
+    public function get_dropdown()
+    {
+        $list = $this->get_children();
+        $list = Helper_Array::toTree($list, 'id', 'parentid', 'children');
+        $list = $this->_toDropdown($list);
+            
+        return $list;
+    }
+
+    private function _toDropdown($data, $depth=0)
+    {
+        $tmp = array();
+        $prefix = array('', ' ├ ', ' │ ├ ', ' │ │ ├ ', ' │ │ │ ├ ');
+        $prefix_last = array('', ' └ ', ' │ └ ', ' │ │ └ ', ' │ │ │ └ ');
+        $i = 1;
+        $max = count($data);
+        foreach($data as $value)
+        {
+            if ( $i == $max )
+            {
+                $tmp[$value['id']] = $prefix_last[$depth].$value['name'];
+            }
+            else
+            {
+                $tmp[$value['id']] = $prefix[$depth].$value['name'];
+            }
+            if ( !empty($value['children']) )
+            {
+                $ret = $this->_toDropdown($value['children'], $depth+1);
+                //array + array
+                $tmp = $tmp + $ret;
+            }
+            $i++;
+        }
+        return $tmp;
     }
 
     //递增ToHashmap

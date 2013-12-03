@@ -95,15 +95,9 @@ $('.editable').editable({
             //初始化选项列表数据
             $this->_data['groups'] = array('user'=>lang('user'), 'agent'=>lang('agent'), 'superman'=>lang('superman'));
             $this->_data['status'] = array('-1.suspend'=>lang('-1.suspend'), '0.standby'=>lang('0.standby'), '1.email_confirmed'=>lang('1.email_confirmed'), '2.admin_confirmed'=>lang('2.admin_confirmed'), '9.active'=>lang('9.active'));
+            $this->_data['areas'] = $this->m_area->get_dropdown();
 
-            if($this->input->is_ajax_request())
-            {
-                $this->load->view(METHOD_URI, $this->_data);
-            }
-            else
-            {
-                $this->load->view('common/layout', $this->_data);
-            }
+            $this->load->view($this->_layout, $this->_data);
         }
         else
         {

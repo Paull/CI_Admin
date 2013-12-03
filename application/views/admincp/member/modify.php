@@ -43,6 +43,14 @@
                 </div>
 
                 <div class="control-group">
+                    <label class="control-label"><?php echo lang('area'); ?></label>
+                    <div class="controls">
+<?php echo form_dropdown('areaid', $areas, set_value('areaid', $row['areaid'])); ?>
+                        <?php echo form_error('areaid'); ?>
+                    </div>
+                </div>
+
+                <div class="control-group">
                     <label class="control-label"><?php echo lang('status'); ?></label>
                     <div class="controls">
 <?php echo form_dropdown('status', $status, set_value('status', $row['status'])); ?>

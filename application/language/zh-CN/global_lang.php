@@ -33,6 +33,7 @@ $lang['password'] = '密码';
 $lang['email']    = '邮件地址';
 $lang['realname'] = '姓名';
 $lang['identity'] = '身份';
+$lang['area']     = '区域';
 $lang['status']   = '状态';
 
 $lang['keyword_more_than_2_letter'] = '输入超过2个字的关键字';

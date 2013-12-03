@@ -25,18 +25,6 @@ class M_member extends MY_Model {
         return $this->db->get($this->_table);
     }
 
-//    //删除数据
-//    function delete($where = '', $limit = NULL, $reset_data = TRUE)
-//    {
-//        if(intval($where) == $where)
-//        {
-//            $this->db->where('id', $where);
-//            $where = '';
-//        }
-//        $this->db->delete($this->_table, $where, $limit, $reset_data);
-//        return $this->db->affected_rows();
-//    }
-
     //删除数据byPK
     function destroy($uid)
     {
@@ -73,6 +61,7 @@ class M_member extends MY_Model {
                 'realname'=>'',
                 'password'=>'',
                 'identity'=>'user',
+                'areaid'  =>0,
                 'status'  =>'0.standby',
             );
     }
