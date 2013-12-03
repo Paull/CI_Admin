@@ -39,11 +39,6 @@
             </div>
         </div>
 <?php endforeach; ?>
-        <div class="row-fluid">
-            <div class="span2">
-                <a href="javascript:void(0);" onclick="add_location(this, <?php echo PLACE_ID; ?>, 'before', 'span2')">添加新地点</a>
-            </div>
-        </div>
         <button type="submit" class="btn btn-primary">提交</button>
 <?php echo form_close(); ?>
     </div>
