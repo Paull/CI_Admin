@@ -136,15 +136,13 @@ class MY_Model extends CI_Model {
      * Compiles the select statement based on the other functions called
      * and runs the query
      *
-     * @param   string  the table
      * @param   string  the limit clause
      * @param   string  the offset clause
      * @return  object
      */
-    public function get($table = '', $limit = NULL, $offset = NULL)
+    public function get($limit = NULL, $offset = NULL)
     {
-        if($table == '') $table = $this->_table;
-        return $this->db->get($table, $limit, $offset);
+        return $this->db->get($this->_table, $limit, $offset);
     }
 
     // --------------------------------------------------------------------
@@ -154,16 +152,14 @@ class MY_Model extends CI_Model {
      *
      * Allows the where clause, limit and offset to be added directly
      *
-     * @param   string  $table
      * @param   string  $where
      * @param   int $limit
      * @param   int $offset
      * @return  object
      */
-    public function get_where($table = '', $where = NULL, $limit = NULL, $offset = NULL)
+    public function get_where($where = NULL, $limit = NULL, $offset = NULL)
     {
-        if($table == '') $table = $this->_table;
-        return $this->db->get_where($table, $where, $limit, $offset);
+        return $this->db->get_where($this->_table, $where, $limit, $offset);
     }
 
     // --------------------------------------------------------------------
@@ -173,15 +169,13 @@ class MY_Model extends CI_Model {
      *
      * Compiles an insert string and runs the query
      *
-     * @param   string  the table to insert data into
      * @param   array   an associative array of insert values
      * @param   bool    $escape Whether to escape values and identifiers
      * @return  object
      */
-    public function insert($table = '', $set = NULL, $escape = NULL)
+    public function insert($set = NULL, $escape = NULL)
     {
-        if($table == '') $table = $this->_table;
-        $this->db->insert($table, $set, $escape);
+        $this->db->insert($this->_table, $set, $escape);
         return $this->db->insert_id();
     }
 
@@ -192,15 +186,13 @@ class MY_Model extends CI_Model {
      *
      * Compiles batch insert strings and runs the queries
      *
-     * @param   string  $table  Table to insert into
      * @param   array   $set    An associative array of insert values
      * @param   bool    $escape Whether to escape values and identifiers
      * @return  int Number of rows inserted or FALSE on failure
      */
-    public function insert_batch($table = '', $set = NULL, $escape = NULL)
+    public function insert_batch($set = NULL, $escape = NULL)
     {
-        if($table == '') $table = $this->_table;
-        return $this->db->insert_batch($table, $set, $escape);
+        return $this->db->insert_batch($this->_table, $set, $escape);
     }
 
     // --------------------------------------------------------------------
@@ -210,16 +202,14 @@ class MY_Model extends CI_Model {
      *
      * Compiles an update string and runs the query.
      *
-     * @param   string  $table
      * @param   array   $set    An associative array of update values
      * @param   mixed   $where
      * @param   int $limit
      * @return  object
      */
-    public function update($table = '', $set = NULL, $where = NULL, $limit = NULL)
+    public function update($set = NULL, $where = NULL, $limit = NULL)
     {
-        if($table == '') $table = $this->_table;
-        $this->db->update($table, $set, $where, $limit);
+        $this->db->update($this->_table, $set, $where, $limit);
         return $this->db->affected_rows();
     }
 
@@ -230,15 +220,13 @@ class MY_Model extends CI_Model {
      *
      * Compiles an update string and runs the query
      *
-     * @param   string  the table to retrieve the results from
      * @param   array   an associative array of update values
      * @param   string  the where key
      * @return  int number of rows affected or FALSE on failure
      */
-    public function update_batch($table = '', $set = NULL, $index = NULL)
+    public function update_batch($set = NULL, $index = NULL)
     {
-        if($table == '') $table = $this->_table;
-        return $this->db->update_batch($table, $set, $index);
+        return $this->db->update_batch($this->_table, $set, $index);
     }
 
     // --------------------------------------------------------------------
@@ -252,10 +240,9 @@ class MY_Model extends CI_Model {
      * @param   array   an associative array of insert values
      * @return  object
      */
-    public function replace($table = '', $set = NULL)
+    public function replace($set = NULL)
     {
-        if($table == '') $table = $this->_table;
-        $this->db->replace($table, $set);
+        $this->db->replace($this->_table, $set);
         return $this->db->affected_rows();
     }
 
