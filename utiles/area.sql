@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 01, 2013 at 09:07 PM
+-- Generation Time: Dec 05, 2013 at 04:42 PM
 -- Server version: 5.5.31-0+wheezy1
 -- PHP Version: 5.4.4-14+deb7u5
 
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `cia_area` (
   `name` varchar(30) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `parentid` (`parentid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3461 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3462 ;
 
 --
 -- Dumping data for table `cia_area`
@@ -3327,7 +3327,7 @@ INSERT INTO `cia_area` (`id`, `parentid`, `name`) VALUES
 (3285, 1409, '紫金街道'),
 (3286, 1409, '富岭街道'),
 (3287, 1409, '岩泉街道'),
-(3288, 1409, '水阁街道'),
+(3288, 3461, '水阁街道'),
 (3289, 1409, '碧湖镇'),
 (3290, 1409, '大港头镇'),
 (3291, 1409, '老竹畲族镇'),
@@ -3499,7 +3499,8 @@ INSERT INTO `cia_area` (`id`, `parentid`, `name`) VALUES
 (3457, 1417, '道太乡'),
 (3458, 1417, '岩樟乡'),
 (3459, 1417, '城北乡'),
-(3460, 1417, '竹洋畲族乡');
+(3460, 1417, '竹洋畲族乡'),
+(3461, 223, '开发区');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
