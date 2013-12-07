@@ -145,36 +145,17 @@ $('.editable').editable({
     }
 
 
-    //动态加载会员身份选项
-    public function load_options_identity()
+    //动态加载SELECT选项
+    public function load_options($field)
     {
-        $data = array(
-            array('value'=>'user', 'text'=>lang('user')),
-            array('value'=>'agent', 'text'=>lang('agent')),
-            array('value'=>'superman', 'text'=>lang('superman')),
-        );
-
-        $this->output->set_output(json_encode($data));
-    }
-
-    //动态加载会员状态选项
-    public function load_options_status()
-    {
-        $data = array(
-            array('value'=>'-1.suspend', 'text'=>lang('-1.suspend')),
-            array('value'=>'0.standby', 'text'=>lang('0.standby')),
-            array('value'=>'1.email_confirmed', 'text'=>lang('1.email_confirmed')),
-            array('value'=>'2.admin_confirmed', 'text'=>lang('2.admin_confirmed')),
-            array('value'=>'9.active', 'text'=>lang('9.active')),
-        );
-
-        $this->output->set_output(json_encode($data));
-    }
-
-    //动态加载区域状态选项
-    public function load_options_areas()
-    {
-        $data = $this->m_area->get_dropdown();
+        if ( $field == 'areas' )
+        {
+            $data = $this->m_area->get_dropdown();
+        }
+        else
+        {
+            $data = load_options('member_'.$field, $this->_data['self']['identity']);
+        }
 
         $this->output->set_output(json_encode($data));
     }

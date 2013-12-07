@@ -1,5 +1,49 @@
 <?php defined('BASEPATH') || exit('No direct script access allowed');
 
+//相关language必须提前加载
+function load_options($field, $identity='')
+{
+    $data = array();
+    switch($field)
+    {
+        case 'member_identity':
+            switch($identity)
+            {
+                case 'superman':
+                    $data = array(
+                        array('value'=>'user', 'text'=>lang('user')),
+                        array('value'=>'agent', 'text'=>lang('agent')),
+                        array('value'=>'superman', 'text'=>lang('superman')),
+                    );
+                    break;
+                case 'agent':
+                    $data = array(
+                        array('value'=>'user', 'text'=>lang('user')),
+                        array('value'=>'agent', 'text'=>lang('agent')),
+                    );
+                    break;
+                default:
+                    $data = array(
+                        array('value'=>'user', 'text'=>lang('user')),
+                    );
+                    break;
+            }
+            break;
+        case 'member_status':
+            $data = array(
+                array('value'=>'-1.suspend', 'text'=>lang('-1.suspend')),
+                array('value'=>'0.standby', 'text'=>lang('0.standby')),
+                array('value'=>'1.email_confirmed', 'text'=>lang('1.email_confirmed')),
+                array('value'=>'2.admin_confirmed', 'text'=>lang('2.admin_confirmed')),
+                array('value'=>'9.active', 'text'=>lang('9.active')),
+            );
+            break;
+        default:
+            $data = array('value'=>'', 'text'=>'无选项');
+    }
+    return $data;
+}
+
 function cutstr($string, $length, $dot = '...') {
 	if(strlen($string) <= $length) {
 		return $string;
