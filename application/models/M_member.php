@@ -60,6 +60,7 @@ class M_member extends MY_Model {
                 'email'   =>'',
                 'realname'=>'',
                 'password'=>'',
+                'areaid'  =>0,
                 'identity'=>'user',
                 'areaid'  =>0,
                 'status'  =>'0.standby',
@@ -104,7 +105,6 @@ class M_member extends MY_Model {
         $insert_id = $this->db->insert_id();
 
         //记录操作日志----------------------
-        $log['uid']        = $this->session->userdata('uid');
         $log['operate']    = 'create member';
         $log['status']     = $insert_id > 0;
         $log['debug_info'] = array('insert_id'=>$insert_id);
@@ -155,7 +155,6 @@ class M_member extends MY_Model {
         $affected_rows = $this->db->affected_rows();
 
         //记录操作日志----------------------
-        $log['uid']        = $this->session->userdata('uid');
         $log['operate']    = 'edit member';
         $log['status']     = $affected_rows > 0;
         $log['debug_info'] = array('affected_rows'=>$affected_rows);
@@ -173,6 +172,7 @@ class M_member extends MY_Model {
             'email' => $data['email'],
             'realname' => $data['realname'],
             'identity' => $data['identity'],
+            'areaid' => $data['areaid'],
         );
 
         $this->session->set_userdata($session);
