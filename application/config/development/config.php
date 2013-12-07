@@ -364,17 +364,6 @@ $config['cookie_httponly'] 	= TRUE;
 
 /*
 |--------------------------------------------------------------------------
-| Cache key prefix
-|--------------------------------------------------------------------------
-|
-| a cache key prefix can seprate different projects while sharing a single
-| cache engine
-|
-*/
-$config['cache_prefix'] = $config['encryption_key'].'_';
-
-/*
-|--------------------------------------------------------------------------
 | Global XSS Filtering
 |--------------------------------------------------------------------------
 |

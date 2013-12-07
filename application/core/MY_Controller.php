@@ -53,9 +53,6 @@ class MY_Controller extends CI_Controller {
         //已登陆用户加载通用数据
         if ( isset($this->_data['self']['identity']) )
         {
-            //加载缓存配置
-            $this->load->driver('cache', array('key_prefix' => config_item('cache_prefix'), 'adapter' => 'memcached', 'backup' => 'file'));
-
             //加载城市数组
             $this->_data['area_hash'] = $this->m_area->get_hash();
             $this->_data['area_tree'] = $this->m_area->get_tree();
