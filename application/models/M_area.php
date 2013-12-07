@@ -126,15 +126,15 @@ class M_area extends MY_Model {
     //清除缓存
     public function clear_cache()
     {
-        $this->cache->delete('area_hash');
-        $this->cache->delete('area_tree');
-        $this->cache->delete('area_group');
-        $this->cache->delete('area_dropdown');
+        $this->cache->delete('area_hash_'.$this->session->userdata('areaid'));
+        $this->cache->delete('area_tree_'.$this->session->userdata('areaid'));
+        $this->cache->delete('area_group_'.$this->session->userdata('areaid'));
+        $this->cache->delete('area_dropdown_'.$this->session->userdata('areaid'));
         return TRUE;
     }
 
     //取得所有相关城市
-    public function get_children($place_id=PLACE_ID, $self_included=TRUE)
+    public function get_children($place_id, $self_included=TRUE)
     {
         if ( $self_included )
         {
@@ -159,12 +159,12 @@ class M_area extends MY_Model {
     //取得城市ID对应城市名
     public function get_hash()
     {
-        $list = $this->cache->get('area_hash');
+        $list = $this->cache->get('area_hash_'.$this->session->userdata('areaid'));
         if ( $list === FALSE )
         {
-            $list = $this->get_children();
+            $list = $this->get_children($this->session->userdata('areaid'));
             $list = Helper_Array::toHashmap($list, 'id', 'name');
-            $this->cache->save('area_hash', $list, CACHE_TIMEOUT);
+            $this->cache->save('area_hash_'.$this->session->userdata('areaid'), $list, CACHE_TIMEOUT);
         }
         return $list;
     }
@@ -172,13 +172,13 @@ class M_area extends MY_Model {
     //取得城市数组
     public function get_tree()
     {
-        $list = $this->cache->get('area_tree');
+        $list = $this->cache->get('area_tree_'.$this->session->userdata('areaid'));
         if ( $list === FALSE )
         {
-            $list = $this->get_children();
+            $list = $this->get_children($this->session->userdata('areaid'));
             $list = Helper_Array::toTree($list, 'id', 'parentid', 'children');
             $list = $this->_toHashmap($list, 'id', 'children');
-            $this->cache->save('area_tree', $list, CACHE_TIMEOUT);
+            $this->cache->save('area_tree_'.$this->session->userdata('areaid'), $list, CACHE_TIMEOUT);
         }
         return $list;
     }
@@ -186,17 +186,17 @@ class M_area extends MY_Model {
     //取得城市子孙数组
     public function get_group()
     {
-        $list = $this->cache->get('area_group');
+        $list = $this->cache->get('area_group_'.$this->session->userdata('areaid'));
         if ( $list === FALSE )
         {
-            $list = $this->get_children();
+            $list = $this->get_children($this->session->userdata('areaid'));
             $list = Helper_array::groupBy($list, 'parentid');
             foreach($list as $key=>$value)
             {
                 $value = Helper_array::toHashmap($value, 'id', 'name');
                 $list[$key] = $value;
             }
-            $this->cache->save('area_group', $list, CACHE_TIMEOUT);
+            $this->cache->save('area_group_'.$this->session->userdata('areaid'), $list, CACHE_TIMEOUT);
         }
         return $list;
     }
@@ -204,13 +204,13 @@ class M_area extends MY_Model {
     //取得下拉列表键值
     public function get_dropdown()
     {
-        $list = $this->cache->get('area_dropdown');
+        $list = $this->cache->get('area_dropdown_'.$this->session->userdata('areaid'));
         if ( $list === FALSE )
         {
-            $list = $this->get_children();
+            $list = $this->get_children($this->session->userdata('areaid'));
             $list = Helper_Array::toTree($list, 'id', 'parentid', 'children');
             $list = $this->_toDropdown($list);
-            $this->cache->save('area_dropdown', $list, CACHE_TIMEOUT);
+            $this->cache->save('area_dropdown_'.$this->session->userdata('areaid'), $list, CACHE_TIMEOUT);
         }   
         return $list;
     }
