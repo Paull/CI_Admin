@@ -111,7 +111,14 @@ class M_member extends MY_Model {
         if(! $ignore )
         {
             //增加权限判断
-            $this->db->where_in('id', array_keys($this->_data['children']));
+            if( in_array($this->session->userdata('identity'), array('superman', 'agent')) )
+            {
+                $this->db->where_in('id', array_keys($this->_data['children']));
+            }
+            else
+            {
+                $this->db->where('email', $this->session->userdata('email'));
+            }
         }
 
         //修改密码需提供用户老密码和加密钥匙
@@ -251,7 +258,10 @@ class M_member extends MY_Model {
             }
 
             //查询下属城市所有帐号
-            $this->db->where_in('areaid', array_keys($temp_area_hash));
+            if( !empty($temp_area_hash) )
+            {
+                $this->db->where_in('areaid', array_keys($temp_area_hash));
+            }
             //包含自已
             if($self_included)
             {
