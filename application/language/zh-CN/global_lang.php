@@ -36,4 +36,7 @@ $lang['identity'] = '身份';
 $lang['area']     = '区域';
 $lang['status']   = '状态';
 
+$lang['created'] = '创建时间';
+$lang['update']  = '更新时间';
+
 $lang['keyword_more_than_2_letter'] = '输入超过2个字的关键字';

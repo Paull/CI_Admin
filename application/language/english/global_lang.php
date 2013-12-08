@@ -36,4 +36,7 @@ $lang['identity'] = 'Identity';
 $lang['area']     = 'Area';
 $lang['status']   = 'Status';
 
+$lang['created'] = '创建时间';
+$lang['update']  = '更新时间';
+
 $lang['keyword_more_than_2_letter'] = 'Enter a keyword more than 2 letters';
