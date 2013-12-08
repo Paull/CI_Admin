@@ -37,7 +37,7 @@ class M_area extends MY_Model {
         //记录操作日志----------------------
         $log['uid'] = $this->session->userdata('uid');
         $log['method'] = 'referer';
-        $log['operate'] = 'destroied area #'.$id;
+        $log['operate'] = "destroied {$this->_table} #{$id}";
         $log['status'] = $deleted > 0;
         $log['debug_info'] = array('list'=>$list);
         $this->m_log->create($log);
@@ -57,17 +57,6 @@ class M_area extends MY_Model {
             );
     }
 
-    function num_rows()
-    {
-        return $this->db->get($this->_table)->num_rows();
-    }
-    
-    function get_page($page=0, $per_page=10)
-    {
-        $this->db->limit($per_page, $page);
-        return $this->db->get($this->_table);
-    }
-    
     //插入或更新数据
     function modify($data, $ignore = FALSE)
     {
@@ -91,7 +80,7 @@ class M_area extends MY_Model {
 
         //记录操作日志----------------------
         $log['uid']        = $this->session->userdata('uid');
-        $log['operate']    = 'create area';
+        $log['operate']    = "create {$this->_table}";
         $log['status']     = $insert_id > 0;
         $log['debug_info'] = array('insert_id'=>$insert_id);
         $this->m_log->create($log);
@@ -112,7 +101,7 @@ class M_area extends MY_Model {
 
         //记录操作日志----------------------
         $log['uid']        = $this->session->userdata('uid');
-        $log['operate']    = 'edit area';
+        $log['operate']    = "edit {$this->_table}";
         $log['status']     = $affected_rows > 0;
         $log['debug_info'] = array('affected_rows'=>$affected_rows);
         $this->m_log->create($log);
@@ -134,25 +123,23 @@ class M_area extends MY_Model {
     }
 
     //取得所有相关城市
-    public function get_children($place_id, $self_included=TRUE)
+    public function get_children($id, $self_included=TRUE)
     {
-        if ( $self_included )
+        $list = $this->cache->get($this->_table.'_children_'.$id.'_'.(int)$self_included);
+        if($list === FALSE)
         {
-            $list = $this->find($place_id)->result_array();
-        }
-        else
-        {
-            $list = array();
-        }
-        $result = $this->where('parentid', $place_id)->find()->result_array();
-        $list = array_merge($list, $result);
-
-        foreach($result as $row)
-        {
-            $result = $this->get_children($row['id'], FALSE);
+            $list = $self_included ? $this->find($id)->result_array() : array();
+            $result = $this->where('parentid', $id)->find()->result_array();
             $list = array_merge($list, $result);
-        }
 
+            foreach($result as $row)
+            {
+                $result = $this->get_children($row['id'], FALSE);
+                $list = array_merge($list, $result);
+            }
+
+            $this->cache->save($this->_table.'_children_'.$id.'_'.(int)$self_included, $list, CACHE_TIMEOUT);
+        }
         return $list;
     }
 

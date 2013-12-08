@@ -51,7 +51,7 @@ $('.editable').editable({
 });\n";
 
         //读取数据
-        $this->_data['list'] = $this->m_member->order_by('id')->find()->result_array();
+        $this->_data['list'] = $this->_data['children'];
         
         //加载模板
         $this->load->view($this->_layout, $this->_data);
@@ -94,8 +94,8 @@ $('.editable').editable({
         if ($this->form_validation->run() == FALSE)
         {
             //初始化选项列表数据
-            $this->_data['groups'] = array('user'=>lang('user'), 'agent'=>lang('agent'), 'superman'=>lang('superman'));
-            $this->_data['status'] = array('-1.suspend'=>lang('-1.suspend'), '0.standby'=>lang('0.standby'), '1.email_confirmed'=>lang('1.email_confirmed'), '2.admin_confirmed'=>lang('2.admin_confirmed'), '9.active'=>lang('9.active'));
+            $this->_data['groups'] = Helper_Array::toHashmap(load_options('member_identity', $this->_data['self']['identity']), 'value', 'text');
+            $this->_data['status'] = Helper_Array::toHashmap(load_options('member_status'), 'value', 'text');
             $this->_data['areas'] = $this->m_area->get_dropdown();
 
             $this->load->view($this->_layout, $this->_data);
@@ -205,7 +205,7 @@ $('.editable').editable({
                     $response['msg'] = $e->getMessage();
                 }
 
-                if(! $response['success'] && !$response['msg'])
+                if( ! $response['success'] && !isset($response['msg']) )
                 {
                     $response['msg'] = '更新失败';
                 }

@@ -26,9 +26,9 @@ class M_member extends MY_Model {
     }
 
     //删除数据byPK
-    function destroy($uid)
+    function destroy($id)
     {
-        $this->db->where('id', $uid);
+        $this->db->where('id', $id);
         $this->db->delete($this->_table);
 
         $deleted = $this->db->affected_rows();
@@ -38,13 +38,12 @@ class M_member extends MY_Model {
         {
             $children = array('log', 'email');
             //按条件批量删除多表
-            $this->db->delete($children, array('uid'=>$uid));
+            $this->db->delete($children, array('uid'=>$id));
         }
 
         //记录操作日志----------------------
-        $log['uid'] = $this->session->userdata('uid');
         $log['method'] = 'referer';
-        $log['operate'] = 'destroy member #'.$uid;
+        $log['operate'] = "destroy {$this->_table} #{$uid}";
         $log['status'] = $deleted > 0;
         $this->m_log->create($log);
         //记录操作日志----------------------
@@ -67,17 +66,6 @@ class M_member extends MY_Model {
             );
     }
 
-    function num_rows()
-    {
-        return $this->db->get($this->_table)->num_rows();
-    }
-    
-    function get_page($page=0, $per_page=10)
-    {
-        $this->db->limit($per_page, $page);
-        return $this->db->get($this->_table);
-    }
-    
     //插入或更新数据
     function modify($data, $ignore = FALSE)
     {
@@ -105,7 +93,7 @@ class M_member extends MY_Model {
         $insert_id = $this->db->insert_id();
 
         //记录操作日志----------------------
-        $log['operate']    = 'create member';
+        $log['operate']    = "create {$this->_table}";
         $log['status']     = $insert_id > 0;
         $log['debug_info'] = array('insert_id'=>$insert_id);
         $this->m_log->create($log);
@@ -120,10 +108,10 @@ class M_member extends MY_Model {
         $this->db->where('id', $id);
 
         //非管理员帐号
-        if(! $ignore && $this->session->userdata('identity') != 'superman')
+        if(! $ignore )
         {
-            //增加Email判断条件
-            $this->db->where('email', $this->session->userdata('email'));
+            //增加权限判断
+            $this->db->where_in('id', array_keys($this->_data['children']));
         }
 
         //修改密码需提供用户老密码和加密钥匙
@@ -155,7 +143,7 @@ class M_member extends MY_Model {
         $affected_rows = $this->db->affected_rows();
 
         //记录操作日志----------------------
-        $log['operate']    = 'edit member';
+        $log['operate']    = "edit {$this->_table} #{$id}";
         $log['status']     = $affected_rows > 0;
         $log['debug_info'] = array('affected_rows'=>$affected_rows);
         $this->m_log->create($log);
@@ -240,6 +228,44 @@ class M_member extends MY_Model {
         return substr(uniqid(rand()), -6);
     }
 
+    //清除缓存
+    public function clear_cache()
+    {
+        $this->cache->delete($this->_table.'_children_'.$this->session->userdata('uid').'_0');
+        $this->cache->delete($this->_table.'_children_'.$this->session->userdata('uid').'_1');
+        return TRUE;
+    }
+
+    //取得所有子用户
+    public function get_children($id, $self_included=TRUE)
+    {
+        $list = $this->cache->get($this->_table.'_children_'.$id.'_'.(int)$self_included);
+        if($list === FALSE)
+        {
+            $temp_area_hash = $this->_data['area_hash'];
+
+            //删除自身areaid，防止读取同级用户
+            if( isset($temp_area_hash[$this->session->userdata('areaid')]) )
+            {
+                unset($temp_area_hash[$this->session->userdata('areaid')]);
+            }
+
+            //查询下属城市所有帐号
+            $this->db->where_in('areaid', array_keys($temp_area_hash));
+            //包含自已
+            if($self_included)
+            {
+                $this->db->or_where('id', $id);
+            }
+            $list = $this->get()->result_array();
+
+            //取id值设为array key
+            $list = Helper_Array::toHashmap($list, 'id');
+
+            $this->cache->save($this->_table.'_children_'.$id.'_'.(int)$self_included, $list, CACHE_TIMEOUT);
+        }
+        return $list;
+    }
 }
 
 /* End of file M_member.php */

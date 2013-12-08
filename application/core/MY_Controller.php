@@ -2,7 +2,7 @@
 
 class MY_Controller extends CI_Controller {
 
-    protected $_data = array();
+    public $_data = array();
     protected $_layout = 'common/layout';
 
     function __construct()
@@ -57,6 +57,7 @@ class MY_Controller extends CI_Controller {
             $this->_data['area_hash'] = $this->m_area->get_hash();
             $this->_data['area_tree'] = $this->m_area->get_tree();
             $this->_data['area_group'] = $this->m_area->get_group();
+            $this->_data['children'] = $this->m_member->get_children($this->_data['self']['id']);
 
             //加载菜单数组
             $this->_data['menus'] = $this->cache->get('menus');
