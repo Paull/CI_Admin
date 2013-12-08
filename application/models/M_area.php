@@ -202,20 +202,21 @@ class M_area extends MY_Model {
     }
 
     //取得下拉列表键值
-    public function get_dropdown()
+    //param @string return_type || value should be dict / array
+    public function get_dropdown($type='dict')
     {
         $list = $this->cache->get('area_dropdown_'.$this->session->userdata('areaid'));
         if ( $list === FALSE )
         {
             $list = $this->get_children($this->session->userdata('areaid'));
             $list = Helper_Array::toTree($list, 'id', 'parentid', 'children');
-            $list = $this->_toDropdown($list);
+            $list = $this->_toDropdown($list, $type);
             $this->cache->save('area_dropdown_'.$this->session->userdata('areaid'), $list, CACHE_TIMEOUT);
         }   
         return $list;
     }
 
-    private function _toDropdown($data, $depth=0)
+    private function _toDropdown($data, $type, $depth=0)
     {
         $tmp = array();
         $prefix = array('', ' ├ ', ' │ ├ ', ' │ │ ├ ', ' │ │ │ ├ ');
@@ -226,15 +227,29 @@ class M_area extends MY_Model {
         {
             if ( $i == $max )
             {
-                $tmp[$value['id']] = $prefix_last[$depth].$value['name'];
+                if($type == 'array')
+                {
+                    $tmp[] = array('value'=>$value['id'], 'text'=>$prefix_last[$depth].$value['name']);
+                }
+                else
+                {
+                    $tmp[$value['id']] = $prefix_last[$depth].$value['name'];
+                }
             }
             else
             {
-                $tmp[$value['id']] = $prefix[$depth].$value['name'];
+                if($type == 'array')
+                {
+                    $tmp[] = array('value'=>$value['id'], 'text'=>$prefix[$depth].$value['name']);
+                }
+                else
+                {
+                    $tmp[$value['id']] = $prefix[$depth].$value['name'];
+                }
             }
             if ( !empty($value['children']) )
             {
-                $ret = $this->_toDropdown($value['children'], $depth+1);
+                $ret = $this->_toDropdown($value['children'], $type, $depth+1);
                 //array + array
                 $tmp = $tmp + $ret;
             }

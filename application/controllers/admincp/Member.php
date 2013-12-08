@@ -150,7 +150,7 @@ $('.editable').editable({
     {
         if ( $field == 'areas' )
         {
-            $data = $this->m_area->get_dropdown();
+            $data = $this->m_area->get_dropdown('array');
         }
         else
         {
