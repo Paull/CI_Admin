@@ -87,4 +87,4 @@ CREATE TABLE `cia_member` (
 -- ----------------------------
 -- Records of cia_member
 -- ----------------------------
-INSERT INTO `cia_member` VALUES ('1', 'admin', 'ba0a31167f4fe73570367eb9ca9cf6cd', 'IGdcUY', '系统管理员', 'admin@admin.com', 'superman', '9.active', '0', '133a87a6a1b82b5436b7bebe10e67ab5', '#6d84b4', '127.0.0.1', '1380179835', '6', '127.0.0.1', '1379657287');
+INSERT INTO `cia_member` VALUES ('1', 'admin', 'ba0a31167f4fe73570367eb9ca9cf6cd', 'IGdcUY', '系统管理员', 'admin@admin.com', 'superman', '9.active', '13', '0', '133a87a6a1b82b5436b7bebe10e67ab5', '#6d84b4', '127.0.0.1', '1380179835', '6', '127.0.0.1', '1379657287');
