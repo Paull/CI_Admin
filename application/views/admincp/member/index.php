@@ -57,7 +57,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="10">
+                            <td colspan="11">
                                 <div class="pagination pagination-centered"></div>
                             </td>
                         </tr>
