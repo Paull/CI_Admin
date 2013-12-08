@@ -250,8 +250,17 @@ class M_area extends MY_Model {
             if ( !empty($value['children']) )
             {
                 $ret = $this->_toDropdown($value['children'], $type, $depth+1);
-                //array + array
-                $tmp = $tmp + $ret;
+                if($type == 'array')
+                {
+                    //don't need keep array key
+                    $tmp = array_merge($tmp, $ret);
+                }
+                else
+                {
+                    //array key to be kept
+                    //array + array
+                    $tmp = $tmp + $ret;
+                }
             }
             $i++;
         }
