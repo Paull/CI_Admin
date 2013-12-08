@@ -2,6 +2,8 @@
 
 class Member extends MY_Controller {
 
+    private $_model = 'm_member';
+
     function __construct()
     {
         parent::__construct();
@@ -51,7 +53,7 @@ $('.editable').editable({
 });\n";
 
         //读取数据
-        $this->_data['list'] = $this->_data['children'];
+        $this->_data['list'] = $this->{$this->_model}->order_by('id')->get()->result_array();
         
         //加载模板
         $this->load->view($this->_layout, $this->_data);
