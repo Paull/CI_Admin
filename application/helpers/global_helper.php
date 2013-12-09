@@ -160,7 +160,6 @@ function time_past($time, $now = NULL) {
     }else{
         if($now == NULL) $now = time();
         $fee=$now - $time;
-        dump($fee);
         switch($fee)
         {
             case 0:
@@ -184,7 +183,6 @@ function time_past($time, $now = NULL) {
             default:
                 $str = $fee . '秒前';
         }
-        dump($str);
     }
     return $str;
 }
