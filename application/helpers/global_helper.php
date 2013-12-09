@@ -160,9 +160,13 @@ function time_past($time, $now = NULL) {
     }else{
         if($now == NULL) $now = time();
         $fee=$now - $time;
+        dump($fee);
         switch($fee)
         {
-            case $fee >31536000:
+            case 0:
+                $str = '刚刚';
+                break;
+            case $fee > 31536000:
                 $str = floor($fee/31536000) . '年前';
                 break;
             case $fee > 2592000:
@@ -180,6 +184,7 @@ function time_past($time, $now = NULL) {
             default:
                 $str = $fee . '秒前';
         }
+        dump($str);
     }
     return $str;
 }
