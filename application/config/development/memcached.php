@@ -46,4 +46,4 @@ $config = array(
 define('CACHE_TIMEOUT', 30);
 
 /* End of file memcached.php */
-/* Location: ./application/config/memcached.php */
+/* Location: ./application/config/development/memcached.php */

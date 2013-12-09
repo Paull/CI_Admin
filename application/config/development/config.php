@@ -50,8 +50,7 @@ define('BASEURL', $config['base_url']);
 | Static Files Base Path And URL
 |--------------------------------------------------------------------------
 */
-define('STATIC_PATH', 'assets');
-define('STATIC_URL',  BASEURL.STATIC_PATH.'/');
+define('STATIC_URL',  BASEURL.'assets/');
 
 /*
 |--------------------------------------------------------------------------
@@ -463,4 +462,4 @@ $config['proxy_ips'] = '';
 
 
 /* End of file config.php */
-/* Location: ./application/config/config.php */
+/* Location: ./application/config/development/config.php */

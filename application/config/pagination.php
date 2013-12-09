@@ -18,3 +18,6 @@ $config['num_tag_open'] = '<li>';
 $config['num_tag_close'] = '</li>';
 $config['cur_tag_open'] = '<li class="active"><span>';
 $config['cur_tag_close'] = '</span></li>';
+
+/* End of file pagination.php */
+/* Location: ./application/config/pagination.php */

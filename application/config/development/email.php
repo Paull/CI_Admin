@@ -7,3 +7,6 @@ $config['smtp_port'] = 465;
 $config['smtp_crypto'] = 'ssl';
 $config['newline']   = "\r\n";
 $config['mailtype']  = 'html';
+
+/* End of file email.php */
+/* Location: ./application/config/development/email.php */
