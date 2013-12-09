@@ -118,7 +118,8 @@ class M_area extends MY_Model {
         $this->cache->delete('area_hash_'.$this->session->userdata('areaid'));
         $this->cache->delete('area_tree_'.$this->session->userdata('areaid'));
         $this->cache->delete('area_group_'.$this->session->userdata('areaid'));
-        $this->cache->delete('area_dropdown_'.$this->session->userdata('areaid'));
+        $this->cache->delete('area_dropdown_'.$this->session->userdata('areaid').'_dict');
+        $this->cache->delete('area_dropdown_'.$this->session->userdata('areaid').'_array');
         return TRUE;
     }
 
@@ -192,13 +193,13 @@ class M_area extends MY_Model {
     //param @string return_type || value should be dict / array
     public function get_dropdown($type='dict')
     {
-        $list = $this->cache->get('area_dropdown_'.$this->session->userdata('areaid'));
+        $list = $this->cache->get('area_dropdown_'.$this->session->userdata('areaid').'_'.$type);
         if ( $list === FALSE )
         {
             $list = $this->get_children($this->session->userdata('areaid'));
             $list = Helper_Array::toTree($list, 'id', 'parentid', 'children');
             $list = $this->_toDropdown($list, $type);
-            $this->cache->save('area_dropdown_'.$this->session->userdata('areaid'), $list, CACHE_TIMEOUT);
+            $this->cache->save('area_dropdown_'.$this->session->userdata('areaid').'_'.$type, $list, CACHE_TIMEOUT);
         }   
         return $list;
     }
