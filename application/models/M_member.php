@@ -43,7 +43,7 @@ class M_member extends MY_Model {
 
         //记录操作日志----------------------
         $log['method'] = 'referer';
-        $log['operate'] = "destroy {$this->_table} #{$uid}";
+        $log['operate'] = "destroy {$this->_table} #{$id}";
         $log['status'] = $deleted > 0;
         $this->m_log->create($log);
         //记录操作日志----------------------
