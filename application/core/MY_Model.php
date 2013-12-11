@@ -246,6 +246,23 @@ class MY_Model extends CI_Model {
         return $this->db->affected_rows();
     }
 
+	// --------------------------------------------------------------------
+
+	/**
+	 * Delete
+	 *
+	 * Compiles a delete string and runs the query
+	 *
+	 * @param	mixed	the where clause
+	 * @param	mixed	the limit clause
+	 * @param	bool
+	 * @return	mixed
+	 */
+	public function delete($where = '', $limit = NULL, $reset_data = TRUE)
+	{
+        $this->db->delete($this->_table, $where, $limit, $reset_data);
+        return $this->db->affected_rows();
+	}
 }
 
 /* End of file MY_Model.php */

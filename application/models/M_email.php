@@ -7,73 +7,33 @@ class M_email extends MY_Model {
         parent::__construct();
         $this->_table = 'email';
     }
-    
-    //查询数据
-    function find($params=array())
-    {
-        if(is_array($params))
-        {
-            if(!empty($params))
-            {
-                $this->db->where($params);
-            }
-        }
-        elseif(intval($params) == $params)
-        {
-            $this->db->where('id', $params);
-        }
-        return $this->db->get($this->_table);
-    }
 
-    //删除数据
-    function delete($where = '', $limit = NULL, $reset_data = TRUE)
-    {
-        if(intval($where) == $where)
-        {
-            $this->db->where('id', $where);
-            $where = '';
-        }
-        $this->db->delete($this->_table, $where, $limit, $reset_data);
-        return $this->db->affected_rows();
-    }
-
-    function num_rows()
-    {
-        return $this->db->get($this->_table)->num_rows();
-    }
-    
-    function get_page($page=0, $per_page=10)
-    {
-        $this->db->limit($per_page, $page);
-        return $this->db->get($this->_table);
-    }
-    
     //插入或更新数据
-    function modify($data)
+    function modify($data, $ignore=FALSE)
     {
         if(isset($data['id']) && intval($data['id']) > 0)
         {
             $id = intval($data['id']);
             unset($data['id']);
-            return $this->edit($id, $data);
+            return $this->edit($id, $data, $ignore);
         }
         else
         {
-            return $this->create($data);
+            return $this->create($data, $ignore);
         }
     }
     
     //插入数据
-    function create($data)
+    function create($data, $ignore)
     {
-        $data['created']     = $this->input->server('REQUEST_TIME');
+        $data['created'] = $this->input->server('REQUEST_TIME');
 
         $this->db->insert($this->_table, $data);
         return $this->db->insert_id();
     }
     
     //更新数据
-    function edit($id, $data)
+    function edit($id, $data, $ignore)
     {
         $this->db->where('id', $id);
 

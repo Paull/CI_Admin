@@ -8,23 +8,6 @@ class M_member extends MY_Model {
         $this->_table = 'member';
     }
     
-    //查询数据
-    function find($params=array())
-    {
-        if(is_array($params))
-        {
-            if(!empty($params))
-            {
-                $this->db->where($params);
-            }
-        }
-        elseif(intval($params) == $params)
-        {
-            $this->db->where('id', $params);
-        }
-        return $this->db->get($this->_table);
-    }
-
     //删除数据byPK
     function destroy($id)
     {
@@ -59,10 +42,9 @@ class M_member extends MY_Model {
                 'email'   =>'',
                 'realname'=>'',
                 'password'=>'',
-                'areaid'  =>0,
                 'identity'=>'user',
-                'areaid'  =>0,
                 'status'  =>'0.standby',
+                'areaid'  =>0,
             );
     }
 

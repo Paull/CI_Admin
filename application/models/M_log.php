@@ -8,46 +8,6 @@ class M_log extends MY_Model {
         $this->_table = 'log';
     }
     
-    //查询数据
-    function find($params=array())
-    {
-        if(is_array($params))
-        {
-            if(!empty($params))
-            {
-                $this->db->where($params);
-            }
-        }
-        elseif(intval($params) == $params)
-        {
-            $this->db->where('id', $params);
-        }
-        return $this->db->get($this->_table);
-    }
-
-    //删除数据
-    function delete($where = '', $limit = NULL, $reset_data = TRUE)
-    {
-        if(intval($where) == $where)
-        {
-            $this->db->where('id', $where);
-            $where = '';
-        }
-        $this->db->delete($this->_table, $where, $limit, $reset_data);
-        return $this->db->affected_rows();
-    }
-
-    function num_rows()
-    {
-        return $this->db->get($this->_table)->num_rows();
-    }
-    
-    function get_page($page=0, $per_page=10)
-    {
-        $this->db->limit($per_page, $page);
-        return $this->db->get($this->_table);
-    }
-    
     //插入数据
     //插入事件由自已操作产生则不需指定UID，操作他人或互动操作均需指定UID
     function create($data)
