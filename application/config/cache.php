@@ -36,7 +36,7 @@
 |*/
 
 $config = array(
-	'key_prefix' => base64_encode(SITENAME).'_',
+	'key_prefix' => substr(md5(SITENAME), 0, 8).'_',
     'adapter'    => 'memcached',
     'backup'     => 'file',
 );

@@ -299,7 +299,7 @@ $config['cache_path'] = '';
 | http://codeigniter.com/user_guide/libraries/sessions.html
 |
 */
-$config['encryption_key'] = base64_encode(SITENAME);
+$config['encryption_key'] = md5(SITENAME);
 
 /*
 |--------------------------------------------------------------------------
@@ -379,7 +379,7 @@ $config['global_xss_filtering'] = TRUE;
 */
 $config['csrf_protection'] = TRUE;
 $config['csrf_token_name'] = 'hash';
-$config['csrf_cookie_name'] = '__'.substr($config['encryption_key'], 5, 3);
+$config['csrf_cookie_name'] = '__'.substr($config['encryption_key'], 5, 5);
 $config['csrf_expire'] = 7200;
 $config['csrf_regenerate'] = FALSE;
 $config['csrf_exclude_uris'] = array();
