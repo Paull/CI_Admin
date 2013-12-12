@@ -8,23 +8,6 @@ class M_area extends MY_Model {
         $this->_table = 'area';
     }
     
-    //查询数据
-    function find($params=array())
-    {
-        if(is_array($params))
-        {
-            if(!empty($params))
-            {
-                $this->db->where($params);
-            }
-        }
-        elseif(intval($params) == $params)
-        {
-            $this->db->where('id', $params);
-        }
-        return $this->db->get($this->_table);
-    }
-
     //删除数据
     function destroy($id)
     {
@@ -129,8 +112,8 @@ class M_area extends MY_Model {
         $list = $this->cache->get($this->_table.'_children_'.$id.'_'.(int)$self_included);
         if($list === FALSE)
         {
-            $list = $self_included ? $this->find($id)->result_array() : array();
-            $result = $this->where('parentid', $id)->find()->result_array();
+            $list = $self_included ? $this->where('id', $id)->get()->result_array() : array();
+            $result = $this->where('parentid', $id)->get()->result_array();
             $list = array_merge($list, $result);
 
             foreach($result as $row)

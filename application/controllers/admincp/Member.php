@@ -75,7 +75,7 @@ $('.editable').editable({
             $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
             $this->form_validation->set_rules('realname', '称呼', 'required|min_length[2]|max_length[10]');
             //初始化会员数据
-            $this->_data['row'] = $this->{$this->_model}->find($id)->row_array();
+            $this->_data['row'] = $this->{$this->_model}->where('id', $id)->get()->row_array();
             $this->_data['template']['title'] = '修改会员';
             $this->_data['template']['breadcrumbs'][] = array('uri'=>CLASS_URI, 'title'=>'会员列表');
             $this->_data['template']['breadcrumbs'][] = array('uri'=>METHOD_URI, 'title'=>$this->_data['template']['title']);
@@ -224,7 +224,7 @@ $('.editable').editable({
     //检查帐号是否存在
     public function _check_id($str)
     {
-        if($this->{$this->_model}->find($str)->num_rows() > 0)
+        if($this->{$this->_model}->where('id', $str)->get()->num_rows() > 0)
         {
             return TRUE;
         }

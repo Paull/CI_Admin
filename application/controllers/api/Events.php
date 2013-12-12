@@ -20,8 +20,8 @@ class Events extends CI_Controller {
         if($this->input->is_ajax_request())
         {
             $this->load->model('m_calendar');
-            // $data = $this->m_calendar->find(array('uid'=>$this->session->userdata('uid')))->result_array();
-            $data = $this->m_calendar->join('member', 'member.id=calendar.uid', 'left')->select('calendar.*, member.avatar')->find()->result_array();
+            // $data = $this->m_calendar->where(array('uid'=>$this->session->userdata('uid')))->get()->result_array();
+            $data = $this->m_calendar->join('member', 'member.id=calendar.uid', 'left')->select('calendar.*, member.avatar')->get()->result_array();
 
             foreach($data as $key=>$value)
             {
@@ -48,7 +48,7 @@ class Events extends CI_Controller {
             $uid = intval($this->uri->segment(3));
             if($uid)
             {
-                $data = $this->m_calendar->find(array('uid'=>$uid))->result_array();
+                $data = $this->m_calendar->where(array('uid'=>$uid))->get()->result_array();
                 
                 $this->output->set_output(json_encode($data));
             }
@@ -81,7 +81,7 @@ class Events extends CI_Controller {
                 case 'remove':
                     $data = $this->input->post();
                     unset($data['action']);
-                    $ret = $this->m_calendar->delete($data['id']);
+                    $ret = $this->m_calendar->where('id', $data['id'])->delete();
                     $this->output->set_output(json_encode($ret));
                     break;
             }

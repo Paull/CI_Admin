@@ -16,7 +16,7 @@ class MY_Controller extends CI_Controller {
         //读取$self
         if ( $this->session->userdata('uid') )
         {
-            $this->_data['self'] = $this->m_member->find($this->session->userdata('uid'))->row_array();
+            $this->_data['self'] = $this->m_member->where('id', $this->session->userdata('uid'))->get()->row_array();
         }
         else
         {

@@ -97,7 +97,7 @@ class_name: 'gritter-light'
         }
         else
         {
-            $member = $this->m_member->or_where('username', $this->input->post('username'))->or_where('email', $this->input->post('username'))->find()->row_array();
+            $member = $this->m_member->or_where('username', $this->input->post('username'))->or_where('email', $this->input->post('username'))->get()->row_array();
 
             if(!empty($member))
             {
@@ -166,7 +166,7 @@ class_name: 'gritter-light'
         else
         {
             $this->_data['email'] = $this->input->post('email');
-            $this->_data['member'] = $this->m_member->find(array('email'=>$this->_data['email']))->row_array();
+            $this->_data['member'] = $this->m_member->where(array('email'=>$this->_data['email']))->get()->row_array();
 
             //记录日志----------------------
             $log['uid'] = $this->_data['member']['id'];
@@ -206,7 +206,7 @@ class_name: 'gritter-light'
             return;
         }
 
-        $member = $this->m_member->select('id, email, login_count, status')->find($uid)->row_array();
+        $member = $this->m_member->select('id, email, login_count, status')->where('id', $uid)->get()->row_array();
 
         //记录日志----------------------
         $log['uid'] = isset($member['id']) ? $member['id'] : 0;
@@ -271,7 +271,7 @@ class_name: 'gritter-light'
         $this->form_validation->set_rules('password1', 'New Password', 'required|min_length[6]');
         $this->form_validation->set_rules('password2', 'Repeat Password', 'required|min_length[6]|matches[password1]');
 
-        $member = $this->m_member->select('id, email, salt, password, login_count')->find($uid)->row_array();
+        $member = $this->m_member->select('id, email, salt, password, login_count')->where('id', $uid)->get()->row_array();
 
         if( !empty($member) && $verify_code == substr(md5($member['password'] . $member['login_count']), 2, 10))
         {
@@ -319,7 +319,7 @@ class_name: 'gritter-light'
     //登录验证帐号及密码
     public function _check_username($str)
     {
-        $member = $this->m_member->or_where('username', $str)->or_where('email', $str)->find()->row_array();
+        $member = $this->m_member->or_where('username', $str)->or_where('email', $str)->get()->row_array();
         
         //检查帐号是否存在
         if(empty($member))
@@ -359,7 +359,7 @@ class_name: 'gritter-light'
     //找回密码验证邮箱
     public function _check_email($str)
     {
-        $count = $this->m_member->find(array('email'=>$str))->num_rows();
+        $count = $this->m_member->where(array('email'=>$str))->get()->num_rows();
         
         //检查帐号是否存在
         if($count > 0)

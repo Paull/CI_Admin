@@ -138,7 +138,7 @@ class Profile extends MY_Controller {
     //修改密码时验证老密码
     public function _check_password_modify($str)
     {
-        $member = $this->m_member->find($this->_data['self']['id'])->row_array();
+        $member = $this->m_member->where('id', $this->_data['self']['id'])->get()->row_array();
         
         //检查帐号是否存在
         if(empty($member))
