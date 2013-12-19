@@ -26,7 +26,7 @@
         /*<![CDATA[*/
 <?php echo $template['javascript']; ?>
         $(function() {
-            AppSettings.init({urlThemes: '/assets/styles/themes/social.theme-'});
+            AppSettings.init({urlThemes: '<?php echo STATIC_URL; ?>styles/themes/social.theme-'});
             SideBar.init({shortenOnClickOutside: <?php echo $autohide; ?>});
         });
         /*]]>*/

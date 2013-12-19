@@ -16,6 +16,232 @@
                         <!-- BEGIN NAVBAR INDICATORS -->
                         <ul class="nav pull-right nav-indicators">
 
+                            <!-- BEGIN DROPDOWN NOTIFICATIONS -->
+                            <li class="dropdown nav-notifications">
+                                <!-- BEGIN DROPDOWN TOGGLE -->
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-warning-sign"></i>
+                                </a>
+                                <!-- END DROPDOWN TOGGLE -->
+                                <!-- BEGIN DROPDOWN MENU -->
+                                <ul class="dropdown-menu">
+                                    <!-- BEGIN DROPDOWN HEADER -->
+                                    <li class="nav-notifications-header">
+                                        <a tabindex="-1" href="#">
+                                            You have <strong>9</strong>
+                                            new notifications
+                                        </a>
+                                    </li>
+                                    <!-- END DROPDOWN HEADER -->
+                                    <!-- BEGIN NOTIFICATION ITEMS -->
+                                    <li class="nav-notification-body text-info">
+                                        <a href="#"> <i class="icon-user"></i>
+                                            New User
+                                            <small class="pull-right">Just Now</small>
+                                        </a>
+                                    </li>
+                                    <li class="nav-notification-body text-error">
+                                        <a href="#">
+                                            <i class="icon-user"></i>
+                                            User Deleted
+                                            <small class="pull-right">Just Now</small>
+                                        </a>
+                                    </li>
+                                    <li class="nav-notification-body text-warning">
+                                        <a href="#">
+                                            <i class="icon-cogs"></i>
+                                            Sever is overloaded
+                                            <small class="pull-right">2 minutes ago</small>
+                                        </a>
+                                    </li>
+                                    <li class="nav-notification-body">
+                                        <a href="#">
+                                            <i class="icon-briefcase"></i>
+                                            Backup is completed
+                                            <small class="pull-right">4 minutes ago</small>
+                                        </a>
+                                    </li>
+                                    <li class="nav-notification-body text-info">
+                                        <a href="#">
+                                            <i class="icon-user"></i>
+                                            New User
+                                            <small class="pull-right">Just Now</small>
+                                        </a>
+                                    </li>
+                                    <li class="nav-notification-body text-error">
+                                        <a href="#">
+                                            <i class="icon-user"></i>
+                                            User Deleted
+                                            <small class="pull-right">Just Now</small>
+                                        </a>
+                                    </li>
+                                    <li class="nav-notification-body text-warning">
+                                        <a href="#">
+                                            <i class="icon-cogs"></i>
+                                            Sever is overloaded
+                                            <small class="pull-right">3 minutes ago</small>
+                                        </a>
+                                    </li>
+                                    <li class="nav-notification-body">
+                                        <a href="#">
+                                            <i class="icon-briefcase"></i>
+                                            Backup is completed
+                                            <small class="pull-right">6 minutes ago</small>
+                                        </a>
+                                    </li>
+                                    <!-- END NOTIFICATION ITEMS -->
+                                    <!-- BEGIN DROPDOWN FOOTER -->
+                                    <li class="nav-notifications-footer">
+                                        <a tabindex="-1" href="#">View all messages</a>
+                                    </li>
+                                    <!-- END DROPDOWN FOOTER -->
+                                </ul>
+                                <!-- END DROPDOWN MENU -->
+                            </li>
+                            <!-- END DROPDOWN NOTIFICATIONS -->
+
+                            <!-- BEGIN DROPDOWN TASKS -->
+                            <li class="dropdown nav-tasks">
+                                <!-- BEGIN DROPDOWN TOGGLE -->
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-tasks"></i>
+                                </a>
+                                <!-- END DROPDOWN TOGGLE -->
+                                <!-- BEGIN DROPDOWN MENU -->
+                                <ul class="dropdown-menu">
+                                    <!-- BEGIN DROPDOWN HEADER -->
+                                    <li class="nav-taks-header">
+                                        <a tabindex="-1" href="#">
+                                            You have <strong>13</strong>
+                                            tasks in progress
+                                        </a>
+                                    </li>
+                                    <!-- END DROPDOWN HEADER -->
+                                    <!-- BEGIN DROPDOWN ITEMS -->
+                                    <li>
+                                        <a>
+                                            <strong>Prepare Report</strong>
+                                            <span class="pull-right">30%</span>
+                                            <div class="progress progress-danger active">
+                                                <div class="bar" style="width: 30%;"></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            <strong>Make new update</strong>
+                                            <span class="pull-right">40%</span>
+                                            <div class="progress progress-info active">
+                                                <div class="bar" style="width: 40%;"></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            <strong>Fix critical bugs</strong>
+                                            <span class="pull-right">80%</span>
+                                            <div class="progress progress-striped active">
+                                                <div class="bar" style="width: 80%;"></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            <strong>Complete project</strong>
+                                            <span class="pull-right">5%</span>
+                                            <div class="progress progress-success active">
+                                                <div class="bar" style="width: 5%;"></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            <strong>Others</strong>
+                                            <span class="pull-right">15%</span>
+                                            <div class="progress progress-warning active">
+                                                <div class="bar" style="width: 15%;"></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!-- END DROPDOWN ITEMS -->
+                                    <!-- BEGIN DROPDOWN FOOTER -->
+                                    <li class="nav-taks-footer">
+                                        <a tabindex="-1" href="#">View all tasks</a>
+                                    </li>
+                                    <!-- END DROPDOWN FOOTER -->
+                                </ul>
+                                <!-- END DROPDOWN MENU -->
+                            </li>
+                            <!-- END DROPDOWN TASKS -->
+
+                            <!-- BEGIN DROPDOWN MESSAGES -->
+                            <li class="dropdown nav-messages">
+                                <!-- BEGIN DROPDOWN TOGGLE -->
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-envelope"></i>
+                                </a>
+                                <!-- END DROPDOWN TOGGLE -->
+                                <!-- BEGIN DROPDOWN MENU -->
+                                <ul class="dropdown-menu">
+                                    <!-- BEGIN DROPDOWN HEADER -->
+                                    <li class="nav-messages-header">
+                                        <a tabindex="-1" href="#">
+                                            You have <strong>8</strong>
+                                            new messages
+                                        </a>
+                                    </li>
+                                    <!-- END DROPDOWN HEADER -->
+                                    <!-- BEGIN DROPDOWN ITEMS -->
+                                    <li class="nav-message-body">
+                                        <a>
+                                            <img src="/assets/images/noavatar_small.gif" alt="User">
+                                            <div>
+                                                <small class="pull-right">Just Now</small> <strong>Yadra Abels</strong>
+                                            </div>
+                                            <div>Lorem ipsum dolor sit amet, consectetur...</div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-message-body">
+                                        <a>
+                                            <img src="/assets/images/noavatar_small.gif" alt="User">
+                                            <div>
+                                                <small class="pull-right">Just Now</small>
+                                                <strong>Cesar Mendoza</strong>
+                                            </div>
+                                            <div>Lorem ipsum dolor sit amet, consectetur...</div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-message-body">
+                                        <a>
+                                            <img src="/assets/images/noavatar_small.gif" alt="User">
+                                            <div>
+                                                <small class="pull-right">Just Now</small>
+                                                <strong>John Doe</strong>
+                                            </div>
+                                            <div>Lorem ipsum dolor sit amet, consectetur...</div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-message-body">
+                                        <a>
+                                            <img src="/assets/images/noavatar_small.gif" alt="User">
+                                            <div>
+                                                <small class="pull-right">Just Now</small>
+                                                <strong>Tobei Tsumura</strong>
+                                            </div>
+                                            <div>Lorem ipsum dolor sit amet, consectetur...</div>
+                                        </a>
+                                    </li>
+                                    <!-- END DROPDOWN ITEMS -->
+                                    <!-- BEGIN DROPDOWN FOOTER -->
+                                    <li class="nav-messages-footer">
+                                        <a tabindex="-1" href="pages/chat-inbox.html">View all messages</a>
+                                    </li>
+                                    <!-- END DROPDOWN FOOTER -->
+                                </ul>
+                                <!-- END DROPDOWN MENU -->
+                            </li>
+                            <!-- END DROPDOWN MESSAGES -->
+
                             <li class="divider-vertical"></li>
 
                             <!-- BEGIN EXTRA DROPDOWN -->
