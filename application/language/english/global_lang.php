@@ -1,12 +1,13 @@
 <?php defined('BASEPATH') || exit('No direct script access allowed');
 
-$lang['operate'] = 'operate';
+$lang['menu']    = 'Menu';
+$lang['operate'] = 'Operate';
 $lang['submit']  = 'Submit';
 $lang['reset']   = 'Reset';
 $lang['create']  = 'Create';
 $lang['modify']  = 'Modify';
 $lang['save']    = 'Save';
-$lang['edit']    = 'edit';
+$lang['edit']    = 'Edit';
 $lang['search']  = 'Search';
 $lang['detail']  = 'Detail';
 $lang['cancel']  = 'Cancel';

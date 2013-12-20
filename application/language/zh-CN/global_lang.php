@@ -1,5 +1,6 @@
 <?php defined('BASEPATH') || exit('No direct script access allowed');
 
+$lang['menu']    = '菜单';
 $lang['operate'] = '操作';
 $lang['submit']  = '提交';
 $lang['reset']   = '重置';

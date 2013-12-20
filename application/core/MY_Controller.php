@@ -144,24 +144,6 @@ class MY_Controller extends CI_Controller {
         }
 
     }
-
-    protected function is_superman()
-    {
-        if ( !isset($this->_data['self']['identity']) )
-        {
-            return FALSE;
-        }
-        return $this->_data['self']['identity'] == 'superman' ? TRUE : FALSE;
-    }
-
-    protected function is_agent()
-    {
-        if ( !isset($this->_data['self']['identity']) )
-        {
-            return FALSE;
-        }
-        return $this->_data['self']['identity'] == 'agent' ? TRUE : FALSE;
-    }
     
 }
 

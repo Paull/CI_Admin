@@ -4,11 +4,7 @@
                 <div class="navbar-inner">
                     <div class="container-fluid">
                         <!-- BEGIN SIDEBAR COLLAPSER -->
-                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".social-sidebar">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </a>
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".social-sidebar"><?php echo lang('menu'); ?></a>
                         <!-- END SIDEBAR COLLAPSER -->
                         <!-- BEGIN BRAND LINK -->
                         <a href="/" class="brand"><?php echo SITENAME; ?></a>
