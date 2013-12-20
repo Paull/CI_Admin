@@ -190,7 +190,7 @@
                                     <!-- BEGIN DROPDOWN ITEMS -->
                                     <li class="nav-message-body">
                                         <a>
-                                            <img src="/assets/images/noavatar_small.gif" alt="User">
+                                            <img src="<?php echo AVATAR_URL; ?>noavatar_small.png" alt="User">
                                             <div>
                                                 <small class="pull-right">Just Now</small> <strong>Yadra Abels</strong>
                                             </div>
@@ -199,7 +199,7 @@
                                     </li>
                                     <li class="nav-message-body">
                                         <a>
-                                            <img src="/assets/images/noavatar_small.gif" alt="User">
+                                            <img src="<?php echo AVATAR_URL; ?>noavatar_small.png" alt="User">
                                             <div>
                                                 <small class="pull-right">Just Now</small>
                                                 <strong>Cesar Mendoza</strong>
@@ -209,7 +209,7 @@
                                     </li>
                                     <li class="nav-message-body">
                                         <a>
-                                            <img src="/assets/images/noavatar_small.gif" alt="User">
+                                            <img src="<?php echo AVATAR_URL; ?>noavatar_small.png" alt="User">
                                             <div>
                                                 <small class="pull-right">Just Now</small>
                                                 <strong>John Doe</strong>
@@ -219,7 +219,7 @@
                                     </li>
                                     <li class="nav-message-body">
                                         <a>
-                                            <img src="/assets/images/noavatar_small.gif" alt="User">
+                                            <img src="<?php echo AVATAR_URL; ?>noavatar_small.png" alt="User">
                                             <div>
                                                 <small class="pull-right">Just Now</small>
                                                 <strong>Tobei Tsumura</strong>
