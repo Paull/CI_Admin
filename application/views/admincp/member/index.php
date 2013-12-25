@@ -51,7 +51,7 @@
                             <td><span data-toggle="tooltip" title="<?php echo $item['login_ip']; ?>"><?php echo convertip($item['login_ip']); ?></span></td>
                             <td>
                                 <a href="<?php echo site_url('admincp/member/modify/'.$item['id']); ?>" title="<?php echo lang('edit'); ?>"><i class="icon-edit"></i><?php echo lang('edit'); ?></a>
-                                <a href="<?php echo site_url('admincp/member/destroy/'.$item['id']); ?>" title="<?php echo lang('delete'); ?>" onclick="return confirm('');"><i class="icon-trash"></i><?php echo lang('delete'); ?></a>
+                                <a href="<?php echo site_url('admincp/member/destroy/'.$item['id']); ?>" title="<?php echo lang('delete'); ?>" onclick="return confirm('<?php echo lang('delete_warning'); ?>');"><i class="icon-trash"></i><?php echo lang('delete'); ?></a>
                             </td>
                         </tr>
 <?php endforeach; ?>
