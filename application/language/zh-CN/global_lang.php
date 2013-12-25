@@ -34,12 +34,19 @@ $lang['password'] = '密码';
 $lang['email']    = '邮件地址';
 $lang['realname'] = '姓名';
 $lang['identity'] = '身份';
-$lang['identity_title'] = '请选择'.$lang['identity'];
 $lang['area']     = '区域';
-$lang['area_title'] = '请选择'.$lang['area'];
 $lang['status']   = '状态';
+$lang['username_title'] = '请输入'.$lang['username'];
+$lang['password_title'] = '请输入'.$lang['password'];
+$lang['email_title']    = '请输入'.$lang['email'];
+$lang['realname_title'] = '请输入'.$lang['realname'];
+$lang['identity_title'] = '请选择'.$lang['identity'];
+$lang['area_title']     = '请选择'.$lang['area'];
+$lang['status_title']   = '请选择'.$lang['status'];
 
 $lang['created'] = '创建时间';
 $lang['updated']  = '更新时间';
+
+$lang['no_permission'] = '无权限';
 
 $lang['keyword_more_than_2_letter'] = '输入超过2个字的关键字';

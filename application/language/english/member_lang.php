@@ -19,3 +19,4 @@ $lang['old_password_placeholder'] = 'ignore by keep blank';
 $lang['new_password_placeholder'] = 'at least 6 letters or numbers';
 $lang['new_password_confirm_placeholder'] = 'repeat the password above';
 
+$lang['delete_warning'] = 'this action will delete all the data belongs to this member, continue?';

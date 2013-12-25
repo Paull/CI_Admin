@@ -34,12 +34,19 @@ $lang['password'] = 'Password';
 $lang['email']    = 'Email';
 $lang['realname'] = 'Realname';
 $lang['identity'] = 'Identity';
-$lang['identity_title'] = 'choose '.$lang['identity'];
 $lang['area']     = 'Area';
-$lang['area_title'] = 'choose '.$lang['area'];
 $lang['status']   = 'Status';
+$lang['username_title'] = 'Please type '.$lang['username'];
+$lang['password_title'] = 'Please type '.$lang['password'];
+$lang['email_title']    = 'Please type '.$lang['email'];
+$lang['realname_title'] = 'Please type '.$lang['realname'];
+$lang['identity_title'] = 'Please choose '.$lang['identity'];
+$lang['area_title']     = 'Please choose '.$lang['area'];
+$lang['status_title']   = 'Please choose '.$lang['status'];
 
-$lang['created'] = '创建时间';
-$lang['updated']  = '更新时间';
+$lang['created'] = 'created at';
+$lang['updated']  = 'updated at';
+
+$lang['no_permission'] = 'No Permission';
 
 $lang['keyword_more_than_2_letter'] = 'Enter a keyword more than 2 letters';
