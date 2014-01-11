@@ -176,7 +176,16 @@ class MY_Model extends CI_Model {
     public function insert($set = NULL, $escape = NULL)
     {
         $this->db->insert($this->_table, $set, $escape);
-        return $this->db->insert_id();
+        $insert_id = $this->db->insert_id();
+
+        //记录操作日志----------------------
+        //$log['operate']    = "insert {$this->_table}";
+        //$log['status']     = $insert_id > 0;
+        //$log['debug_info'] = array('insert_id'=>$insert_id);
+        //$this->m_log->create($log);
+        //记录操作日志----------------------
+
+        return $insert_id;
     }
 
     // --------------------------------------------------------------------
@@ -210,7 +219,16 @@ class MY_Model extends CI_Model {
     public function update($set = NULL, $where = NULL, $limit = NULL)
     {
         $this->db->update($this->_table, $set, $where, $limit);
-        return $this->db->affected_rows();
+        $affected_rows = $this->db->affected_rows();
+
+        //记录操作日志----------------------
+        //$log['operate']    = "update {$this->_table}";
+        //$log['status']     = $affected_rows > 0;
+        //$log['debug_info'] = array('affected_rows'=>$affected_rows);
+        //$this->m_log->create($log);
+        //记录操作日志----------------------
+
+        return $affected_rows;
     }
 
     // --------------------------------------------------------------------
@@ -243,7 +261,16 @@ class MY_Model extends CI_Model {
     public function replace($set = NULL)
     {
         $this->db->replace($this->_table, $set);
-        return $this->db->affected_rows();
+        $affected_rows = $this->db->affected_rows();
+
+        //记录操作日志----------------------
+        //$log['operate']    = "replace {$this->_table}";
+        //$log['status']     = $affected_rows > 0;
+        //$log['debug_info'] = array('affected_rows'=>$affected_rows);
+        //$this->m_log->create($log);
+        //记录操作日志----------------------
+
+        return $affected_rows;
     }
 
 	// --------------------------------------------------------------------
@@ -261,7 +288,17 @@ class MY_Model extends CI_Model {
 	public function delete($where = '', $limit = NULL, $reset_data = TRUE)
 	{
         $this->db->delete($this->_table, $where, $limit, $reset_data);
-        return $this->db->affected_rows();
+        $deleted = $this->db->affected_rows();
+
+        //记录操作日志----------------------
+        $log['method']  = 'referer';
+        $log['operate'] = "delete from {$this->_table}";
+        $log['status']  = $deleted > 0;
+        $log['debug_info'] = array('where'=>$where, 'limit'=>$limit, $reset_data=>$reset_data);
+        $this->m_log->create($log);
+        //记录操作日志----------------------
+
+        return $deleted;
 	}
 }
 

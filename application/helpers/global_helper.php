@@ -115,7 +115,7 @@ function load_menu($menus)
             }
             if ( isset($menu['icon']) )
             {
-                $menu_array[$group] .= "<img src=\"".BASEURL."assets/images/icons/stuttgart-icon-pack/32x32/{$menu['icon']}\" alt=\"{$menu['title']}\">";
+                $menu_array[$group] .= "<img src=\"".STATIC_URL."images/icons/stuttgart-icon-pack/32x32/{$menu['icon']}\" alt=\"{$menu['title']}\">";
             }
             $menu_array[$group] .= "<span>{$menu['title']}</span>";
             if ( isset($menu['badge']) )
@@ -217,8 +217,7 @@ function time_diff($time1, $time2 = NULL){
     if($time2 == NULL) $time2 = time();
     if($time1 == $time2) $str = '0秒';
     elseif($time1 > $time2) $str = time_left($time1, $time2);
-    elseif($time1
-< $time2) $str = time_past($time1, $time2);
+    elseif($time1 < $time2) $str = time_past($time1, $time2);
     else $str = '未知时间';
     return $str;
 }

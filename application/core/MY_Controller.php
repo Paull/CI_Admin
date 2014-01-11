@@ -13,6 +13,12 @@ class MY_Controller extends CI_Controller {
         define('METHOD_URI', strtolower($this->router->directory.$this->router->class.'/'.$this->router->method));
         define('REFERER_URI', str_replace(array('http://'.$_SERVER['SERVER_NAME'].BASEURL, URL_SUFFIX), array('',''), $this->input->server('HTTP_REFERER')));
 
+        //ajax不启用layout基础模版布局
+        if ( $this->input->is_ajax_request() )
+        {
+            $this->_layout = METHOD_URI;
+        }
+
         //读取$self
         if ( $this->session->userdata('uid') )
         {
@@ -100,12 +106,6 @@ class MY_Controller extends CI_Controller {
             $this->_data['template']['javascript'] .= "var AVATAR_URL = '" . AVATAR_URL . "';\nvar uid = '" . $this->_data['self']['id'] . "';\nvar hash = '" . $this->security->get_csrf_hash() . "';\nvar avatar = '" . $this->_data['self']['avatar'] . "';\n";
         }
 
-        //ajax不启用layout基础模版布局
-        if ( $this->input->is_ajax_request() )
-        {
-            $this->_layout = METHOD_URI;
-        }
-
     }
 
     protected function _has_perm()
@@ -143,24 +143,6 @@ class MY_Controller extends CI_Controller {
             return FALSE;
         }
 
-    }
-
-    protected function is_superman()
-    {
-        if ( !isset($this->_data['self']['identity']) )
-        {
-            return FALSE;
-        }
-        return $this->_data['self']['identity'] == 'superman' ? TRUE : FALSE;
-    }
-
-    protected function is_agent()
-    {
-        if ( !isset($this->_data['self']['identity']) )
-        {
-            return FALSE;
-        }
-        return $this->_data['self']['identity'] == 'agent' ? TRUE : FALSE;
     }
     
 }

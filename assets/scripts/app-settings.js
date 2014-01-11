@@ -54,17 +54,17 @@ AppSettings = (function($) {
       $main = $("#main");
 
       if ($(this).prop("checked")) {
-        $sidebar.removeClass("sidebar-full");
         $wraper.removeClass("sidebar-full");
+        $sidebar.removeClass("sidebar-full");
         $.cookie('autohide', 'true', {expires: 7, path: '/'});
       } else {
+        $wraper.addClass("sidebar-full");
         $sidebar.addClass("sidebar-full");
         $navbar.removeAttr("style");
         $main.removeAttr("style");
         $sidebar.find(pattern).removeAttr("style");
         $sidebar.find(".search-sidebar img").removeAttr("style");
         $(".icon-user.trigger-user-settings, .input-filter").removeAttr("style");
-        $wraper.addClass("sidebar-full");
         $.cookie('autohide', 'false', {expires: 7, path: '/'});
       }
 

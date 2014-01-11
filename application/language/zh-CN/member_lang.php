@@ -18,3 +18,5 @@ $lang['new_password_confirm'] = '重复新密码';
 $lang['old_password_placeholder'] = '留空表示不修改';
 $lang['new_password_placeholder'] = '最少6位字母或数字';
 $lang['new_password_confirm_placeholder'] = '同上再输一遍';
+
+$lang['delete_warning'] = '该操作将删除该会员所有相关的数据，确定要删除吗？';

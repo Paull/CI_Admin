@@ -93,13 +93,18 @@ class M_member extends MY_Model {
         if(! $ignore )
         {
             //增加权限判断
-            if( in_array($this->session->userdata('identity'), array('superman', 'agent')) )
+            switch($this->session->userdata('identity'))
             {
-                $this->db->where_in('id', array_keys($this->_data['children']));
-            }
-            else
-            {
-                $this->db->where('email', $this->session->userdata('email'));
+                case 'superman':
+                    break;
+                case 'agent':
+                    $this->db->where_in('id', array_keys($this->_data['children']));
+                    break;
+                case 'member':
+                    $this->db->where('email', $this->session->userdata('email'));
+                    break;
+                default:
+                    exit('permission error');
             }
         }
 
