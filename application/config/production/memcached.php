@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') || exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
@@ -42,7 +42,7 @@ $config = array(
 	),
 );
 
-//数据默认缓存时间
+//default cache timeout
 define('CACHE_TIMEOUT', 86400);
 
 /* End of file memcached.php */

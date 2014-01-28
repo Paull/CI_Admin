@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') || exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
@@ -68,6 +68,13 @@
 |	['stricton'] TRUE/FALSE - forces 'Strict Mode' connections
 |							- good for ensuring strict SQL while developing
 |	['failover'] array - A array with 0 or more data for connections if the main should fail.
+|	['save_queries'] TRUE/FALSE - Whether to "save" all executed queries.
+| 				NOTE: Disabling this will also effectively disable both
+| 				$this->db->last_query() and profiling of DB queries.
+| 				When you run a query, with this setting set to TRUE (default),
+| 				CodeIgniter will store the SQL statement for debugging purposes.
+| 				However, this may cause high memory usage, especially if you run
+| 				a lot of SQL queries ... disable this to avoid that problem.
 |
 | The $active_group variable lets you choose which connection group to
 | make active.  By default there is only one group (the 'default' group).
@@ -80,7 +87,7 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	   => '',
+	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => 'root',
@@ -95,10 +102,11 @@ $db['default'] = array(
 	'dbcollat' => 'utf8_general_ci',
 	'swap_pre' => '',
 	'autoinit' => TRUE,
-	'encrypt'  => FALSE,
+	'encrypt' => FALSE,
 	'compress' => FALSE,
 	'stricton' => FALSE,
-	'failover' => array()
+	'failover' => array(),
+	'save_queries' => TRUE
 );
 
 /* End of file database.php */

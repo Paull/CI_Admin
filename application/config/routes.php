@@ -85,6 +85,5 @@ $route['logout']  = 'welcome/logout';
 $route['verify/(:num)/(:any)'] = 'welcome/verify/$1/$2';
 $route['reset/(:num)/(:any)'] = 'welcome/reset/$1/$2';
 
-
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
