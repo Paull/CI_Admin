@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
 /**
  * CodeIgniter
  *
@@ -18,12 +18,13 @@
  *
  * @package		CodeIgniter
  * @author		EllisLab Dev Team
- * @copyright	Copyright (c) 2008 - 2013, EllisLab, Inc. (http://ellislab.com/)
+ * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (http://ellislab.com/)
  * @license		http://opensource.org/licenses/AFL-3.0 Academic Free License (AFL 3.0)
  * @link		http://codeigniter.com
  * @since		Version 1.0
  * @filesource
  */
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 define('SITENAME', 'CI_Admin');
 define('SITEDOMAIN', substr_count($_SERVER['SERVER_NAME'], '.') > 1 ? substr($_SERVER['SERVER_NAME'], strrpos($_SERVER['SERVER_NAME'], '.', strrpos($_SERVER['SERVER_NAME'], '.')-strlen($_SERVER['SERVER_NAME'])-1)+1) : $_SERVER['SERVER_NAME']);
