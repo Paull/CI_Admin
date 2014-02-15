@@ -18,7 +18,7 @@
  *
  * @package		CodeIgniter
  * @author		EllisLab Dev Team
- * @copyright	Copyright (c) 2008 - 2013, EllisLab, Inc. (http://ellislab.com/)
+ * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (http://ellislab.com/)
  * @license		http://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  * @link		http://codeigniter.com
  * @since		Version 1.0
@@ -263,7 +263,7 @@ abstract class CI_DB_query_builder extends CI_DB_driver {
 			$select = explode(',', $select);
 		}
 
-		// If the escape value was not set will will base it on the global setting
+		// If the escape value was not set, we will base it on the global setting
 		is_bool($escape) OR $escape = $this->_protect_identifiers;
 
 		foreach ($select as $val)
