@@ -19,7 +19,6 @@ function load_options($field, $identity='')
                 case 'agent':
                     $data = array(
                         array('value'=>'user', 'text'=>lang('user')),
-                        array('value'=>'agent', 'text'=>lang('agent')),
                     );
                     break;
                 default:
