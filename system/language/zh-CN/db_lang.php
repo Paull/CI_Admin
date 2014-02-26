@@ -18,7 +18,7 @@
  *
  * @package		CodeIgniter
  * @author		EllisLab Dev Team
- * @copyright	Copyright (c) 2008 - 2013, EllisLab, Inc. (http://ellislab.com/)
+ * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (http://ellislab.com/)
  * @license		http://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  * @link		http://codeigniter.com
  * @since		Version 1.0
@@ -49,7 +49,7 @@ $lang['db_table_name_required'] = 'A table name is required for that operation.'
 $lang['db_column_name_required'] = 'A column name is required for that operation.';
 $lang['db_column_definition_required'] = 'A column definition is required for that operation.';
 $lang['db_unable_to_set_charset'] = 'Unable to set client connection character set: %s';
-$lang['db_error_heading'] = '数据库发生一个错误';
+$lang['db_error_heading'] = 'A Database Error Occurred';
 
 /* End of file db_lang.php */
-/* Location: ./system/language/english/db_lang.php */
+/* Location: ./system/language/zh-CN/db_lang.php */

@@ -21,19 +21,15 @@
  * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (http://ellislab.com/)
  * @license		http://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  * @link		http://codeigniter.com
- * @since		Version 3.0
+ * @since		Version 1.0
  * @filesource
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$lang['migration_none_found']		= 'No migrations were found.';
-$lang['migration_not_found']		= 'No migration could be found with the version number: %d.';
-$lang['migration_sequence_gap']		= 'There is a gap in the migration sequence near version number: %d.';
-$lang['migration_multiple_version']	= 'There are multiple migrations with the same version number: %d.';
-$lang['migration_class_doesnt_exist']	= 'The migration class "%s" could not be found.';
-$lang['migration_missing_up_method']	= 'The migration class "%s" is missing an "up" method.';
-$lang['migration_missing_down_method']	= 'The migration class "%s" is missing a "down" method.';
-$lang['migration_invalid_filename']	= 'Migration "%s" has an invalid filename.';
+$lang['pagination_first_link']	= '&lsaquo; First';
+$lang['pagination_next_link']	= '&gt;';
+$lang['pagination_prev_link']	= '&lt;';
+$lang['pagination_last_link']	= 'Last &rsaquo;';
 
-/* End of file migration_lang.php */
-/* Location: ./system/language/zh-CN/migration_lang.php */
+/* End of file pagination_lang.php */
+/* Location: ./system/language/zh-CN/pagination_lang.php */
