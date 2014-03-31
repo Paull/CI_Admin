@@ -47,13 +47,6 @@ class CI_Input {
 	public $ip_address = FALSE;
 
 	/**
-	 * User agent string
-	 *
-	 * @var	string
-	 */
-	public $user_agent = FALSE;
-
-	/**
 	 * Allow GET array flag
 	 *
 	 * If set to FALSE, then $_GET will be set to an empty array.
@@ -124,16 +117,14 @@ class CI_Input {
 		$this->_allow_get_array		= (config_item('allow_get_array') === TRUE);
 		$this->_enable_xss		= (config_item('global_xss_filtering') === TRUE);
 		$this->_enable_csrf		= (config_item('csrf_protection') === TRUE);
-		$this->_sandardize_newlines	= (bool) config_item('standardize_newlines');
+		$this->_standardize_newlines	= (bool) config_item('standardize_newlines');
 
-		global $SEC;
-		$this->security =& $SEC;
+		$this->security =& load_class('Security', 'core');
 
 		// Do we need the UTF-8 class?
 		if (UTF8_ENABLED === TRUE)
 		{
-			global $UNI;
-			$this->uni =& $UNI;
+			$this->uni =& load_class('Utf8', 'core');
 		}
 
 		// Sanitize global arrays
@@ -555,14 +546,9 @@ class CI_Input {
 	 *
 	 * @return	string|null	User Agent string or NULL if it doesn't exist
 	 */
-	public function user_agent()
+	public function user_agent($xss_clean = NULL)
 	{
-		if ($this->user_agent !== FALSE)
-		{
-			return $this->user_agent;
-		}
-
-		return $this->user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : NULL;
+		return $this->_fetch_from_array($_SERVER, 'HTTP_USER_AGENT', $xss_clean);
 	}
 
 	// --------------------------------------------------------------------
@@ -768,7 +754,7 @@ class CI_Input {
 			{
 				set_status_header(503);
 				echo 'Disallowed Key Characters.';
-				exit(EXIT_USER_INPUT);
+				exit(7); // EXIT_USER_INPUT
 			}
 		}
 

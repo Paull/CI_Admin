@@ -213,7 +213,7 @@ class CI_Loader {
 	/**
 	 * Model Loader
 	 *
-	 * Loads and instantiates libraries.
+	 * Loads and instantiates models.
 	 *
 	 * @param	string	$model		Model name
 	 * @param	string	$name		An optional object name to assign to
@@ -271,7 +271,7 @@ class CI_Loader {
 				$db_conn = '';
 			}
 
-			$CI->load->database($db_conn, FALSE, TRUE);
+			$this->database($db_conn, FALSE, TRUE);
 		}
 
 		if ( ! class_exists('CI_Model', FALSE))
@@ -623,12 +623,12 @@ class CI_Loader {
 	 */
 	public function language($files, $lang = '')
 	{
-		$CI =& get_instance();
+		$LNG =& get_instance()->lang;
 		is_array($files) OR $files = array($files);
 
 		foreach ($files as $langfile)
 		{
-			$CI->lang->load($langfile, $lang);
+			$LNG->load($langfile, $lang);
 		}
 
 		return $this;
@@ -901,9 +901,7 @@ class CI_Loader {
 		// If the PHP installation does not support short tags we'll
 		// do a little string replacement, changing the short tags
 		// to standard PHP echo statements.
-		if ( ! is_php('5.4') && (bool) @ini_get('short_open_tag') === FALSE
-			&& config_item('rewrite_short_tags') === TRUE && function_usable('eval')
-		)
+		if ( ! is_php('5.4') && ! ini_get('short_open_tag') && config_item('rewrite_short_tags') === TRUE && function_usable('eval'))
 		{
 			echo eval('?>'.preg_replace('/;*\s*\?>/', '; ?>', str_replace('<?=', '<?php echo ', file_get_contents($_ci_path))));
 		}
@@ -1217,10 +1215,9 @@ class CI_Loader {
 		// Load any custom config file
 		if (count($autoload['config']) > 0)
 		{
-			$CI =& get_instance();
-			foreach ($autoload['config'] as $key => $val)
+			foreach ($autoload['config'] as $val)
 			{
-				$CI->config->load($val);
+				$this->config($val);
 			}
 		}
 

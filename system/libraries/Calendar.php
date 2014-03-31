@@ -40,20 +40,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class CI_Calendar {
 
 	/**
-	 * Reference to CodeIgniter instance
-	 *
-	 * @var object
-	 */
-	protected $CI;
-
-	/**
-	 * Current local time
-	 *
-	 * @var int
-	 */
-	public $local_time;
-
-	/**
 	 * Calendar layout template
 	 *
 	 * @var mixed
@@ -109,6 +95,17 @@ class CI_Calendar {
 	 */
 	public $show_other_days = FALSE;
 
+	// --------------------------------------------------------------------
+
+	/**
+	 * CI Singleton
+	 *
+	 * @var object
+	 */
+	protected $CI;
+
+	// --------------------------------------------------------------------
+
 	/**
 	 * Class constructor
 	 *
@@ -128,12 +125,7 @@ class CI_Calendar {
 			$this->CI->lang->load('calendar');
 		}
 
-		$this->local_time = time();
-
-		if (count($config) > 0)
-		{
-			$this->initialize($config);
-		}
+		empty($config) OR $this->initialize($config);
 
 		log_message('debug', 'Calendar Class Initialized');
 	}
@@ -179,10 +171,12 @@ class CI_Calendar {
 	 */
 	public function generate($year = '', $month = '', $data = array())
 	{
+		$local_time = time();
+
 		// Set and validate the supplied month/year
 		if (empty($year))
 		{
-			$year = date('Y', $this->local_time);
+			$year = date('Y', $local_time);
 		}
 		elseif (strlen($year) === 1)
 		{
@@ -195,7 +189,7 @@ class CI_Calendar {
 
 		if (empty($month))
 		{
-			$month = date('m', $this->local_time);
+			$month = date('m', $local_time);
 		}
 		elseif (strlen($month) === 1)
 		{
@@ -226,9 +220,9 @@ class CI_Calendar {
 
 		// Set the current month/year/day
 		// We use this to determine the "today" date
-		$cur_year	= date('Y', $this->local_time);
-		$cur_month	= date('m', $this->local_time);
-		$cur_day	= date('j', $this->local_time);
+		$cur_year	= date('Y', $local_time);
+		$cur_month	= date('m', $local_time);
+		$cur_day	= date('j', $local_time);
 
 		$is_current_month = ($cur_year == $year && $cur_month == $month);
 
@@ -456,23 +450,8 @@ class CI_Calendar {
 	 */
 	public function get_total_days($month, $year)
 	{
-		$days_in_month	= array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
-
-		if ($month < 1 OR $month > 12)
-		{
-			return 0;
-		}
-
-		// Is the year a leap year?
-		if ($month == 2)
-		{
-			if ($year % 400 === 0 OR ($year % 4 === 0 && $year % 100 !== 0))
-			{
-				return 29;
-			}
-		}
-
-		return $days_in_month[$month - 1];
+		$this->CI->load->helper('date');
+		return days_in_month($month, $year);
 	}
 
 	// --------------------------------------------------------------------

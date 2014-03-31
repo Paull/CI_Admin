@@ -83,7 +83,7 @@ if ( ! function_exists('is_really_writable'))
 	function is_really_writable($file)
 	{
 		// If we're on a Unix server with safe_mode off we call is_writable
-		if (DIRECTORY_SEPARATOR === '/' && (is_php('5.4') OR (bool) @ini_get('safe_mode') === FALSE))
+		if (DIRECTORY_SEPARATOR === '/' && (is_php('5.4') OR ! ini_get('safe_mode')))
 		{
 			return is_writable($file);
 		}
@@ -94,17 +94,17 @@ if ( ! function_exists('is_really_writable'))
 		if (is_dir($file))
 		{
 			$file = rtrim($file, '/').'/'.md5(mt_rand());
-			if (($fp = @fopen($file, FOPEN_WRITE_CREATE)) === FALSE)
+			if (($fp = @fopen($file, 'ab')) === FALSE)
 			{
 				return FALSE;
 			}
 
 			fclose($fp);
-			@chmod($file, DIR_WRITE_MODE);
+			@chmod($file, 0777);
 			@unlink($file);
 			return TRUE;
 		}
-		elseif ( ! is_file($file) OR ($fp = @fopen($file, FOPEN_WRITE_CREATE)) === FALSE)
+		elseif ( ! is_file($file) OR ($fp = @fopen($file, 'ab')) === FALSE)
 		{
 			return FALSE;
 		}
@@ -130,7 +130,7 @@ if ( ! function_exists('load_class'))
 	 * @param	string	the class name prefix
 	 * @return	object
 	 */
-	function &load_class($class, $directory = 'libraries', $prefix = 'CI_')
+	function &load_class($class, $directory = 'libraries', $param = NULL)
 	{
 		static $_classes = array();
 
@@ -148,7 +148,7 @@ if ( ! function_exists('load_class'))
 		{
 			if (file_exists($path.$directory.'/'.$class.'.php'))
 			{
-				$name = $prefix.$class;
+				$name = 'CI_'.$class;
 
 				if (class_exists($name, FALSE) === FALSE)
 				{
@@ -166,7 +166,7 @@ if ( ! function_exists('load_class'))
 
 			if (class_exists($name, FALSE) === FALSE)
 			{
-				require_once(APPPATH.$directory.'/'.config_item('subclass_prefix').$class.'.php');
+				require_once(APPPATH.$directory.'/'.$name.'.php');
 			}
 		}
 
@@ -177,13 +177,15 @@ if ( ! function_exists('load_class'))
 			// self-referencing loop with the Exceptions class
 			set_status_header(503);
 			echo 'Unable to locate the specified class: '.$class.'.php';
-			exit(EXIT_UNKNOWN_CLASS);
+			exit(5); // EXIT_UNK_CLASS
 		}
 
 		// Keep track of what we just loaded
 		is_loaded($class);
 
-		$_classes[$class] = new $name();
+		$_classes[$class] = isset($param)
+			? new $name($param)
+			: new $name();
 		return $_classes[$class];
 	}
 }
@@ -248,7 +250,7 @@ if ( ! function_exists('get_config'))
 			{
 				set_status_header(503);
 				echo 'The configuration file does not exist.';
-				exit(EXIT_CONFIG);
+				exit(3); // EXIT_CONFIG
 			}
 
 			// Does the $config array exist in the file?
@@ -256,7 +258,7 @@ if ( ! function_exists('get_config'))
 			{
 				set_status_header(503);
 				echo 'Your config file does not appear to be formatted correctly.';
-				exit(EXIT_CONFIG);
+				exit(3); // EXIT_CONFIG
 			}
 
 			// references cannot be directly assigned to static variables, so we use an array
@@ -395,16 +397,17 @@ if ( ! function_exists('show_error'))
 		$status_code = abs($status_code);
 		if ($status_code < 100)
 		{
-			$exit_status = $status_code + EXIT__AUTO_MIN;
-			if ($exit_status > EXIT__AUTO_MAX)
+			$exit_status = $status_code + 9; // 9 is EXIT__AUTO_MIN
+			if ($exit_status > 125) // 125 is EXIT__AUTO_MAX
 			{
-				$exit_status = EXIT_ERROR;
+				$exit_status = 1; // EXIT_ERROR
 			}
+
 			$status_code = 500;
 		}
 		else
 		{
-			$exit_status = EXIT_ERROR;
+			$exit_status = 1; // EXIT_ERROR
 		}
 
 		$_error =& load_class('Exceptions', 'core');
@@ -432,7 +435,7 @@ if ( ! function_exists('show_404'))
 	{
 		$_error =& load_class('Exceptions', 'core');
 		$_error->show_404($page, $log_error);
-		exit(EXIT_UNKNOWN_FILE);
+		exit(4); // EXIT_UNKNOWN_FILE
 	}
 }
 
@@ -589,8 +592,6 @@ if ( ! function_exists('_exception_handler'))
 			set_status_header(500);
 		}
 
-		$_error =& load_class('Exceptions', 'core');
-
 		// Should we ignore the error? We'll get the current error_reporting
 		// level and add its bits with the severity bits to find out.
 		if (($severity & error_reporting()) !== $severity)
@@ -598,10 +599,11 @@ if ( ! function_exists('_exception_handler'))
 			return;
 		}
 
+		$_error =& load_class('Exceptions', 'core');
 		$_error->log_exception($severity, $message, $filepath, $line);
 
 		// Should we display the error?
-		if ((bool) ini_get('display_errors') === TRUE)
+		if (ini_get('display_errors'))
 		{
 			$_error->show_php_error($severity, $message, $filepath, $line);
 		}
@@ -611,7 +613,7 @@ if ( ! function_exists('_exception_handler'))
 		// default error handling. See http://www.php.net/manual/en/errorfunc.constants.php
 		if ($is_error)
 		{
-			exit(EXIT_ERROR);
+			exit(1); // EXIT_ERROR
 		}
 	}
 }
@@ -776,9 +778,9 @@ if ( ! function_exists('function_usable'))
 			{
 				if (extension_loaded('suhosin'))
 				{
-					$_suhosin_func_blacklist = explode(',', trim(@ini_get('suhosin.executor.func.blacklist')));
+					$_suhosin_func_blacklist = explode(',', trim(ini_get('suhosin.executor.func.blacklist')));
 
-					if ( ! in_array('eval', $_suhosin_func_blacklist, TRUE) && @ini_get('suhosin.executor.disable_eval'))
+					if ( ! in_array('eval', $_suhosin_func_blacklist, TRUE) && ini_get('suhosin.executor.disable_eval'))
 					{
 						$_suhosin_func_blacklist[] = 'eval';
 					}

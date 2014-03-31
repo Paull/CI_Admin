@@ -74,7 +74,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	register_shutdown_function('_shutdown_handler');
 
 	// Kill magic quotes
-	is_php('5.4') OR @ini_set('magic_quotes_runtime', 0);
+	is_php('5.4') OR ini_set('magic_quotes_runtime', 0);
 
 /*
  * ------------------------------------------------------
@@ -191,6 +191,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	require_once(BASEPATH.'core/compat/mbstring.php');
 	require_once(BASEPATH.'core/compat/hash.php');
 	require_once(BASEPATH.'core/compat/password.php');
+	require_once(BASEPATH.'core/compat/array.php');
 
 /*
  * ------------------------------------------------------
@@ -211,7 +212,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *  Instantiate the routing class and set the routing
  * ------------------------------------------------------
  */
-	$RTR =& load_class('Router', 'core');
+	$RTR =& load_class('Router', 'core', isset($routing) ? $routing : NULL);
 
 /*
  * ------------------------------------------------------
@@ -225,8 +226,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *	Is there a valid cache file? If so, we're done...
  * ------------------------------------------------------
  */
-	if ($EXT->call_hook('cache_override') === FALSE
-		&& $OUT->_display_cache($CFG, $URI) === TRUE)
+	if ($EXT->call_hook('cache_override') === FALSE && $OUT->_display_cache($CFG, $URI) === TRUE)
 	{
 		exit;
 	}
