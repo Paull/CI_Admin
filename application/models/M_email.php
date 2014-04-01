@@ -55,7 +55,7 @@ class M_email extends MY_Model {
 
         //准备发送邮件
         $this->load->library('email');
-        $this->email->from('no-reply@'.SITEDOMAIN);
+        $this->email->from($this->email->smtp_user);
         $this->email->to($member['email']); 
         $this->email->subject($data['subject']);
         $this->email->message($data['message']);
@@ -67,7 +67,8 @@ class M_email extends MY_Model {
         }
 
         unset($data['url']);
-        return $this->modify($data);
+        $this->modify($data);
+        return $data['status'];
     }
 
     //发送密码重置邮件
@@ -84,7 +85,7 @@ class M_email extends MY_Model {
 
         //准备发送邮件
         $this->load->library('email');
-        $this->email->from('no-reply@'.SITEDOMAIN);
+        $this->email->from($this->email->smtp_user);
         $this->email->to($member['email']); 
         $this->email->subject($data['subject']);
         $this->email->message($data['message']);
@@ -96,7 +97,8 @@ class M_email extends MY_Model {
         }
 
         unset($data['url']);
-        return $this->modify($data);
+        $this->modify($data);
+        return $data['status'];
     }
 
     //发送密码重置邮件
@@ -113,7 +115,7 @@ class M_email extends MY_Model {
 
         //准备发送邮件
         $this->load->library('email');
-        $this->email->from('no-reply@'.SITEDOMAIN);
+        $this->email->from($this->email->smtp_user);
         $this->email->to($member['email']); 
         $this->email->subject($data['subject']);
         $this->email->message($data['message']);
@@ -125,7 +127,8 @@ class M_email extends MY_Model {
         }
 
         unset($data['url']);
-        return $this->modify($data);
+        $this->modify($data);
+        return $data['status'];
     }
 
 }

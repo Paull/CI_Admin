@@ -29,7 +29,7 @@ class Email extends MY_Controller {
         $this->_data['template']['breadcrumbs'][] = array('uri'=>CLASS_URI, 'title'=>$this->_data['template']['title']);
         $this->_data['template']['styles'][] = STATIC_URL.'styles/email-inbox.css';
 
-        $this->_data['list'] = $this->{$this->_model}->get()->result_array();
+        $this->_data['list'] = $this->{$this->_model}->select('member.realname, email.*')->join('member', 'member.id=email.uid', 'left')->get()->result_array();
         
         $this->load->view($this->_layout, $this->_data);
 	}

@@ -97,24 +97,16 @@
                                 <!-- BEGIN EMAILS LIST -->
                                 <table class="table table-hover ">
                                     <tbody>
-<?php foreach($list as $item): ?>                                    
                                         <!-- BEGIN EMAIL INFO -->
                                         <tr>
                                             <td><input type="checkbox"></td>
-                                            <td class="hidden-phone"><strong><?php echo $item['realname']; ?></strong></td>
-                                            <td>
-<?php if($item['status']): ?>
-                                                <span class="label label-success">success</span>
-<?php else: ?>                                                
-                                                <span class="label label-important">failed</span>
-<?php endif; ?>
-                                                <strong><?php echo $item['subject']; ?></strong>
-                                            </td>
-                                            <td><?php if($item['status']): ?><i class="icon-paper-clip"></i><?php endif; ?></td>
-                                            <td><strong><?php echo date("Y-m-d H:i:s", $item['created']); ?></strong></td>
+                                            <td><i class="icon-star-empty"></i></td>
+                                            <td class="hidden-phone"><strong>John Doe</strong></td>
+                                            <td><span class="label label-important">important</span> <strong>Message body goes here</strong></td>
+                                            <td></td>
+                                            <td><strong>11:23 PM</strong></td>
                                         </tr>
                                         <!-- END EMAIL INFO -->
-<?php endforeach; ?>                                    
                                   </tbody>
                                 </table>
                                 <!-- END EMAILS LIST -->
