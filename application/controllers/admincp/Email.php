@@ -9,13 +9,6 @@ class Email extends MY_Controller {
         $this->load->model($this->_model);
     }
     
-	public function compose()
-	{
-        $this->_data['template']['title'] = '撰写邮件';
-        
-        $this->load->view($this->_layout, $this->_data);
-	}
-    
 	public function inbox()
 	{
         $this->_data['template']['title'] = '收件箱';

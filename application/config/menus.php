@@ -22,9 +22,6 @@ return array(
             'title'    => '邮件管理',
             'icon'     => 'email.png',
             'children' => array(
-                'admincp/email/compose' => array(
-                    'title' => '撰写邮件',
-                ),
                 'admincp/email/inbox'    => array(
                     'title' => '收件箱',
                 ),
