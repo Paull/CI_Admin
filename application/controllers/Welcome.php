@@ -26,7 +26,7 @@ class Welcome extends MY_Controller {
         $this->_data['username'] = $this->input->cookie('username');
 
         //不兼容的浏览器，低版本禁止访问
-        if($this->agent->browser() == 'Internet Explorer' && in_array($this->agent->version(), array('6.0', '7.0', '8.0')))
+        if($this->agent->browser() == 'Internet Explorer' && in_array($this->agent->version(), array('6.0', '7.0')))
         {
             show_error(lang('low_version_ie'), 403, 'Forbidden');
         }
@@ -84,13 +84,14 @@ class_name: 'gritter-light'
         $this->_data['template']['title'] = lang('sign_in');
 
         $this->load->library('form_validation');
-        $this->form_validation->set_error_delimiters('<p class="alert alert-error">', '</p>');
+        $this->form_validation->set_error_delimiters('<p class="alert alert-danger">', '</p>');
         $this->form_validation->set_rules('username', lang('username_or_email_label'), 'required|callback__check_username');
         $this->form_validation->set_rules('password', lang('password'), 'required|min_length[6]');
 
         //如果没有提交东西或验证失败，直接显示登录页面
         if ($this->form_validation->run() == FALSE)
         {
+            $this->_data['template']['styles'][] = STATIC_URL.'css/layout/login.css';
             $this->_data['template']['javascript'] .= "jQuery(\"input[value='']:eq(0)\").focus();";
 
             $this->load->view($this->_layout, $this->_data);
@@ -116,11 +117,13 @@ class_name: 'gritter-light'
         $this->_data['template']['title'] = lang('sign_up');
 
         $this->load->library('form_validation');
-        $this->form_validation->set_error_delimiters('<p class="alert alert-error">', '</p>');
+        $this->form_validation->set_error_delimiters('<p class="alert alert-danger">', '</p>');
         $this->form_validation->set_rules('username',  'Username', 'required|min_length[3]|max_length[10]|is_unique[member.username]');
         $this->form_validation->set_rules('email',     'Email', 'required|valid_email|is_unique[member.email]');
         $this->form_validation->set_rules('password1', 'Password', 'required|min_length[6]');
         $this->form_validation->set_rules('password2', 'Repeat Password', 'required|min_length[6]|matches[password1]');
+
+        $this->_data['template']['styles'][] = STATIC_URL.'css/layout/login.css';
 
         if ($this->form_validation->run() == FALSE)
         {
@@ -154,8 +157,10 @@ class_name: 'gritter-light'
         $this->_data['template']['title'] = lang('forget_password');
 
         $this->load->library('form_validation');
-        $this->form_validation->set_error_delimiters('<p class="alert alert-error">', '</p>');
+        $this->form_validation->set_error_delimiters('<p class="alert alert-danger">', '</p>');
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email|callback__check_email');
+
+        $this->_data['template']['styles'][] = STATIC_URL.'css/layout/login.css';
 
         if ($this->form_validation->run() == FALSE)
         {
@@ -267,7 +272,7 @@ class_name: 'gritter-light'
 
 
         $this->load->library('form_validation');
-        $this->form_validation->set_error_delimiters('<p class="alert alert-error">', '</p>');
+        $this->form_validation->set_error_delimiters('<p class="alert alert-danger">', '</p>');
         $this->form_validation->set_rules('password1', 'New Password', 'required|min_length[6]');
         $this->form_validation->set_rules('password2', 'Repeat Password', 'required|min_length[6]|matches[password1]');
 

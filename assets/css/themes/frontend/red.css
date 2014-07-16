@@ -1,0 +1,125 @@
+body {
+  color: #777777;
+  background: #f7f7f7;
+}
+a {
+  color: #ce1a15;
+}
+.pagination > li > a,
+.pagination > li > span {
+  color: #ee5f5b;
+}
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+  color: #fff;
+  background-color: #ee5f5b;
+  border-color: #ea3b36;
+}
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  color: #fff;
+  background-color: #ee5f5b;
+  border-color: #ea3b36;
+}
+.section-services .fa {
+  color: #ee5f5b;
+}
+/*--------------------
+ *  Featured Section
+ */
+.section-featured {
+  background: #ee5f5b;
+}
+.section-featured .item,
+.section-featured .carousel-inner {
+  background: #ee5f5b;
+}
+.section-featured .carousel-indicators li {
+  background: #f38c89;
+}
+.section-featured .carousel-indicators .active {
+  background: #e9322d;
+}
+.section-featured .carousel-control.left span,
+.section-featured .carousel-control.right span {
+  background-color: #ee5f5b;
+}
+/*--------------------
+ *  Testimonials
+ */
+.testimonials {
+  background: #ee5f5b;
+}
+.testimonials a {
+  color: #ce1a15;
+}
+/*--------------------
+ *  Section Quotes
+ */
+.section-quotes .quotes-carousel .carousel-control {
+  color: #ee5f5b;
+}
+.section-quotes .quotes-carousel .carousel-control:hover {
+  color: #e9322d;
+}
+.section-quotes .quotes-carousel .carousel-indicators li {
+  background: #ee5f5b;
+}
+.section-quotes .quotes-carousel .carousel-indicators .active {
+  background: #e9322d;
+}
+.section-quotes .item blockquote p:before {
+  color: #ee5f5b;
+}
+/*--------------------
+ *  About
+ */
+.section-about .section-heading,
+.section-about .team-detail h4 {
+  color: #ee5f5b;
+}
+/*--------------------
+ *  Title Page
+ */
+.title-page h3 {
+  color: #ee5f5b;
+}
+.title-page .breadcrumb {
+  color: #ee5f5b;
+}
+/*--------------------
+ *  Navbar
+ */
+.social-navbar.navbar .navbar-brand {
+  color: #ee5f5b;
+}
+.social-navbar.navbar .navbar-nav > li > a {
+  color: #ee5f5b;
+}
+.social-navbar.navbar .navbar-nav > li > a:hover {
+  color: #fff;
+  background-color: #e9322d;
+}
+.social-navbar.navbar .navbar-nav .open > a {
+  color: #fff;
+  background-color: #e9322d;
+}
+.social-navbar.navbar .navbar-nav .open > a:hover {
+  color: #fff;
+}
+/*--------------------
+ *  Footer
+ */
+.footer .website-info h4 {
+  color: #ee5f5b;
+}
+.footer .social-timeline a,
+.footer .copyright a {
+  color: #ee5f5b;
+}

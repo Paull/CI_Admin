@@ -1,0 +1,125 @@
+body {
+  color: #777777;
+  background: #f7f7f7;
+}
+a {
+  color: #3b4b6e;
+}
+.pagination > li > a,
+.pagination > li > span {
+  color: #647aab;
+}
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+  color: #fff;
+  background-color: #647aab;
+  border-color: #516695;
+}
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  color: #fff;
+  background-color: #647aab;
+  border-color: #516695;
+}
+.section-services .fa {
+  color: #647aab;
+}
+/*--------------------
+ *  Featured Section
+ */
+.section-featured {
+  background: #647aab;
+}
+.section-featured .item,
+.section-featured .carousel-inner {
+  background: #647aab;
+}
+.section-featured .carousel-indicators li {
+  background: #8596bd;
+}
+.section-featured .carousel-indicators .active {
+  background: #4d628f;
+}
+.section-featured .carousel-control.left span,
+.section-featured .carousel-control.right span {
+  background-color: #647aab;
+}
+/*--------------------
+ *  Testimonials
+ */
+.testimonials {
+  background: #647aab;
+}
+.testimonials a {
+  color: #3b4b6e;
+}
+/*--------------------
+ *  Section Quotes
+ */
+.section-quotes .quotes-carousel .carousel-control {
+  color: #647aab;
+}
+.section-quotes .quotes-carousel .carousel-control:hover {
+  color: #4d628f;
+}
+.section-quotes .quotes-carousel .carousel-indicators li {
+  background: #647aab;
+}
+.section-quotes .quotes-carousel .carousel-indicators .active {
+  background: #4d628f;
+}
+.section-quotes .item blockquote p:before {
+  color: #647aab;
+}
+/*--------------------
+ *  About
+ */
+.section-about .section-heading,
+.section-about .team-detail h4 {
+  color: #647aab;
+}
+/*--------------------
+ *  Title Page
+ */
+.title-page h3 {
+  color: #647aab;
+}
+.title-page .breadcrumb {
+  color: #647aab;
+}
+/*--------------------
+ *  Navbar
+ */
+.social-navbar.navbar .navbar-brand {
+  color: #647aab;
+}
+.social-navbar.navbar .navbar-nav > li > a {
+  color: #647aab;
+}
+.social-navbar.navbar .navbar-nav > li > a:hover {
+  color: #fff;
+  background-color: #4d628f;
+}
+.social-navbar.navbar .navbar-nav .open > a {
+  color: #fff;
+  background-color: #4d628f;
+}
+.social-navbar.navbar .navbar-nav .open > a:hover {
+  color: #fff;
+}
+/*--------------------
+ *  Footer
+ */
+.footer .website-info h4 {
+  color: #647aab;
+}
+.footer .social-timeline a,
+.footer .copyright a {
+  color: #647aab;
+}

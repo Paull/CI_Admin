@@ -122,7 +122,7 @@ define('URL_SUFFIX', $config['url_suffix']);
 | than english.
 |
 */
-$config['language']	= 'zh-CN';
+$config['language']	= 'english';
 
 /*
 |--------------------------------------------------------------------------

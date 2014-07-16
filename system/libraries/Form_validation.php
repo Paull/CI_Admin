@@ -791,6 +791,12 @@ class CI_Form_validation {
 			// Did the rule test negatively? If so, grab the error.
 			if ($result === FALSE)
 			{
+				// Callable rules don't have named error messages
+				if ( ! is_string($rule))
+				{
+					return;
+				}
+
 				// Check if a custom message is defined
 				if (isset($this->_field_data[$row['field']]['errors'][$rule]))
 				{
@@ -1221,6 +1227,11 @@ class CI_Form_validation {
 	 */
 	public function valid_email($str)
 	{
+		if (function_exists('idn_to_ascii') && $atpos = strpos($str, '@'))
+		{
+			$str = substr($str, 0, ++$atpos).idn_to_ascii(substr($str, $atpos));
+		}
+
 		return (bool) filter_var($str, FILTER_VALIDATE_EMAIL);
 	}
 
