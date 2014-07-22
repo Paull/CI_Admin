@@ -6,7 +6,7 @@ body {
   margin-right: 0;
   overflow: visible;
   -webkit-transition: margin-left 200ms ease;
-       -o-transition: margin-left 200ms ease;
+  -o-transition: margin-left 200ms ease;
           transition: margin-left 200ms ease;
 }
 .main .container {
@@ -184,7 +184,7 @@ body {
 .social-navbar .nav-indicators .nav-notifications .dropdown-menu a.text-muted,
 .social-navbar .nav-indicators .nav-tasks .dropdown-menu a.text-muted,
 .social-navbar .nav-indicators .nav-messages .dropdown-menu a.text-muted {
-  color: #999999;
+  color: #777777;
 }
 .social-navbar .nav-indicators .nav-notifications .dropdown-menu a.text-primary,
 .social-navbar .nav-indicators .nav-tasks .dropdown-menu a.text-primary,
@@ -481,13 +481,13 @@ a.social-navbar .nav-indicators .nav-messages .dropdown-menu a.text-danger:hover
   .social-navbar {
     left: 0;
     -webkit-transition: all 200ms ease-in-out;
-         -o-transition: all 200ms ease-in-out;
+    -o-transition: all 200ms ease-in-out;
             transition: all 200ms ease-in-out;
   }
   .social-navbar {
     left: 0;
     -webkit-transition: all 200ms ease-in-out;
-         -o-transition: all 200ms ease-in-out;
+    -o-transition: all 200ms ease-in-out;
             transition: all 200ms ease-in-out;
   }
   body[data-menu-position="open"] .social-navbar {
@@ -498,7 +498,7 @@ a.social-navbar .nav-indicators .nav-messages .dropdown-menu a.text-danger:hover
   .social-navbar {
     left: 0;
     -webkit-transition: all 200ms ease-in-out;
-         -o-transition: all 200ms ease-in-out;
+    -o-transition: all 200ms ease-in-out;
             transition: all 200ms ease-in-out;
   }
   body[data-menu-position="open"] .social-navbar {
@@ -999,14 +999,14 @@ a.social-navbar .nav-indicators .nav-messages .dropdown-menu a.text-danger:hover
 .social-sidebar .chat .chat-options .btn:focus,
 .social-sidebar .chat .chat-options .btn:active,
 .social-sidebar .chat .chat-options .btn.active,
-.open .dropdown-toggle.social-sidebar .chat .chat-options .btn {
+.open > .dropdown-toggle.social-sidebar .chat .chat-options .btn {
   color: #a9a9a9;
-  background-color: #363636;
+  background-color: #313131;
   border-color: #131313;
 }
 .social-sidebar .chat .chat-options .btn:active,
 .social-sidebar .chat .chat-options .btn.active,
-.open .dropdown-toggle.social-sidebar .chat .chat-options .btn {
+.open > .dropdown-toggle.social-sidebar .chat .chat-options .btn {
   background-image: none;
 }
 .social-sidebar .chat .chat-options .btn.disabled,
@@ -1048,7 +1048,7 @@ fieldset[disabled] .social-sidebar .chat .chat-options .btn.active {
 @media screen and (max-width: 767px) {
   .social-sidebar {
     -webkit-transition: all 200ms ease-out;
-         -o-transition: all 200ms ease-out;
+    -o-transition: all 200ms ease-out;
             transition: all 200ms ease-out;
     left: -200px;
     top: auto;
