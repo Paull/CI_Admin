@@ -16,7 +16,7 @@ $lang['sign_up_success'] = '一封带有<strong>激活链接</strong>的邮件�
 
 $lang['forget_password'] = '忘记密码';
 $lang['forget_password_header'] = '重置密码';
-$lang['forget_password_description'] = '输入邮件地址后我们会发送<strong>密码重置链接</strong>到您的邮箱.';
+$lang['forget_password_description'] = '我们会发送<strong>密码重置链接</strong>到您的邮箱.';
 $lang['forget_password_success'] = '我们发送了<strong>密码重置链接</strong>到您的邮箱! 请点击邮件中的链接继续重置密码.';
 $lang['back_to_login'] = '&nbsp;返回登陆页面';
 

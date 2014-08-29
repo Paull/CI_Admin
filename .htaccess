@@ -1,4 +1,5 @@
 SetEnv CI_ENV development
+#SetEnv CI_ENV production
 
 RewriteEngine On
 RewriteCond $1 !^(index\.php|robots\.txt|assets|uploads)
