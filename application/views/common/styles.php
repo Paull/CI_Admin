@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="<?php echo STATIC_URL; ?>css/themes/admin/facebook.css" id="current-theme">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries-->
     <!--[if lt IE 8]>
-    <script src="../../assets/js/html5shiv/html5shiv.js"></script>
-    <script src="../../assets/js/plugins/respond/respond.min.js"></script> 
+    <script src="<?php echo STATIC_URL; ?>js/html5shiv/html5shiv.js"></script>
+    <script src="<?php echo STATIC_URL; ?>js/plugins/respond/respond.min.js"></script> 
     <![endif]-->
     <!-- END GENERAL STYLE LINKS -->
 
@@ -22,13 +22,9 @@
 
     <!-- BEGIN STYLE CODES FOR THE CURRENT PAGE -->
     <style>
-        .wrapper .main {
-            margin-top: 40px;
-        }
+        .wrapper .main {margin-top: 40px;}
         @media screen and (max-width: 480px) {
-            .wrapper .main {
-                margin-top: 80px;
-            }
+            .wrapper .main {margin-top: 80px;}
         }
 <?php echo $template['stylesheet']; ?>
     </style>

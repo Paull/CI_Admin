@@ -1,34 +1,63 @@
-    <!-- BEGIN GENERAL JAVASCRIPT LINKS -->
-    <script src="<?php echo STATIC_URL; ?>plugins/jquery/jquery-1.10.2.min.js"></script>
-    <script src="<?php echo STATIC_URL; ?>plugins/jquery.ui/jquery-ui.min.js"></script>
-    <script src="<?php echo STATIC_URL; ?>plugins/jquery.ui.touch-punch/jquery.ui.touch-punch.js"></script>
-    <script src="<?php echo STATIC_URL; ?>plugins/bootstrap/bootstrap.min.js"></script>
+    <!-- BEGIN GENERAL SCRIPT LINKS -->
+    <script>
+      var assets_dir = '<?php echo STATIC_URL; ?>'
+    </script>
+    <!-- jQuery-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+      window.jQuery || document.write('<script src="'+assets_dir+'js/plugins/jquery/jquery.min.js"><\/script>')
+    </script>
+    <!-- Bootstrap JS-->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
+      $.fn.modal || document.write('<script src="'+assets_dir+'js/plugins/bootstrap/bootstrap.min.js"><\/script>')
+       // Prevent jQueryUI Conflicts
+       var bootstrapTooltip = $.fn.tooltip.noConflict()
+       $.fn.bootstrapTooltip = bootstrapTooltip
+    </script>
+    <!-- jQueryUI-->
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script>
+      window.jQuery.ui || document.write('<script src="'+assets_dir+'js/jquery-ui/jquery-ui.min.js"><\/script>')
+    </script>
+    <!-- Bootstrap Hover Dropdown-->
+    <script src="<?php echo STATIC_URL; ?>js/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
+    <!-- jQuery slimScroll-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.1/jquery.slimscroll.min.js"></script>
+    <script>
+      window.jQuery.ui || document.write('<script src="'+assets_dir+'js/plugins/jquery.slimscroll/jquery.slimscroll.min.js"><\/script>')
+    </script>
+    <script src="<?php echo STATIC_URL; ?>js/sidebar.js"></script>
+    <script src="<?php echo STATIC_URL; ?>js/panels.js"></script>
+    <!-- END GENERAL SCRIPT LINKS -->
 
-    <script src="<?php echo STATIC_URL; ?>plugins/holder/holder.js"></script>
-    <script src="<?php echo STATIC_URL; ?>plugins/jquery.slimscroll/jquery.slimscroll.min.js"></script>
-    <script src="<?php echo STATIC_URL; ?>plugins/jquery.simplecolorpicker/jquery.simplecolorpicker.js"></script>
-    <script src="<?php echo STATIC_URL; ?>plugins/jquery.livefilter/jquery.livefilter.js"></script>
-    <script src="<?php echo STATIC_URL; ?>plugins/jquery.cookie/jquery.cookie.js"></script>
+    <!-- BEGIN GENERAL SCRIPTS-->
+    <script>
+      /*<![CDATA[*/
+      $(function() {
+        $(".social-sidebar").socialSidebar();
+        $('.main').panels();
+        $(".main a[href='#ignore']").click(function(e) {
+          e.stopPropagation()
+        });
+      });
+      $(document).on('click', '.navbar-super .navbar-super-fw', function(e) {
+        e.stopPropagation()
+      });
+      /*]]>*/
+    </script>
+    <!-- END GENERAL SCRIPTS-->
 
-    <script src="<?php echo STATIC_URL; ?>scripts/extents.js"></script>
-    <script src="<?php echo STATIC_URL; ?>scripts/app-settings.js"></script>
-    <script src="<?php echo STATIC_URL; ?>scripts/sidebar.js"></script>
-    <!-- END GENERAL JAVASCRIPT LINKS -->
-
-    <!-- BEGIN JAVASCRIPT LINKS FOR THE CURRENT PAGE -->
+    <!-- BEGIN SCRIPT LINKS FOR THE CURRENT PAGE -->
 <?php foreach($template['scripts'] as $script): ?>
     <script src="<?php echo $script; ?>"></script>
 <?php endforeach; ?>
-    <!-- END JAVASCRIPT LINKS FOR THE CURRENT PAGE -->
+    <!-- END SCRIPT LINKS FOR THE CURRENT PAGE -->
 
-    <!-- BEGIN JAVASCRIPT CODES FOR THE CURRENT PAGE -->
+    <!-- BEGIN SCRIPTS FOR THE CURRENT PAGE -->
     <script>
         /*<![CDATA[*/
 <?php echo $template['javascript']; ?>
-        $(function() {
-            AppSettings.init({urlThemes: '<?php echo STATIC_URL; ?>styles/themes/social.theme-'});
-            SideBar.init({shortenOnClickOutside: <?php echo $autohide; ?>});
-        });
         /*]]>*/
     </script>
-    <!-- END JAVASCRIPT CODES FOR THE CURRENT PAGE -->
+    <!-- END SCRIPTS FOR THE CURRENT PAGE -->
