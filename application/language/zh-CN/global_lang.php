@@ -50,3 +50,7 @@ $lang['updated']  = '更新时间';
 $lang['no_permission'] = '无权限';
 
 $lang['keyword_more_than_2_letter'] = '输入超过2个字的关键字';
+
+//Sidebar
+$lang['my_profile'] = "个人资料";
+$lang['my_profile_desc'] = "查看编辑您的资料";

@@ -50,3 +50,7 @@ $lang['updated']  = 'updated at';
 $lang['no_permission'] = 'No Permission';
 
 $lang['keyword_more_than_2_letter'] = 'Enter a keyword more than 2 letters';
+
+//Sidebar
+$lang['my_profile'] = "My Profile";
+$lang['my_profile_desc'] = "View or edit your profile";

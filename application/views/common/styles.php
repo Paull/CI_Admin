@@ -23,9 +23,7 @@
     <!-- BEGIN STYLE CODES FOR THE CURRENT PAGE -->
     <style>
         .wrapper .main {margin-top: 40px;}
-        @media screen and (max-width: 480px) {
-            .wrapper .main {margin-top: 80px;}
-        }
+        @media screen and (max-width: 480px) {.wrapper .main {margin-top: 80px;}}
 <?php echo $template['stylesheet']; ?>
     </style>
     <!-- END STYLE CODES FOR THE CURRENT PAGE -->

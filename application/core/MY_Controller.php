@@ -48,7 +48,7 @@ class MY_Controller extends CI_Controller {
 
         //模板通用配置
         $this->_data['template']['title'] = '';
-        $this->_data['template']['breadcrumbs'][] = array('uri'=>$this->router->directory.'dashboard', 'title'=>'控制面板', 'icon'=>'icon-home');
+        $this->_data['template']['breadcrumbs'][] = array('uri'=>$this->router->directory.'dashboard', 'title'=>'控制面板', 'icon'=>'fa fa-dashboard fa-lg');
         $this->_data['template']['styles'] = array();
         $this->_data['template']['scripts'] = array();
         $this->_data['template']['stylesheet'] = '';
