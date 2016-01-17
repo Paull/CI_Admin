@@ -99,6 +99,15 @@ switch (ENVIRONMENT)
 
 /*
  *---------------------------------------------------------------
+ * ASSETS FOLDER NAME
+ *---------------------------------------------------------------
+ *
+ * NO TRAILING SLASH!
+ */
+	$assets_folder = 'assets';
+
+/*
+ *---------------------------------------------------------------
  * VIEW FOLDER NAME
  *---------------------------------------------------------------
  *
@@ -232,6 +241,28 @@ switch (ENVIRONMENT)
 		}
 
 		define('APPPATH', BASEPATH.$application_folder.DIRECTORY_SEPARATOR);
+	}
+
+	// The path to the "assets" folder
+	if (is_dir($assets_folder))
+	{
+		if (($_temp = realpath($assets_folder)) !== FALSE)
+		{
+			$assets_folder = $_temp;
+		}
+
+		define('ASSPATH', $assets_folder.DIRECTORY_SEPARATOR);
+	}
+	else
+	{
+		if ( ! is_dir(BASEPATH.$assets_folder.DIRECTORY_SEPARATOR))
+		{
+			header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
+			echo 'Your assets folder path does not appear to be set correctly. Please open the following file and correct this: '.SELF;
+			exit(3); // EXIT_* constants not yet defined; 3 is EXIT_CONFIG.
+		}
+
+		define('ASSPATH', BASEPATH.$assets_folder.DIRECTORY_SEPARATOR);
 	}
 
 	// The path to the "views" folder
