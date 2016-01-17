@@ -2,11 +2,11 @@
 /**
  * CodeIgniter
  *
- * An open source application development framework for PHP 5.2.4 or newer
+ * An open source application development framework for PHP
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2014, British Columbia Institute of Technology
+ * Copyright (c) 2014 - 2016, British Columbia Institute of Technology
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,10 +28,10 @@
  *
  * @package	CodeIgniter
  * @author	EllisLab Dev Team
- * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (http://ellislab.com/)
- * @copyright	Copyright (c) 2014, British Columbia Institute of Technology (http://bcit.ca/)
+ * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
+ * @copyright	Copyright (c) 2014 - 2016, British Columbia Institute of Technology (http://bcit.ca/)
  * @license	http://opensource.org/licenses/MIT	MIT License
- * @link	http://codeigniter.com
+ * @link	https://codeigniter.com
  * @since	Version 1.0.0
  * @filesource
  */
@@ -44,7 +44,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @subpackage	Libraries
  * @category	Language
  * @author		EllisLab Dev Team
- * @link		http://codeigniter.com/user_guide/libraries/language.html
+ * @link		https://codeigniter.com/user_guide/libraries/language.html
  */
 class CI_Lang {
 
@@ -69,7 +69,7 @@ class CI_Lang {
 	 */
 	public function __construct()
 	{
-		log_message('debug', 'Language Class Initialized');
+		log_message('info', 'Language Class Initialized');
 	}
 
 	// --------------------------------------------------------------------
@@ -87,6 +87,16 @@ class CI_Lang {
 	 */
 	public function load($langfile, $idiom = '', $return = FALSE, $add_suffix = TRUE, $alt_path = '')
 	{
+		if (is_array($langfile))
+		{
+			foreach ($langfile as $value)
+			{
+				$this->load($value, $idiom, $return, $add_suffix, $alt_path);
+			}
+
+			return;
+		}
+
 		$langfile = str_replace('.php', '', $langfile);
 
 		if ($add_suffix === TRUE)
@@ -96,7 +106,7 @@ class CI_Lang {
 
 		$langfile .= '.php';
 
-		if (empty($idiom) OR ! ctype_alpha($idiom))
+		if (empty($idiom) OR ! preg_match('/^[a-z_-]+$/i', $idiom))
 		{
 			$config =& get_config();
 			$idiom = empty($config['language']) ? 'english' : $config['language'];
@@ -162,7 +172,7 @@ class CI_Lang {
 		$this->is_loaded[$langfile] = $idiom;
 		$this->language = array_merge($this->language, $lang);
 
-		log_message('debug', 'Language file loaded: language/'.$idiom.'/'.$langfile);
+		log_message('info', 'Language file loaded: language/'.$idiom.'/'.$langfile);
 		return TRUE;
 	}
 
@@ -191,6 +201,3 @@ class CI_Lang {
 	}
 
 }
-
-/* End of file Lang.php */
-/* Location: ./system/core/Lang.php */

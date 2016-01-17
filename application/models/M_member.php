@@ -259,7 +259,7 @@ class M_member extends MY_Model {
             //取id值设为array key
             $list = Helper_Array::toHashmap($list, 'id');
 
-            $this->cache->save($this->_table.'_children_'.$id.'_'.(int)$self_included, $list, CACHE_TIMEOUT);
+            $this->cache->save($this->_table.'_children_'.$id.'_'.(int)$self_included, $list, (ENVIRONMENT == 'development' ? 30 : 86400));
         }
         return $list;
     }

@@ -227,7 +227,7 @@ function convertip($ip) {
   $ip2num = 0;
   $ipAddr1 ="";
   $ipAddr2 ="";
-  $dat_path = BASEPATH . 'qqwry.dat';
+  $dat_path = ASSPATH . 'qqwry.dat';
   if(!preg_match("/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/", $ip)) {
     return 'IP Address Error';
   }

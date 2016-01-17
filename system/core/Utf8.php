@@ -2,11 +2,11 @@
 /**
  * CodeIgniter
  *
- * An open source application development framework for PHP 5.2.4 or newer
+ * An open source application development framework for PHP
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2014, British Columbia Institute of Technology
+ * Copyright (c) 2014 - 2016, British Columbia Institute of Technology
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,10 +28,10 @@
  *
  * @package	CodeIgniter
  * @author	EllisLab Dev Team
- * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (http://ellislab.com/)
- * @copyright	Copyright (c) 2014, British Columbia Institute of Technology (http://bcit.ca/)
+ * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
+ * @copyright	Copyright (c) 2014 - 2016, British Columbia Institute of Technology (http://bcit.ca/)
  * @license	http://opensource.org/licenses/MIT	MIT License
- * @link	http://codeigniter.com
+ * @link	https://codeigniter.com
  * @since	Version 2.0.0
  * @filesource
  */
@@ -46,7 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @subpackage	Libraries
  * @category	UTF-8
  * @author		EllisLab Dev Team
- * @link		http://codeigniter.com/user_guide/libraries/utf8.html
+ * @link		https://codeigniter.com/user_guide/libraries/utf8.html
  */
 class CI_Utf8 {
 
@@ -74,7 +74,7 @@ class CI_Utf8 {
 			log_message('debug', 'UTF-8 Support Disabled');
 		}
 
-		log_message('debug', 'Utf8 Class Initialized');
+		log_message('info', 'Utf8 Class Initialized');
 	}
 
 	// --------------------------------------------------------------------
@@ -162,6 +162,3 @@ class CI_Utf8 {
 	}
 
 }
-
-/* End of file Utf8.php */
-/* Location: ./system/core/Utf8.php */
