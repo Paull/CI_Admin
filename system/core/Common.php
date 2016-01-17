@@ -2,11 +2,11 @@
 /**
  * CodeIgniter
  *
- * An open source application development framework for PHP 5.2.4 or newer
+ * An open source application development framework for PHP
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2014, British Columbia Institute of Technology
+ * Copyright (c) 2014 - 2016, British Columbia Institute of Technology
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,10 +28,10 @@
  *
  * @package	CodeIgniter
  * @author	EllisLab Dev Team
- * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (http://ellislab.com/)
- * @copyright	Copyright (c) 2014, British Columbia Institute of Technology (http://bcit.ca/)
+ * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
+ * @copyright	Copyright (c) 2014 - 2016, British Columbia Institute of Technology (http://bcit.ca/)
  * @license	http://opensource.org/licenses/MIT	MIT License
- * @link	http://codeigniter.com
+ * @link	https://codeigniter.com
  * @since	Version 1.0.0
  * @filesource
  */
@@ -46,7 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @subpackage	CodeIgniter
  * @category	Common Functions
  * @author		EllisLab Dev Team
- * @link		http://codeigniter.com/user_guide/
+ * @link		https://codeigniter.com/user_guide/
  */
 
 // ------------------------------------------------------------------------
@@ -54,7 +54,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 if ( ! function_exists('is_php'))
 {
 	/**
-	 * Determines if the current version of PHP is greater then the supplied value
+	 * Determines if the current version of PHP is equal to or greater than the supplied value
 	 *
 	 * @param	string
 	 * @return	bool	TRUE if the current version is $version or higher
@@ -86,7 +86,7 @@ if ( ! function_exists('is_really_writable'))
 	 *
 	 * @link	https://bugs.php.net/bug.php?id=54709
 	 * @param	string
-	 * @return	void
+	 * @return	bool
 	 */
 	function is_really_writable($file)
 	{
@@ -181,7 +181,7 @@ if ( ! function_exists('load_class'))
 		// Did we find the class?
 		if ($name === FALSE)
 		{
-			// Note: We use exit() rather then show_error() in order to avoid a
+			// Note: We use exit() rather than show_error() in order to avoid a
 			// self-referencing loop with the Exceptions class
 			set_status_header(503);
 			echo 'Unable to locate the specified class: '.$class.'.php';
@@ -492,59 +492,67 @@ if ( ! function_exists('set_status_header'))
 	 */
 	function set_status_header($code = 200, $text = '')
 	{
-		$stati = array(
-			200	=> 'OK',
-			201	=> 'Created',
-			202	=> 'Accepted',
-			203	=> 'Non-Authoritative Information',
-			204	=> 'No Content',
-			205	=> 'Reset Content',
-			206	=> 'Partial Content',
-
-			300	=> 'Multiple Choices',
-			301	=> 'Moved Permanently',
-			302	=> 'Found',
-			303	=> 'See Other',
-			304	=> 'Not Modified',
-			305	=> 'Use Proxy',
-			307	=> 'Temporary Redirect',
-
-			400	=> 'Bad Request',
-			401	=> 'Unauthorized',
-			403	=> 'Forbidden',
-			404	=> 'Not Found',
-			405	=> 'Method Not Allowed',
-			406	=> 'Not Acceptable',
-			407	=> 'Proxy Authentication Required',
-			408	=> 'Request Timeout',
-			409	=> 'Conflict',
-			410	=> 'Gone',
-			411	=> 'Length Required',
-			412	=> 'Precondition Failed',
-			413	=> 'Request Entity Too Large',
-			414	=> 'Request-URI Too Long',
-			415	=> 'Unsupported Media Type',
-			416	=> 'Requested Range Not Satisfiable',
-			417	=> 'Expectation Failed',
-			422	=> 'Unprocessable Entity',
-
-			500	=> 'Internal Server Error',
-			501	=> 'Not Implemented',
-			502	=> 'Bad Gateway',
-			503	=> 'Service Unavailable',
-			504	=> 'Gateway Timeout',
-			505	=> 'HTTP Version Not Supported'
-		);
+		if (is_cli())
+		{
+			return;
+		}
 
 		if (empty($code) OR ! is_numeric($code))
 		{
 			show_error('Status codes must be numeric', 500);
 		}
 
-		is_int($code) OR $code = (int) $code;
-
 		if (empty($text))
 		{
+			is_int($code) OR $code = (int) $code;
+			$stati = array(
+				100	=> 'Continue',
+				101	=> 'Switching Protocols',
+
+				200	=> 'OK',
+				201	=> 'Created',
+				202	=> 'Accepted',
+				203	=> 'Non-Authoritative Information',
+				204	=> 'No Content',
+				205	=> 'Reset Content',
+				206	=> 'Partial Content',
+
+				300	=> 'Multiple Choices',
+				301	=> 'Moved Permanently',
+				302	=> 'Found',
+				303	=> 'See Other',
+				304	=> 'Not Modified',
+				305	=> 'Use Proxy',
+				307	=> 'Temporary Redirect',
+
+				400	=> 'Bad Request',
+				401	=> 'Unauthorized',
+				402	=> 'Payment Required',
+				403	=> 'Forbidden',
+				404	=> 'Not Found',
+				405	=> 'Method Not Allowed',
+				406	=> 'Not Acceptable',
+				407	=> 'Proxy Authentication Required',
+				408	=> 'Request Timeout',
+				409	=> 'Conflict',
+				410	=> 'Gone',
+				411	=> 'Length Required',
+				412	=> 'Precondition Failed',
+				413	=> 'Request Entity Too Large',
+				414	=> 'Request-URI Too Long',
+				415	=> 'Unsupported Media Type',
+				416	=> 'Requested Range Not Satisfiable',
+				417	=> 'Expectation Failed',
+				422	=> 'Unprocessable Entity',
+
+				500	=> 'Internal Server Error',
+				501	=> 'Not Implemented',
+				502	=> 'Bad Gateway',
+				503	=> 'Service Unavailable',
+				504	=> 'Gateway Timeout',
+				505	=> 'HTTP Version Not Supported'
+			);
+
 			if (isset($stati[$code]))
 			{
 				$text = $stati[$code];
@@ -555,15 +563,14 @@ if ( ! function_exists('set_status_header'))
 			}
 		}
 
-		$server_protocol = isset($_SERVER['SERVER_PROTOCOL']) ? $_SERVER['SERVER_PROTOCOL'] : FALSE;
-
 		if (strpos(PHP_SAPI, 'cgi') === 0)
 		{
 			header('Status: '.$code.' '.$text, TRUE);
 		}
 		else
 		{
-			header(($server_protocol ? $server_protocol : 'HTTP/1.1').' '.$code.' '.$text, TRUE, $code);
+			$server_protocol = isset($_SERVER['SERVER_PROTOCOL']) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.1';
+			header($server_protocol.' '.$code.' '.$text, TRUE, $code);
 		}
 	}
 }
@@ -615,7 +622,7 @@ if ( ! function_exists('_error_handler'))
 		$_error->log_exception($severity, $message, $filepath, $line);
 
 		// Should we display the error?
-		if (ini_get('display_errors'))
+		if (str_ireplace(array('off', 'none', 'no', 'false', 'null'), '', ini_get('display_errors')))
 		{
 			$_error->show_php_error($severity, $message, $filepath, $line);
 		}
@@ -650,7 +657,7 @@ if ( ! function_exists('_exception_handler'))
 		$_error->log_exception('error', 'Exception: '.$exception->getMessage(), $exception->getFile(), $exception->getLine());
 
 		// Should we display the error?
-		if (ini_get('display_errors'))
+		if (str_ireplace(array('off', 'none', 'no', 'false', 'null'), '', ini_get('display_errors')))
 		{
 			$_error->show_exception($exception);
 		}
@@ -670,7 +677,7 @@ if ( ! function_exists('_shutdown_handler'))
 	 * of CodeIgniter.php. The main reason we use this is to simulate
 	 * a complete custom exception handler.
 	 *
-	 * E_STRICT is purposivly neglected because such events may have
+	 * E_STRICT is purposively neglected because such events may have
 	 * been caught. Duplication or none? None is preferred for now.
 	 *
 	 * @link	http://insomanic.me.uk/post/229851073/php-trick-catching-fatal-errors-e-error-with-a
@@ -738,9 +745,19 @@ if ( ! function_exists('html_escape'))
 	 */
 	function html_escape($var, $double_encode = TRUE)
 	{
+		if (empty($var))
+		{
+			return $var;
+		}
+
 		if (is_array($var))
 		{
-			return array_map('html_escape', $var, array_fill(0, count($var), $double_encode));
+			foreach (array_keys($var) as $key)
+			{
+				$var[$key] = html_escape($var[$key], $double_encode);
+			}
+
+			return $var;
 		}
 
 		return htmlspecialchars($var, ENT_QUOTES, config_item('charset'), $double_encode);
@@ -821,19 +838,9 @@ if ( ! function_exists('function_usable'))
 		{
 			if ( ! isset($_suhosin_func_blacklist))
 			{
-				if (extension_loaded('suhosin'))
-				{
-					$_suhosin_func_blacklist = explode(',', trim(ini_get('suhosin.executor.func.blacklist')));
-
-					if ( ! in_array('eval', $_suhosin_func_blacklist, TRUE) && ini_get('suhosin.executor.disable_eval'))
-					{
-						$_suhosin_func_blacklist[] = 'eval';
-					}
-				}
-				else
-				{
-					$_suhosin_func_blacklist = array();
-				}
+				$_suhosin_func_blacklist = extension_loaded('suhosin')
+					? explode(',', trim(ini_get('suhosin.executor.func.blacklist')))
+					: array();
 			}
 
 			return ! in_array($function_name, $_suhosin_func_blacklist, TRUE);
@@ -842,6 +849,3 @@ if ( ! function_exists('function_usable'))
 		return FALSE;
 	}
 }
-
-/* End of file Common.php */
-/* Location: ./system/core/Common.php */

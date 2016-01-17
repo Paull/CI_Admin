@@ -2,11 +2,11 @@
 /**
  * CodeIgniter
  *
- * An open source application development framework for PHP 5.2.4 or newer
+ * An open source application development framework for PHP
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2014, British Columbia Institute of Technology
+ * Copyright (c) 2014 - 2016, British Columbia Institute of Technology
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,10 +28,10 @@
  *
  * @package	CodeIgniter
  * @author	EllisLab Dev Team
- * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (http://ellislab.com/)
- * @copyright	Copyright (c) 2014, British Columbia Institute of Technology (http://bcit.ca/)
+ * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
+ * @copyright	Copyright (c) 2014 - 2016, British Columbia Institute of Technology (http://bcit.ca/)
  * @license	http://opensource.org/licenses/MIT	MIT License
- * @link	http://codeigniter.com
+ * @link	https://codeigniter.com
  * @since	Version 1.0.0
  * @filesource
  */
@@ -46,7 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @subpackage	Libraries
  * @category	Libraries
  * @author		EllisLab Dev Team
- * @link		http://codeigniter.com/user_guide/libraries/config.html
+ * @link		https://codeigniter.com/user_guide/libraries/config.html
  */
 class CI_Config {
 
@@ -72,6 +72,8 @@ class CI_Config {
 	 */
 	public $_config_paths =	array(APPPATH);
 
+	// --------------------------------------------------------------------
+
 	/**
 	 * Class constructor
 	 *
@@ -82,16 +84,22 @@ class CI_Config {
 	public function __construct()
 	{
 		$this->config =& get_config();
-		log_message('debug', 'Config Class Initialized');
 
 		// Set the base_url automatically if none was provided
 		if (empty($this->config['base_url']))
 		{
-			// The regular expression is only a basic validation for a valid "Host" header.
-			// It's not exhaustive, only checks for valid characters.
-			if (isset($_SERVER['HTTP_HOST']) && preg_match('/^((\[[0-9a-f:]+\])|(\d{1,3}(\.\d{1,3}){3})|[a-z0-9\-\.]+)(:\d+)?$/i', $_SERVER['HTTP_HOST']))
+			if (isset($_SERVER['SERVER_ADDR']))
 			{
-				$base_url = (is_https() ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST']
+				if (strpos($_SERVER['SERVER_ADDR'], ':') !== FALSE)
+				{
+					$server_addr = '['.$_SERVER['SERVER_ADDR'].']';
+				}
+				else
+				{
+					$server_addr = $_SERVER['SERVER_ADDR'];
+				}
+
+				$base_url = (is_https() ? 'https' : 'http').'://'.$server_addr
 					.substr($_SERVER['SCRIPT_NAME'], 0, strpos($_SERVER['SCRIPT_NAME'], basename($_SERVER['SCRIPT_FILENAME'])));
 			}
 			else
@@ -101,6 +109,8 @@ class CI_Config {
 
 			$this->set_item('base_url', $base_url);
 		}
+
+		log_message('info', 'Config Class Initialized');
 	}
 
 	// --------------------------------------------------------------------
@@ -120,74 +130,59 @@ class CI_Config {
 
 		foreach ($this->_config_paths as $path)
 		{
-			$found = FALSE;
-			foreach (array(ENVIRONMENT.'/'.$file, $file) as $location)
+			foreach (array($file, ENVIRONMENT.DIRECTORY_SEPARATOR.$file) as $location)
 			{
 				$file_path = $path.'config/'.$location.'.php';
-
 				if (in_array($file_path, $this->is_loaded, TRUE))
 				{
-					$loaded = TRUE;
-					continue 2;
+					return TRUE;
 				}
 
-				if (file_exists($file_path))
+				if ( ! file_exists($file_path))
 				{
-					$found = TRUE;
-					break;
+					continue;
 				}
-			}
 
-			if ($found === FALSE)
-			{
-				continue;
-			}
+				include($file_path);
 
-			include($file_path);
-
-			if ( ! isset($config) OR ! is_array($config))
-			{
-				if ($fail_gracefully === TRUE)
+				if ( ! isset($config) OR ! is_array($config))
 				{
-					return FALSE;
+					if ($fail_gracefully === TRUE)
+					{
+						return FALSE;
+					}
+
+					show_error('Your '.$file_path.' file does not appear to contain a valid configuration array.');
 				}
-				show_error('Your '.$file_path.' file does not appear to contain a valid configuration array.');
-			}
 
-			if ($use_sections === TRUE)
-			{
-				if (isset($this->config[$file]))
+				if ($use_sections === TRUE)
 				{
-					$this->config[$file] = array_merge($this->config[$file], $config);
+					$this->config[$file] = isset($this->config[$file])
+						? array_merge($this->config[$file], $config)
+						: $config;
 				}
 				else
 				{
-					$this->config[$file] = $config;
+					$this->config = array_merge($this->config, $config);
 				}
-			}
-			else
-			{
-				$this->config = array_merge($this->config, $config);
-			}
 
-			$this->is_loaded[] = $file_path;
-			unset($config);
-
-			$loaded = TRUE;
-			log_message('debug', 'Config file loaded: '.$file_path);
-			break;
+				$this->is_loaded[] = $file_path;
+				$config = NULL;
+				$loaded = TRUE;
+				log_message('debug', 'Config file loaded: '.$file_path);
+			}
 		}
 
-		if ($loaded === FALSE)
+		if ($loaded === TRUE)
 		{
-			if ($fail_gracefully === TRUE)
-			{
-				return FALSE;
-			}
-			show_error('The configuration file '.$file.'.php does not exist.');
+			return TRUE;
+		}
+		elseif ($fail_gracefully === TRUE)
+		{
+			return FALSE;
 		}
 
-		return TRUE;
+		show_error('The configuration file '.$file.'.php does not exist.');
 	}
 
 	// --------------------------------------------------------------------
@@ -250,7 +245,15 @@ class CI_Config {
 
 		if (isset($protocol))
 		{
-			$base_url = $protocol.substr($base_url, strpos($base_url, '://'));
+			// For protocol-relative links
+			if ($protocol === '')
+			{
+				$base_url = substr($base_url, strpos($base_url, '//'));
+			}
+			else
+			{
+				$base_url = $protocol.substr($base_url, strpos($base_url, '://'));
+			}
 		}
 
 		if (empty($uri))
@@ -305,7 +308,15 @@ class CI_Config {
 
 		if (isset($protocol))
 		{
-			$base_url = $protocol.substr($base_url, strpos($base_url, '://'));
+			// For protocol-relative links
+			if ($protocol === '')
+			{
+				$base_url = substr($base_url, strpos($base_url, '//'));
+			}
+			else
+			{
+				$base_url = $protocol.substr($base_url, strpos($base_url, '://'));
+			}
 		}
 
 		return $base_url.ltrim($this->_uri_string($uri), '/');
@@ -369,6 +380,3 @@ class CI_Config {
 	}
 
 }
-
-/* End of file Config.php */
-/* Location: ./system/core/Config.php */
