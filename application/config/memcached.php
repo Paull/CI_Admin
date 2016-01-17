@@ -1,17 +1,19 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 /*
 | -------------------------------------------------------------------------
-| Cache settings
+| Memcached settings
 | -------------------------------------------------------------------------
+| Your Memcached servers can be specified below.
 |
-| set a cache key prefix can seprate different projects while sharing a single
-| cache engine
+|	See: https://codeigniter.com/user_guide/libraries/caching.html#memcached
 |
-|*/
-
+*/
 $config = array(
-    'key_prefix' => substr(md5(SITENAME), 0, 8).'_',
-    'adapter'    => 'memcached',
-    'backup'     => 'file',
+	'default' => array(
+		'hostname' => '127.0.0.1',
+		'port'     => '11211',
+		'weight'   => '1',
+	),
 );
