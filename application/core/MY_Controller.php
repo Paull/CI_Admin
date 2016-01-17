@@ -77,7 +77,7 @@ class MY_Controller extends CI_Controller {
                 {
                     $this->_data['menus'] = include(APPPATH.'config/menus.php');
                 }
-                $this->cache->save('menus', $this->_data['menus'], CACHE_TIMEOUT);
+                $this->cache->save('menus', $this->_data['menus'], (ENVIRONMENT == 'development' ? 30 : 86400));
             }
             //分配身份相关的菜单数组
             $this->_data['menu'] = $this->_data['menus'][$this->_data['self']['identity']];
@@ -87,7 +87,7 @@ class MY_Controller extends CI_Controller {
             if($this->_data['template']['menus'] === FALSE)
             {
                 $this->_data['template']['menus'] = load_menu($this->_data['menus']);
-                $this->cache->save('template_menus', $this->_data['template']['menus'], CACHE_TIMEOUT);
+                $this->cache->save('template_menus', $this->_data['template']['menus'], (ENVIRONMENT == 'development' ? 30 : 86400));
             }
             //分配身份相关的菜单模版
             $this->_data['template']['menu'] = $this->_data['template']['menus'][$this->_data['self']['identity']];

@@ -122,7 +122,7 @@ class M_area extends MY_Model {
                 $list = array_merge($list, $result);
             }
 
-            $this->cache->save($this->_table.'_children_'.$id.'_'.(int)$self_included, $list, CACHE_TIMEOUT);
+            $this->cache->save($this->_table.'_children_'.$id.'_'.(int)$self_included, $list, (ENVIRONMENT == 'development' ? 30 : 86400));
         }
         return $list;
     }
@@ -135,7 +135,7 @@ class M_area extends MY_Model {
         {
             $list = $this->get_children($this->session->userdata('areaid'));
             $list = Helper_Array::toHashmap($list, 'id', 'name');
-            $this->cache->save('area_hash_'.$this->session->userdata('areaid'), $list, CACHE_TIMEOUT);
+            $this->cache->save('area_hash_'.$this->session->userdata('areaid'), $list, (ENVIRONMENT == 'development' ? 30 : 86400));
         }
         return $list;
     }
@@ -149,7 +149,7 @@ class M_area extends MY_Model {
             $list = $this->get_children($this->session->userdata('areaid'));
             $list = Helper_Array::toTree($list, 'id', 'parentid', 'children');
             $list = $this->_toHashmap($list, 'id', 'children');
-            $this->cache->save('area_tree_'.$this->session->userdata('areaid'), $list, CACHE_TIMEOUT);
+            $this->cache->save('area_tree_'.$this->session->userdata('areaid'), $list, (ENVIRONMENT == 'development' ? 30 : 86400));
         }
         return $list;
     }
@@ -167,7 +167,7 @@ class M_area extends MY_Model {
                 $value = Helper_array::toHashmap($value, 'id', 'name');
                 $list[$key] = $value;
             }
-            $this->cache->save('area_group_'.$this->session->userdata('areaid'), $list, CACHE_TIMEOUT);
+            $this->cache->save('area_group_'.$this->session->userdata('areaid'), $list, (ENVIRONMENT == 'development' ? 30 : 86400));
         }
         return $list;
     }
@@ -182,7 +182,7 @@ class M_area extends MY_Model {
             $list = $this->get_children($this->session->userdata('areaid'));
             $list = Helper_Array::toTree($list, 'id', 'parentid', 'children');
             $list = $this->_toDropdown($list, $type);
-            $this->cache->save('area_dropdown_'.$this->session->userdata('areaid').'_'.$type, $list, CACHE_TIMEOUT);
+            $this->cache->save('area_dropdown_'.$this->session->userdata('areaid').'_'.$type, $list, (ENVIRONMENT == 'development' ? 30 : 86400));
         }   
         return $list;
     }
