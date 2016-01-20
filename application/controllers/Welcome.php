@@ -62,7 +62,7 @@ class_name: 'gritter-light'
         //修正不带www的网址
         if( substr_count($_SERVER['SERVER_NAME'], '.') == 1 )
         {
-            redirect($_SERVER['REQUEST_SCHEME'].'://www.'.$_SERVER['SERVER_NAME']);
+            redirect('http://www.'.$_SERVER['SERVER_NAME']);
         }
         
         //自动跳转

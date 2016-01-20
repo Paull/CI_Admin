@@ -2,7 +2,7 @@
 
 class MY_Controller extends CI_Controller {
 
-    public $_data = array();
+    protected $_data = array();
     protected $_layout = 'common/layout';
 
     function __construct()
