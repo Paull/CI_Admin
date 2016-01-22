@@ -4,11 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta name="description" content="Tunnel light watchtower by Haiwei ltd,.">
-    <meta name="author" content="Paull">
-
     <title>{$site_title}</title>
-
     <link rel="apple-touch-icon" href="{$template.assets}images/apple-touch-icon.png">
     <link rel="shortcut icon" href="{$template.assets}images/favicon.ico">
 
@@ -18,7 +14,6 @@
     <link rel="stylesheet" href="{$template.assets}css/site.min.css">
 
     <!-- Plugins -->
-{% block css_vendor %}
     <link rel="stylesheet" href="{$template.assets}vendor/animsition/animsition.css">
     <link rel="stylesheet" href="{$template.assets}vendor/asscrollable/asScrollable.css">
     <link rel="stylesheet" href="{$template.assets}vendor/switchery/switchery.css">
@@ -26,16 +21,14 @@
     <link rel="stylesheet" href="{$template.assets}vendor/slidepanel/slidePanel.css">
     <link rel="stylesheet" href="{$template.assets}vendor/flag-icon-css/flag-icon.css">
     <link rel="stylesheet" href="{$template.assets}vendor/waves/waves.css">
-{% endblock %}
-{% block css_extra %}
-
+{% block styles %}
 {% endblock %}
 
     <!-- Fonts -->
-{% block fonts %}
     <link rel="stylesheet" href="{$template.assets}/fonts/material-design/material-design.min.css">
     <link rel="stylesheet" href="{$template.assets}/fonts/brand-icons/brand-icons.min.css">
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
+{% block fonts %}
 {% endblock %}
 
     <!--[if lt IE 9]>
@@ -74,37 +67,27 @@
     <script src="{$template.assets}vendor/waves/waves.js"></script>
 
     <!-- Plugins -->
-{% block js_vendor %}
     <script src="{$template.assets}vendor/switchery/switchery.min.js"></script>
     <script src="{$template.assets}vendor/intro-js/intro.js"></script>
     <script src="{$template.assets}vendor/screenfull/screenfull.js"></script>
     <script src="{$template.assets}vendor/slidepanel/jquery-slidePanel.js"></script>
-{% endblock %}
-{% block js_vendor_extra %}
-{% endblock %}
 
     <!-- Scripts -->
-{% block js %}
     <script src="{$template.assets}js/core.js"></script>
     <script src="{$template.assets}js/site.js"></script>
-
     <script src="{$template.assets}js/sections/menu.js"></script>
     <script src="{$template.assets}js/sections/menubar.js"></script>
     <script src="{$template.assets}js/sections/sidebar.js"></script>
-
     <script src="{$template.assets}js/configs/config-colors.js"></script>
     <script src="{$template.assets}js/configs/config-tour.js"></script>
-
     <script src="{$template.assets}js/components/asscrollable.js"></script>
     <script src="{$template.assets}js/components/animsition.js"></script>
     <script src="{$template.assets}js/components/slidepanel.js"></script>
     <script src="{$template.assets}js/components/switchery.js"></script>
     <script src="{$template.assets}js/components/tabs.js"></script>
-{% endblock %}
-{% block js_extra %}
+{% block scripts %}
 {% endblock %}
 
-{% block scripts %}
     <script>
       (function(document, window, $){
         'use strict';
@@ -114,7 +97,8 @@
           Site.run();
         });
       })(document, window, jQuery);
-    </script>
+{% block javascript %}
 {% endblock %}
+    </script>
   </body>
 </html>

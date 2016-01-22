@@ -3,15 +3,12 @@
   {% set site_title='sign in' %}
   {% set body_class='page-login layout-full page-dark' %}
 
-  {% block css_extra %}
+  {% block styles %}
     <link rel="stylesheet" href="{$template.assets}examples/css/pages/login.css">
   {% endblock %}
 
-  {% block js_vendor_extra %}
+  {% block scripts %}
     <script src="{$template.assets}vendor/jquery-placeholder/jquery.placeholder.js"></script>
-  {% endblock %}
-
-  {% block js_extra %}
     <script src="{$template.assets}js/components/jquery-placeholder.js"></script>
     <script src="{$template.assets}js/components/material.js"></script>
   {% endblock %}
@@ -45,11 +42,11 @@ data-animsition-out="fade-out">>
           <input type="checkbox" id="inputCheckbox" name="remember">
           <label for="inputCheckbox">Remember me</label>
         </div>
-        <a class="pull-right" href="forgot-password.html">Forgot password?</a>
+        <a class="pull-right" href="iforget.html">Forgot password?</a>
       </div>
       <button type="submit" class="btn btn-primary btn-block">Sign in</button>
     </form>
-    <p>Still no account? Please go to <a href="register.html">Register</a></p>
+    <p>Still no account? Please go to <a href="signup.html">Sign up</a></p>
 
     <footer class="page-copyright page-copyright-inverse">
       <div class="social">

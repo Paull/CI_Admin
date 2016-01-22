@@ -6,8 +6,6 @@ class Welcome extends MY_Controller {
     {
         parent::__construct();
 
-        $this->_layout = 'welcome/layout';
-
         $this->load->model('m_email');
         $this->load->language('welcome');
         $this->load->library('user_agent');

@@ -3,7 +3,6 @@
 class MY_Controller extends CI_Controller {
 
     protected $_data = array();
-    protected $_layout = 'common/layout';
 
     function __construct()
     {
@@ -12,12 +11,6 @@ class MY_Controller extends CI_Controller {
         define('CLASS_URI', strtolower($this->router->directory.$this->router->class));
         define('METHOD_URI', strtolower($this->router->directory.$this->router->class.'/'.$this->router->method));
         define('REFERER_URI', str_replace(array('http://'.$_SERVER['SERVER_NAME'].BASEURL, URL_SUFFIX), array('',''), $this->input->server('HTTP_REFERER')));
-
-        //ajax不启用layout基础模版布局
-        if ( $this->input->is_ajax_request() )
-        {
-            $this->_layout = METHOD_URI;
-        }
 
         //读取$self
         if ( $this->session->userdata('uid') )
