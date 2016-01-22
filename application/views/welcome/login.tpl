@@ -70,7 +70,7 @@ $('#login_form').formValidation({
     <p>{$ lang('sign_in_description') }</p>
     {$ form_open('', 'id="login_form" autocomplete="off"') }
       <div class="form-group form-material floating{% if form_error('username') %} has-error{% endif %}">
-        <input type="text" class="form-control{% if not set_value('username') %} empty{% endif %}" name="username" value="{$ set_value('username') }">
+        <input type="text" class="form-control{% if not set_value('username') %} empty{% endif %}" name="username" value="{$ set_value('username') }" tabindex="1">
         <label class="floating-label control-label">{$ lang('email_or_username_label') }</label>
       </div>
       {% if form_error('username') %}
@@ -80,7 +80,7 @@ $('#login_form').formValidation({
       </div>
       {% endif %}
       <div class="form-group form-material floating{% if form_error('password') %} has-error{% endif %}">
-        <input type="password" class="form-control empty" name="password" value="">
+        <input type="password" class="form-control empty" name="password" value="" tabindex="2">
         <label class="floating-label">{$ lang('password') }</label>
       </div>
       {% if form_error('password') %}
@@ -91,14 +91,14 @@ $('#login_form').formValidation({
       {% endif %}
       <div class="form-group clearfix">
         <div class="checkbox-custom checkbox-inline checkbox-primary pull-left">
-          <input id="remember" type="checkbox" name="remember" checked>
+          <input id="remember" type="checkbox" name="remember" tabindex="3" checked>
           <label for="remember">{$ lang('remember_me') }</label>
         </div>
-        <a class="pull-right" href="{$ site_url('iforget') }">{$ lang('forget_password') }</a>
+        <a class="pull-right" href="{$ site_url('iforget') }" tabindex="6">{$ lang('forget_password') }</a>
       </div>
-      <button type="submit" id="submit" class="btn btn-primary btn-block">{$ lang('sign_in') }</button>
+      <button type="submit" id="submit" class="btn btn-primary btn-block" tabindex="4">{$ lang('sign_in') }</button>
     </form>
-    <p>{$ lang('sign_up_prefix') }<a href="{$ site_url('signup') }">{$ lang('sign_up') }</a></p>
+    <p>{$ lang('sign_up_prefix') }<a href="{$ site_url('signup') }" tabindex="5">{$ lang('sign_up') }</a></p>
 
     <footer class="page-copyright page-copyright-inverse">
       <div class="social">
