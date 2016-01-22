@@ -3,18 +3,22 @@
 $lang['back'] = '&nbsp;返回';
 $lang['send'] = '发送';
 
+$lang['email_or_username_label'] = '帐号或邮件地址';
 $lang['email_label'] = '邮件地址';
 $lang['username_label'] = '帐号';
 $lang['password_label'] = '密码';
 $lang['password_confirm_label'] = '重输密码';
 
 $lang['sign_in'] = '登录';
-$lang['sign_in_header'] = '需要认证';
+$lang['sign_in_description'] = '请输入您的帐号密码登录本系统';
+$lang['remember_me'] = '一周内免登录';
+
+$lang['sign_up_prefix'] = '还没有帐号？现在就去';
 $lang['sign_up'] = '注册';
 $lang['sign_up_description'] = '请认真填写';
 $lang['sign_up_success'] = '一封带有<strong>激活链接</strong>的邮件已发送至您的注册邮箱!请点击邮件中的链接完成注册.';
 
-$lang['forget_password'] = '忘记密码';
+$lang['forget_password'] = '忘记密码？';
 $lang['forget_password_header'] = '重置密码';
 $lang['forget_password_description'] = '我们会发送<strong>密码重置链接</strong>到您的邮箱.';
 $lang['forget_password_success'] = '我们发送了<strong>密码重置链接</strong>到您的邮箱! 请点击邮件中的链接继续重置密码.';

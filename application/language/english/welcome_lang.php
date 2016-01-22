@@ -3,18 +3,22 @@
 $lang['back'] = '&nbsp;Back';
 $lang['send'] = 'Send';
 
+$lang['email_or_username_label'] = 'Username or Email';
 $lang['email_label'] = 'Email address';
 $lang['username_label'] = 'Username';
 $lang['password_label'] = 'Password';
 $lang['password_confirm_label'] = 'Repeat password';
 
 $lang['sign_in'] = 'Sign in';
-$lang['sign_in_header'] = 'Authentication Required';
+$lang['sign_in_description'] = 'Authentication required, please sign into your account.';
+$lang['remember_me'] = 'Remember me';
+
+$lang['sign_up_prefix'] = 'Still no account? Please go to ';
 $lang['sign_up'] = 'Sign up';
 $lang['sign_up_description'] = 'Who are you?';
 $lang['sign_up_success'] = 'We sent you an <strong>activation link</strong> to your email address!';
 
-$lang['forget_password'] = 'Forget password';
+$lang['forget_password'] = 'Forgot password?';
 $lang['forget_password_header'] = 'Reset password';
 $lang['forget_password_description'] = 'Enter your email address and we will send you a password reset link.';
 $lang['forget_password_success'] = 'We sent you a <strong>password reset link</strong> to your email address! Click the link in your mailbox to continue the reset.';
