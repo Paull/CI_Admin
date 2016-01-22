@@ -7,8 +7,9 @@ $lang['email_or_username_label'] = 'Username or Email';
 $lang['email_label'] = 'Email address';
 $lang['username_label'] = 'Username';
 $lang['password_label'] = 'Password';
-$lang['password_confirm_label'] = 'Repeat password';
+$lang['password_confirm_label'] = 'Retype password';
 
+$lang['sign_in_prefix'] = 'Have account already? Please go to ';
 $lang['sign_in'] = 'Sign in';
 $lang['sign_in_description'] = 'Authentication required, please sign into your account.';
 $lang['remember_me'] = 'Remember me';

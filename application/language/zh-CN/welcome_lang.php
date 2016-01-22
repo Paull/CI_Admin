@@ -9,13 +9,14 @@ $lang['username_label'] = '帐号';
 $lang['password_label'] = '密码';
 $lang['password_confirm_label'] = '重输密码';
 
+$lang['sign_in_prefix'] = '已经有帐号了？到这里';
 $lang['sign_in'] = '登录';
 $lang['sign_in_description'] = '请输入您的帐号密码登录本系统';
 $lang['remember_me'] = '一周内免登录';
 
 $lang['sign_up_prefix'] = '还没有帐号？现在就去';
 $lang['sign_up'] = '注册';
-$lang['sign_up_description'] = '请认真填写';
+$lang['sign_up_description'] = '请认真填写以下每一栏';
 $lang['sign_up_success'] = '一封带有<strong>激活链接</strong>的邮件已发送至您的注册邮箱!请点击邮件中的链接完成注册.';
 
 $lang['forget_password'] = '忘记密码？';

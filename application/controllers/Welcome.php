@@ -80,14 +80,12 @@ class_name: 'gritter-light'
     public function login()
     {
         $this->load->library('form_validation');
-        $this->form_validation->set_error_delimiters('<p class="alert alert-danger">', '</p>');
         $this->form_validation->set_rules('username', lang('username_or_email_label'), 'required|callback__check_username');
-        $this->form_validation->set_rules('password', lang('password'), 'required|min_length[6]');
+        $this->form_validation->set_rules('password', lang('password'), 'required|min_length[6]|max_length[32]');
 
         //如果没有提交东西或验证失败，直接显示登录页面
         if ($this->form_validation->run() == FALSE)
         {
-            $this->_data['template']['javascript'] .= "jQuery(\"input[value='']:eq(0)\").focus();";
 
             $this->parser->display('welcome/login.tpl', $this->_data);
         }
@@ -109,22 +107,15 @@ class_name: 'gritter-light'
     //会员注册
     public function signup()
     {
-        $this->_data['template']['title'] = lang('sign_up');
-
         $this->load->library('form_validation');
-        $this->form_validation->set_error_delimiters('<p class="alert alert-danger">', '</p>');
         $this->form_validation->set_rules('username',  'Username', 'required|min_length[3]|max_length[10]|is_unique[member.username]');
         $this->form_validation->set_rules('email',     'Email', 'required|valid_email|is_unique[member.email]');
         $this->form_validation->set_rules('password1', 'Password', 'required|min_length[6]');
         $this->form_validation->set_rules('password2', 'Repeat Password', 'required|min_length[6]|matches[password1]');
 
-        $this->_data['template']['styles'][] = STATIC_URL.'css/layout/login.css';
-
         if ($this->form_validation->run() == FALSE)
         {
-            $this->_data['template']['javascript'] .= "jQuery(\"input[value='']:eq(0)\").focus();";
-
-            $this->load->view($this->_layout, $this->_data);
+            $this->parser->display('welcome/signup.tpl', $this->_data);
         }
         else
         {
@@ -142,7 +133,7 @@ class_name: 'gritter-light'
             // 发送邮件通知管理员
             // $this->m_email->send_notify_mail($data);
 
-            $this->load->view($this->_layout, $this->_data);
+            $this->parser->display('welcome/signup.tpl', $this->_data);
         }
     }
     
