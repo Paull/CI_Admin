@@ -19,7 +19,7 @@ class MY_Parser
         'base_url', 'site_url'
     ];
     private $functions_safe = [
-        'form_open', 'form_close', 'form_error', 'set_value', 'form_hidden'
+        'lang', 'form_open', 'form_close', 'form_error', 'set_value', 'form_hidden'
     ];
     /**
      * @var bool Whether added CodeIgniter functions or not
@@ -106,7 +106,7 @@ class MY_Parser
     /**
      * Renders Twig Template and Returns as String
      * 
-     * @param string $view   Template filename without `.twig`
+     * @param string $view   Template filename
      * @param array  $params Array of parameters to pass to the template
      * @return string
      */
@@ -116,7 +116,7 @@ class MY_Parser
         // We call addCIFunctions() here, because we must call addCIFunctions()
         // after loading CodeIgniter functions in a controller.
         $this->addCIFunctions();
-        $view = $view;
+        //$view = $view . 'tpl';
         return $this->twig->render($view, $params);
     }
     protected function addCIFunctions()
